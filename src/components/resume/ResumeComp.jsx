@@ -60,18 +60,13 @@ class ResumeComp extends React.Component {
             // React Component로 인한 Offset 처리
             const offsetWidth = document.querySelector('.row').childNodes[0].offsetWidth;
             const offsetHeight = document.querySelector('#navbar').offsetHeight;
-
             coordinate.style.opacity = 1;
             coordinate.innerText = `(${clientX}px, ${clientY}px)`;
-            coordinate.style.left = `${pageX - offsetWidth}px`;
-            coordinate.style.top = `${pageY - offsetHeight}px`;
+            coordinate.style.transform = `translate(${pageX - offsetWidth}px, ${pageY - offsetHeight}px)`;
 
         })
-
         document.addEventListener('scroll', (event) => {
-
             coordinate.style.opacity = 0;
-
         })
     }
 
@@ -109,8 +104,8 @@ class ResumeComp extends React.Component {
                             <p>
                                 탐구력과 창의력을 기반으로 세계인들과 함께 협업하여 상상을 현실로 만드는 세상,<br/>
                                 컴퓨터와 아이디어만 있다면 언제 어디서나 구현을 시작할 수 있는 세상,<br/>
-                                능동적인 자세와 열정적인 자세를 통해 세상을 <br/>
-                                만들어 나가고 싶습니다.
+                                능동적인 자세와 열정적인 자세를 통해 하루하루 성장할 수 있는 세상 등 <br/>
+                                다음이 기다려지는 세상을 만들어 나가고 싶습니다.
                             </p>
                         </div>
                     </div>
