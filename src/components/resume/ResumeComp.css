@@ -1,0 +1,377 @@
+/* Global */
+:root {
+
+    /* color */
+    --btn--yellow: #e7a61a;
+
+    /* space size */
+    --margin: 12px;
+    --padding: 12px;
+
+    /* font-size */
+    --font-mega: 28px;
+    --font-large: 18px;
+    --font-medium: 14px;
+    --font-small: 12px;
+    --font-micro: 10px;
+}
+
+
+/* Initial Setting */
+h1 {
+    font-size: var(--font-mega);
+    margin-bottom: var(--margin);
+    padding: calc(var(--padding)*2);
+}
+
+p {
+    margin: 0;
+    font-size: var(--font-medium);
+}
+
+.section {
+    margin: calc(var(--margin)*2);
+    text-align: center;
+}
+
+/* Coordinate */
+
+.pointer {
+    position: absolute;
+    color: black;
+    font-size: 10px;
+    transform: translate(50%, 50%);
+    z-index: 3;
+}
+
+/* Upper Poster */
+
+@keyframes poster-animation {
+    0% {
+        transform: rotateY(-20deg);
+    }
+    100% {
+        transform: rotateY(20deg);
+    }
+}
+
+#poster__background {
+    background-image: url("https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80");
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 400px;
+    background-color: white;
+    perspective: 1000px;
+}
+
+#poster__background .blackCover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.8;
+}
+
+#poster__background .left {
+    width: 100%;
+    flex: 1 1 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#poster__background .right {
+    width: 100%;
+    flex: 1 1 70%;
+    padding: var(--padding);
+    color: white;
+    z-index: 2;
+}
+
+#poster__background .poster {
+    background-image: url("https://avatars3.githubusercontent.com/u/37537227?s=460&u=4d3e816c54e399497f4df33ae4cd07da057e7ffa&v=4");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 160px 200px;
+    position: relative;
+    width: 160px;
+    height: 200px;
+    border-radius: 10%;
+    background-color: white;
+    text-align: center;
+    border: 1px solid lightgrey;
+    animation: poster-animation 1.6s infinite alternate;
+    transform-style: preserve-3d;
+    box-shadow: -6px 6px 2px -3px  rgba(100,100,100,.1);
+}
+
+#poster__background .poster .posterTitle {
+    padding: 1em 0;
+    font-size: 1rem;
+    font-weight: normal;
+    text-align: center;
+    transform: translateZ(50px);
+    color: white;
+}
+
+#poster__background .poster .images {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    transform: translateZ(10px);
+}
+
+#poster__background .poster i {
+    font-size: 125px;
+}
+
+#poster__background .poster img {
+    width: 100%;
+    height: auto;
+}
+
+
+/* Upper Banner Photo */
+#photo {
+    height: 300px;
+    width: 100%;
+    overflow: hidden;
+}
+
+#photo img {
+    width: 100%;
+    height: auto;
+}
+
+
+/* About */
+#about {
+    display: flex;
+    align-items: center;
+    height: auto;
+    min-height: 150px;
+    min-width: 20%;
+}
+
+#about .left {
+    width: 100%;
+    height: 100%;
+    flex: 1 1 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--padding);
+}
+
+#about .right {
+    text-align: left;
+    width: 100%;
+    flex: 1 1 70%;
+    text-overflow: ellipsis;
+    padding: var(--padding);
+}
+
+
+/* skills */
+#skills {
+    background-color: #e7e6e6;
+    padding: var(--padding);
+}
+
+#skills .skillComps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+#skills .skill {
+    position: relative;
+    height: 86px;
+    width: auto;
+    background-color: #e7e6e6;
+    border-radius: 20%;
+    box-shadow: rgba(0.5, 0.5, 0.5, 0.5) 0px 5px 5px 0px;
+    margin: var(--margin);
+}
+
+#skills .skill:hover {
+    transform: scale(1.2);
+}
+
+#skills img.skillComp {
+    height: 100%;
+    border-radius: 20%;
+    width: auto;
+}
+
+#skills .skillComps .skill__description {
+    border-radius: 20%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    opacity: 0;
+    color: white;
+    transition: all 200ms ease-in;
+}
+
+#skills .skillComps .skill__description:hover {
+    opacity: 0.8;
+}
+
+/* Experience */
+#experience {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.category__btn {
+    border: 1px solid grey;
+    font-size: var(--font-medium);
+    width: 150px;
+    height: 30px;
+    margin: var(--margin) calc(var(--padding)/4);
+}
+
+.category__btn.selected,
+.category__btn:hover {
+    background-color: var(--btn--yellow);
+    border: none;
+    outline: none;
+}
+
+.category__btn.selected .category__count,
+.category__btn:hover .category__count{
+    opacity: 1;
+    top: 0px;
+}
+
+.category__count {
+    background-color: white;
+    border-radius: 50%;
+    color: black;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    align-items: center;
+    display: inline-block;
+    position: relative;
+    top: -20px;
+    left: 4px;
+    opacity: 0;
+    transition: all 300ms ease-in;
+}
+
+.experience__projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    transition: all 300ms ease-out;
+}
+
+.experience__projects.animation-bottom {
+    transform: translateY(20px) scale(0.96);
+    opacity: 0.8;
+}
+
+.project {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: var(--margin);
+    background-color: orange;
+}
+
+.project.invisible {
+    display: none;
+}
+
+.project__img {
+    width: 100%;
+    height: 100%;
+}
+
+.project__description {
+    position: absolute;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 300ms ease-in;
+}
+
+.project:hover .project__description{
+    transform: translateY(0px);
+    opacity: 0.8;
+}
+
+.project__description h3,
+.project__description span {
+    color: white;
+}
+
+.project__description h3:after {
+    content: "";
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 7%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background-color: white;
+}
+
+/* ArrowUp Button */
+
+#arrowUp {
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    right: 25px;
+    bottom: 50px;
+    font-size: 30px;
+    color: white;
+    background-color: #e7a61a;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 300ms ease-in;
+}
+
+#arrowUp.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+@media screen and (max-width: 768px) {
+    .section {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .project {
+        width: 150px;
+        height: 150px;
+        flex-grow: 1;
+    }
+
+    #coordinate {
+        visibility: hidden;
+    }
+}
