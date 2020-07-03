@@ -61,9 +61,16 @@ class ResumeComp extends React.Component {
             const offsetWidth = document.querySelector('.row').childNodes[0].offsetWidth;
             const offsetHeight = document.querySelector('#navbar').offsetHeight;
 
-            coordinate.innerText = `(${clientX} , ${clientY})`;
+            coordinate.style.opacity = 1;
+            coordinate.innerText = `(${clientX}px, ${clientY}px)`;
             coordinate.style.left = `${pageX - offsetWidth}px`;
             coordinate.style.top = `${pageY - offsetHeight}px`;
+
+        })
+
+        document.addEventListener('scroll', (event) => {
+
+            coordinate.style.opacity = 0;
 
         })
     }
@@ -75,11 +82,11 @@ class ResumeComp extends React.Component {
                     <span className="pointer">(0 , 0)</span>
                 </section>
 
-                <section id="poster__background">
+                <section id="about">
                     <div className = "blackCover"/>
                     <div className="left">
                         <div className="poster">
-                            <h1 className="posterTitle">Developer</h1>
+                            <h1 className="posterTitle"><strong>개발</strong>이 즐겁습니다!</h1>
                             <figure className="images">
                                 {/*
                                     <i className="image fas fa-book"></i>
@@ -88,31 +95,24 @@ class ResumeComp extends React.Component {
                         </div>
                     </div>
                     <div className="right">
-                        <h3 className="title"> Developer </h3>
-                        <p>
-                            컴퓨터를 통해 머리 속에 있는 모든 것이 구현되는 세상에 대한 큰 매력을 느끼게 되었습니다.<br/><br/>
-                            이에 따라, 세상에 임팩트를 줄 수 있는 서비스 구현에 대한 흥미가 커졌고,<br/> 현재 즐거운 마음으로
-                            형태에 상관없이 다양한 의미와 용도를 제공할 수 있는 서비스를 사회에 제공하고자 합니다.
-                        </p>
-                    </div>
-                </section>
+                        <h3 className="title"><strong>Proactive</strong> <strong>Developer</strong> </h3>
+                        <div className="content">
+                            <p>
+                                컴퓨터를 통해 머리 속의 모든 것이 구현될 수 있는 세상에 큰 매력을 느끼게 되었습니다.
+                            </p>
 
-                <section id="photo">
-                    <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="topPhoto"/>
-                </section>
+                            <p>
+                                이에 따라, 세상에 임팩트를 줄 수 있는 서비스 구현에 대한 흥미가 커졌고, <br/>
+                                현재 즐거운 마음으로 형태에 상관없이 다양한 의미와 용도를 제공할 수 있는 서비스를 사회에 제공하고자 합니다.
+                            </p>
 
-
-                <section id="about" class="section">
-                    <div class="left">
-                        <h3 id="about_me">About Me</h3>
-                    </div>
-                    <div class="right">
-                        <h3 className="title"> 궁금증이 많은 개발자 </h3>
-                        <p className="content">
-                            컴퓨터를 통해 머리 속에 있는 모든 것이 구현되는 세상에 대한 큰 매력을 느끼게 되었습니다.<br/><br/>
-                            이에 따라, 세상에 임팩트를 줄 수 있는 서비스 구현에 대한 흥미가 커졌고,<br/> 현재 즐거운 마음으로
-                            형태에 상관없이 다양한 의미와 용도를 제공할 수 있는 서비스를 사회에 제공하고자 합니다.
-                        </p>
+                            <p>
+                                탐구력과 창의력을 기반으로 세계인들과 함께 협업하여 상상을 현실로 만드는 세상,<br/>
+                                컴퓨터와 아이디어만 있다면 언제 어디서나 구현을 시작할 수 있는 세상,<br/>
+                                능동적인 자세와 열정적인 자세를 통해 세상을 <br/>
+                                만들어 나가고 싶습니다.
+                            </p>
+                        </div>
                     </div>
                 </section>
 
