@@ -1,0 +1,10 @@
+.code__Area {
+    height: 100%;
+    width: 80%;
+    background: black;
+    color: white;
+    padding: 8px 12px;
+}
+code {
+    color: #FEE715FF;
+}
