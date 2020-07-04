@@ -77,7 +77,7 @@ class ResumeComp extends React.Component {
                     <span className="pointer">(0 , 0)</span>
                 </section>
 
-                <section id="about">
+                <section id="about" >
                     <div className = "blackCover"/>
                     <div className="left">
                         <div className="poster">
@@ -113,7 +113,7 @@ class ResumeComp extends React.Component {
 
 
                 <section id="skills" class="section">
-                    <h1>Skills</h1>
+                    <h1><strong>Skills</strong></h1>
                     <div className="skillComps">
                         <div className="skill">
                             <img src="https://user-images.githubusercontent.com/42747200/46140125-da084900-c26d-11e8-8ea7-c45ae6306309.png" alt="c++ icon" className="skillComp"/>
@@ -168,7 +168,7 @@ class ResumeComp extends React.Component {
 
 
                 <section id="experience" class="section">
-                    <h1>Experience</h1>
+                    <h1><strong>Experience</strong></h1>
                     <div className="experience__categories">
                         <button className="category__btn selected" data-filter="*" >
                             All <span className="category__count">4</span>
@@ -215,6 +215,25 @@ class ResumeComp extends React.Component {
                     </div>
                 </section>
 
+                <section id="notes" className="section">
+                    <h1><strong>Activity</strong></h1>
+                    <div className="list">
+                        <ul className="items">
+                            <li className="item">
+                                <span className="item__name">고구마!</span>
+                                <button className="item__delete">
+                                    <i className="fas fa-trash-alt"/>
+                                </button>
+                            </li>
+                            <div className="item__split"/>
+                        </ul>
+                    </div>
+                    <div className="input">
+                        <input type="text" className="input__area"/>
+                        <button className="input__btn">Add Note</button>
+                    </div>
+                </section>
+                <section id="last"/>
                 <button id="arrowUp">
                     <i className="fas fa-arrow-up"></i>
                 </button>

@@ -31,6 +31,12 @@ p {
 
 .section {
     text-align: center;
+    padding: calc(var(--padding)*2) 0 calc(var(--padding)*2) 0;
+}
+
+section#last {
+    width: 100%;
+    height: 50px;
 }
 
 /* Coordinate */
@@ -315,6 +321,62 @@ p {
     background-color: white;
 }
 
+/* Notes */
+
+#notes {
+    background-color: #e7e6e6;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+#notes .list {
+    height: 350px;
+    width: 100%;
+    overflow-y: auto;
+}
+
+#notes .list .items .item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 12%;
+}
+
+#notes .list .items .item__split {
+    width: 79%;
+    height: 1px;
+    background-color: darkgrey;
+    margin: auto;
+}
+
+#notes .input {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#notes .input .input__area {
+    width: 80%;
+    min-width: 200px;
+    height: 30px;
+    margin: var(--margin);
+    padding: var(--margin);
+}
+
+#notes .input .input__btn {
+    width: 25%;
+    min-width: 75px;
+    height: 30px;
+    margin: var(--margin);
+}
+
 /* ArrowUp Button */
 
 #arrowUp {
@@ -394,4 +456,5 @@ p {
     #about .right .content p:last-of-type {
         display: none;
     }
+
 }
