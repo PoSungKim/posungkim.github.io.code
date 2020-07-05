@@ -17,7 +17,7 @@ class HeaderComp extends React.Component {
             navbar.classList.toggle('active');
         })
 
-        const lsList = document.querySelectorAll('.navbar__menu li');
+        const lsList = document.querySelectorAll('.navbar__menu');
         for(let i = 0; i < lsList.length; i++) {
             lsList[i].addEventListener('click', ()=> {
                 menu.classList.toggle('active');
@@ -41,10 +41,11 @@ class HeaderComp extends React.Component {
         // Section Scroll Action 추가
         const navbarMenu = document.querySelector('.navbar__menu__item');
         navbarMenu.addEventListener('click', (event) => {
-            const id = event.target.dataset.section;
-            if (id === null) {
+            if (event.target.tagName !== "LI")
                 return;
-            }
+            const id = event.target.dataset.section;
+            if (id === null)
+                return;
             console.log(id);
             const toScroll = document.querySelector(id);
             if (toScroll === null) {

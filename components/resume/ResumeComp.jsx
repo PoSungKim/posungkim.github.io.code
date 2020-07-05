@@ -73,7 +73,6 @@ class ResumeComp extends React.Component {
         const items = document.querySelector(".items");
         const addBtn = document.querySelector(".input__btn");
         const inputArea = document.querySelector(".input__area");
-
         function onAddBtn() {
             const inputValue = inputArea.value;
             if (inputValue === '') {
@@ -86,40 +85,31 @@ class ResumeComp extends React.Component {
             inputArea.value = "";
             inputArea.focus();
         }
-
+        let id = 0;
         function createItem(inputValue) {
             const item = document.createElement("li");
             item.setAttribute("class", "item");
-
-            const itemContent = document.createElement("div");
-            itemContent.setAttribute("class", "item__content");
-
-            const itemName = document.createElement("span");
-            itemName.setAttribute("class", "item__name");
-            itemName.innerText = inputValue;
-
-            const itemBtn = document.createElement("button");
-            itemBtn.setAttribute("class", "item__delete");
-            itemBtn.addEventListener("click", ()=> {
-                items.removeChild(item);
-            })
-
-            const itemBtnDelete = document.createElement("i");
-            itemBtnDelete.setAttribute("class", "fas fa-trash-alt");
-
-            const itemSplitter = document.createElement("div");
-            itemSplitter.setAttribute("class", "item__split");
-
-            itemContent.appendChild(itemName);
-            itemBtn.appendChild(itemBtnDelete);
-            itemContent.appendChild(itemBtn);
-
-            item.appendChild(itemContent);
-            item.appendChild(itemSplitter);
-
+            item.setAttribute("data-id", id);
+            item.innerHTML =
+            `
+                <div class="item__content">
+                    <span class="item__name">${inputValue}</span>
+                    <button class="item__delete">
+                        <i class="fas fa-trash-alt" data-id=${id}></i>
+                    </button>
+                </div>
+                <div class="item__split"></div>
+            `;
+            id++;
             return item;
         }
-
+        items.addEventListener('click', (event)=> {
+            const id = event.target.dataset.id;
+            if (id) {
+                const Deleted = document.querySelector(`.item[data-id="${id}"]`);
+                Deleted.remove();
+            }
+        })
         addBtn.addEventListener('click', () => {
             onAddBtn();
         })
