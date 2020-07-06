@@ -5,7 +5,7 @@ import HeaderComp from "../basic/HeaderComp";
 import FooterComp from "../basic/FooterComp";
 import FunctionComp from "../function/FunctionComp";
 import ProblemSolveComp from "../problem/ProblemSolveComp";
-import CrawlingComp from "../function/CrawlingComp";
+import GameComp from "../function/GameComp/GameComp";
 import NewsCreateComp from "../news/NewsCreateComp";
 import {Row, Col} from "react-bootstrap";
 import ProfileComp from "../profile/ProfileComp";
@@ -34,10 +34,9 @@ function AppRouter(){
                             <Route exact path = {"/news/edit/:id"}  component={NewsCreateComp}/>
                             <Route exact path = "/functions" component={FunctionComp}/>
                             <Route exact path = "/functions/calculator" component={CalculatorComp}/>
-                            <Route exact path = "/functions/crawling" component={CrawlingComp}/>
+                            <Route exact path = "/functions/game" component={GameComp}/>
                             <Route exact path = "/functions/youtube" component={YouTubeCloning}/>
                             <Route exact path = "/problems" component={ProblemSolveComp}/>
-                            <Redirect path ="/*" to ="/news"/>
                         </Switch>
                     </Col>
                 </Row>

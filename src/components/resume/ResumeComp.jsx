@@ -1,4 +1,4 @@
-import React from "react";
+import React, {createElement} from "react";
 import "./ResumeComp.css"
 
 class ResumeComp extends React.Component {
@@ -67,6 +67,55 @@ class ResumeComp extends React.Component {
         })
         document.addEventListener('scroll', (event) => {
             coordinate.style.opacity = 0;
+        })
+
+        // Activity 액션 추가 -- 버튼 클릭 시 Activity 추가되게
+        const items = document.querySelector(".items");
+        const addBtn = document.querySelector(".input__btn");
+        const inputArea = document.querySelector(".input__area");
+        function onAddBtn() {
+            const inputValue = inputArea.value;
+            if (inputValue === '') {
+                inputArea.focus();
+                return;
+            }
+            const item = createItem(inputValue);
+            items.appendChild(item);
+            item.scrollIntoView();
+            inputArea.value = "";
+            inputArea.focus();
+        }
+        let id = 0;
+        function createItem(inputValue) {
+            const item = document.createElement("li");
+            item.setAttribute("class", "item");
+            item.setAttribute("data-id", id);
+            item.innerHTML =
+            `
+                <div class="item__content">
+                    <span class="item__name">${inputValue}</span>
+                    <button class="item__delete">
+                        <i class="fas fa-trash-alt" data-id=${id}></i>
+                    </button>
+                </div>
+                <div class="item__split"></div>
+            `;
+            id++;
+            return item;
+        }
+        items.addEventListener('click', (event)=> {
+            const id = event.target.dataset.id;
+            if (id) {
+                const Deleted = document.querySelector(`.item[data-id="${id}"]`);
+                Deleted.remove();
+            }
+        })
+        addBtn.addEventListener('click', () => {
+            onAddBtn();
+        })
+        inputArea.addEventListener('keypress', event => {
+            if (event.key === "Enter")
+                onAddBtn();
         })
     }
 
@@ -215,22 +264,15 @@ class ResumeComp extends React.Component {
                     </div>
                 </section>
 
-                <section id="notes" className="section">
+                <section id="activity" className="section">
                     <h1><strong>Activity</strong></h1>
                     <div className="list">
                         <ul className="items">
-                            <li className="item">
-                                <span className="item__name">고구마!</span>
-                                <button className="item__delete">
-                                    <i className="fas fa-trash-alt"/>
-                                </button>
-                            </li>
-                            <div className="item__split"/>
                         </ul>
                     </div>
                     <div className="input">
-                        <input type="text" className="input__area"/>
-                        <button className="input__btn">Add Note</button>
+                        <input type="text" placeholder = "Activity를 기입해주세요" className="input__area"/>
+                        <button className="input__btn">Add Button</button>
                     </div>
                 </section>
                 <section id="last"/>

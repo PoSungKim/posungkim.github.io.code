@@ -321,9 +321,9 @@ section#last {
     background-color: white;
 }
 
-/* Notes */
+/* Activity */
 
-#notes {
+#activity {
     background-color: #e7e6e6;
     position: relative;
     display: flex;
@@ -333,27 +333,37 @@ section#last {
     height: auto;
 }
 
-#notes .list {
-    height: 350px;
+#activity .list {
+    height: 240px;
     width: 100%;
     overflow-y: auto;
 }
 
-#notes .list .items .item {
+#activity .list .items .item__content {
     width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 8px 12%;
 }
 
-#notes .list .items .item__split {
+#activity .list .items .item .item__content .item__delete {
+    background-color: transparent;
+    font-size: 20px;
+}
+
+#activity .list .items .item .item__content .item__delete:hover {
+    color: #045fd4;
+    transform: scale(1.4);
+}
+
+#activity .list .items .item .item__split {
     width: 79%;
     height: 1px;
     background-color: darkgrey;
     margin: auto;
 }
 
-#notes .input {
+#activity .input {
     width: 100%;
     height: auto;
     display: flex;
@@ -362,7 +372,7 @@ section#last {
     align-items: center;
 }
 
-#notes .input .input__area {
+#activity .input .input__area {
     width: 80%;
     min-width: 200px;
     height: 30px;
@@ -370,11 +380,17 @@ section#last {
     padding: var(--margin);
 }
 
-#notes .input .input__btn {
+#activity .input .input__btn {
     width: 25%;
     min-width: 75px;
     height: 30px;
     margin: var(--margin);
+}
+
+#activity .input .input__btn:hover {
+    background-color: #e7a61a;
+    color: white;
+    transform: scale(1.2);
 }
 
 /* ArrowUp Button */
@@ -458,3 +474,4 @@ section#last {
     }
 
 }
+

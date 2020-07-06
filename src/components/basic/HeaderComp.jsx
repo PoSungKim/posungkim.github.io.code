@@ -1,10 +1,25 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import './HeaderComp.css'
+import './HeaderComp.css';
+import bgMusic from './homepageBgMusic.mp3';
 
 class HeaderComp extends React.Component {
 
     componentDidMount() {
+        // Background Music Action 추가
+        const backgroundMusic = document.querySelector('audio');
+        //backgroundMusic.autoplay = true;
+        let isPlayed = false;
+        document.addEventListener("click", ()=> {
+            if (isPlayed)
+                return;
+            isPlayed = true;
+            //backgroundMusic.pause();
+            //backgroundMusic.currentTime = 0;
+            backgroundMusic.loop = false;
+            backgroundMusic.play();
+            console.log("ASdfsad");
+        })
 
         // 햄버거 Click Action 추가
         const toggleBtn = document.querySelector(".navbar__toggleBtn");
@@ -17,7 +32,7 @@ class HeaderComp extends React.Component {
             navbar.classList.toggle('active');
         })
 
-        const lsList = document.querySelectorAll('.navbar__menu li');
+        const lsList = document.querySelectorAll('.navbar__menu');
         for(let i = 0; i < lsList.length; i++) {
             lsList[i].addEventListener('click', ()=> {
                 menu.classList.toggle('active');
@@ -41,10 +56,11 @@ class HeaderComp extends React.Component {
         // Section Scroll Action 추가
         const navbarMenu = document.querySelector('.navbar__menu__item');
         navbarMenu.addEventListener('click', (event) => {
-            const id = event.target.dataset.section;
-            if (id === null) {
+            if (event.target.tagName !== "LI")
                 return;
-            }
+            const id = event.target.dataset.section;
+            if (id === null)
+                return;
             console.log(id);
             const toScroll = document.querySelector(id);
             if (toScroll === null) {
@@ -59,6 +75,7 @@ class HeaderComp extends React.Component {
         return (
             <div className="Header">
                 <nav id="navbar">
+                    <audio src={bgMusic}></audio>
                     <div className="navbar__logo">
                         <Link to={"/"} ><i className="fas fa-puzzle-piece"></i> BeneBean's Coding</Link>
                     </div>
