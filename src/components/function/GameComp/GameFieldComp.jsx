@@ -6,7 +6,12 @@ function randomNumber (min, max) {
     return Math.random() * (max - min) + min;
 }
 
-export default class GameFieldComp extends React.Component {
+export const Icons = Object.freeze({
+    corgi: "corgi",
+    bulldog: "bulldog"
+})
+
+export class GameFieldComp extends React.Component {
     constructor(props) {
         super(props);
         window.fieldComp = this;
@@ -20,8 +25,8 @@ export default class GameFieldComp extends React.Component {
 
     initSetting = () => {
         this.gameField.innerHTML = "";
-        this._addIcon('corgi', this.props.corgiCount);
-        this._addIcon('bulldog', this.props.bulldogCount);
+        this._addIcon(Icons.corgi, this.props.corgiCount);
+        this._addIcon(Icons.bulldog, this.props.bulldogCount);
     }
 
     _addIcon = (className, count) => {
@@ -34,7 +39,7 @@ export default class GameFieldComp extends React.Component {
             icon.style.position = "absolute";
             icon.style.left = `${nx}px`;
             icon.style.top = `${ny}px`;
-            icon.src = (className === 'corgi') ? welshCorgiImg : bullDogImg;
+            icon.src = (className === Icons.corgi) ? welshCorgiImg : bullDogImg;
             this.gameField.appendChild(icon);
         }
     }
@@ -46,13 +51,13 @@ export default class GameFieldComp extends React.Component {
     onClickField = (event) => {
         const targetElement = event.target;
         if (targetElement.matches(".corgi")) {
-            if (this.onClickItem && this.onClickItem('corgi'))
+            if (this.onClickItem && this.onClickItem(Icons.corgi))
                 return;
             targetElement.remove();
 
         }
         else if (event.target.matches(".bulldog")) {
-            this.onClickItem && this.onClickItem('bulldog');
+            this.onClickItem && this.onClickItem(Icons.bulldog);
 
         }
     }

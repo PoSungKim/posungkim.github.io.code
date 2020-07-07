@@ -2,9 +2,10 @@ import React from "react";
 import "./GameComp.css";
 import GamePopUpComp from "./GamePopUpComp";
 import GamePlayComp from "./GamePlayComp";
-import {pauseMusic} from "./GameSound";
+import {pauseMusic, playFail, playLoss, playWin} from "./GameSound";
+import {Reason} from "./GamePlayComp"
 
-class GameComp extends React.Component {
+export default class GameComp extends React.Component {
     constructor(props) {
         super(props);
         this.sizeOffset = 100;
@@ -23,14 +24,17 @@ class GameComp extends React.Component {
         window.playComp.setGameStopListener((reason) => {
             let message;
             switch (reason) {
-                case 'pause':
+                case Reason.quit:
                     message = "Play Again?";
+                    playFail();
                     break;
-                case 'win':
+                case Reason.win:
                     message = "Congratulation! 😊";
+                    playWin();
                     break;
-                case 'lose':
+                case Reason.lose:
                     message = "Sorry, Lost! 👻";
+                    playLoss();
                     break;
                 default:
                     throw new Error("unknown error");
@@ -54,4 +58,3 @@ class GameComp extends React.Component {
         )
     };
 }
-export default GameComp;

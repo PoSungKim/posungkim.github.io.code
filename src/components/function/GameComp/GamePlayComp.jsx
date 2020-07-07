@@ -1,6 +1,12 @@
 import React from "react";
-import GameFieldComp from "./GameFieldComp";
-import {pauseBg, playBg, playFail, playSuccess, playWin} from "./GameSound";
+import {GameFieldComp, Icons} from "./GameFieldComp";
+import {pauseBg, playSuccess, playBg, playLoss} from "./GameSound";
+
+export const Reason = Object.freeze({
+    win: 'win',
+    lose: 'lose',
+    quit: 'quit'
+});
 
 export default class GamePlayComp extends React.Component {
     constructor(props) {
@@ -25,7 +31,7 @@ export default class GamePlayComp extends React.Component {
                 this.start();
             }
             else {
-                this.stop();
+                this.stop(Reason.quit);
             }
         })
     }
@@ -44,47 +50,33 @@ export default class GamePlayComp extends React.Component {
         this.runTimer();
     }
 
-    end = (win) => {
+    stop = (reason) => {
         this.isStarted = false;
-        playBg();
         this.stopTimer();
         this.hideGameBtn();
-        this.onGameStop && this.onGameStop(win? "win" : "lose");
-
+        pauseBg();
+        this.onGameStop && this.onGameStop(reason);
         const stopIcon = document.querySelector(".fa-stop");
         if (stopIcon !== undefined) {
             stopIcon.classList.remove("fa-stop");
             stopIcon.classList.add("fa-play-circle");
-            win ? playWin() : playFail();
         }
-        pauseBg();
-    }
-
-    stop = () => {
-        this.isStarted = false;
-        pauseBg();
-        this.stopTimer();
-        this.hideGameBtn();
-        this.onGameStop && this.onGameStop("pause");
-        const stopIcon = document.querySelector(".fa-stop");
-        stopIcon.classList.remove("fa-stop");
-        stopIcon.classList.add("fa-play-circle");
     }
 
     onClickItem = (item) => {
         if(!this.isStarted) {
             return true;
         }
-        if (item === "corgi") {
+        if (item === Icons.corgi) {
             playSuccess();
             this.updateScore(++this.score);
             if (this.score === this.corgiCount) {
-                this.end(true);
+                this.stop(Reason.win);
             }
         }
-        else if (item === "bulldog") {
-            playFail();
-            this.end(false);
+        else if (item === Icons.bulldog) {
+            playLoss();
+            this.stop(Reason.lose);
         }
     }
 
@@ -126,7 +118,7 @@ export default class GamePlayComp extends React.Component {
         window.curInterval = setInterval(() => {
             if (this.remainTime <= 0) {
                 clearInterval(window.curInterval);
-                this.end(false);
+                this.stop(Reason.lose);
                 return;
             }
             const stopIcon = document.querySelector(".fa-stop");

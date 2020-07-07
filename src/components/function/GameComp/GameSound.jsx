@@ -2,11 +2,13 @@ import bgSound from "./sound/bgSound.mp3";
 import successSound from "./sound/successSound.mp3";
 import failSound from "./sound/failSound.mp3";
 import winSound from "./sound/winSound.mp3";
+import lossSound from "./sound/lossSound.wav"
 
 const bgMusic = new Audio(bgSound);
 const successMusic = new Audio(successSound);
 const failMusic = new Audio(failSound);
 const winMusic = new Audio(winSound);
+const lossMusic = new Audio(lossSound);
 
 export function pauseMusic(music) {
     music.pause();
@@ -35,4 +37,8 @@ export function pauseBg() {
 
 export function playWin() {
     playMusic(winMusic);
+}
+
+export function playLoss() {
+    playMusic(lossMusic);
 }
