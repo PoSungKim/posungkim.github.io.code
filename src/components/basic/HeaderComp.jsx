@@ -17,7 +17,7 @@ class HeaderComp extends React.Component {
             //backgroundMusic.pause();
             //backgroundMusic.currentTime = 0;
             backgroundMusic.loop = false;
-            //backgroundMusic.play();
+            backgroundMusic.play();
         })
 
         // 햄버거 Click Action 추가
