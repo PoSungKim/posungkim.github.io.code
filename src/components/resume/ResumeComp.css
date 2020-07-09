@@ -269,8 +269,8 @@ section#last {
 
 .project {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 22vw;
+    height: 40vh;
     margin: var(--margin);
     background-color: orange;
 }
@@ -282,6 +282,14 @@ section#last {
 .project__img {
     width: 100%;
     height: 100%;
+}
+
+.experience__projects a:nth-child(1) .project__img {
+    background: url("./image/flashGame.png") no-repeat center/cover;
+}
+
+.experience__projects a:nth-child(2) .project__img {
+    background: url("./image/youTube.png") no-repeat center/cover;
 }
 
 .project__description {
@@ -422,8 +430,8 @@ section#last {
     }
 
     .project {
-        width: 150px;
-        height: 150px;
+        width: 50vw;
+        height: 40vh;
         flex-grow: 1;
     }
 

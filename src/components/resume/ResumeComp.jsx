@@ -234,32 +234,32 @@ class ResumeComp extends React.Component {
                         </button>
                     </div>
                     <div className="experience__projects">
-                        <a href="/" className="project" target="_blank" data-type="frontend">
+                        <a href="/functions/game" className="project" target="_blank" data-type="frontend">
                             <div className="project__img"></div>
                             <div className="project__description">
-                                <h3>YouTube Mobile Site</h3>
-                                <span>Clone Coding with HTML, CSS, JS</span>
+                                <h3>Flash Game</h3>
+                                <span>Practicing JS Programming</span>
                             </div>
                         </a>
-                        <a href="/" className="project" target="_blank" data-type="backend">
+                        <a href="/functions/youtube" className="project" target="_blank" data-type="backend">
                             <div className="project__img"></div>
                             <div className="project__description">
-                                <h3>YouTube Mobile Site</h3>
-                                <span>Clone Coding with HTML, CSS, JS</span>
-                            </div>
-                        </a>
-                        <a href="/" className="project" target="_blank" data-type="mobile">
-                            <div className="project__img"></div>
-                            <div className="project__description">
-                                <h3>YouTube Mobile Site</h3>
+                                <h3>YouTube Mobile</h3>
                                 <span>Clone Coding with HTML, CSS, JS</span>
                             </div>
                         </a>
                         <a href="/" className="project" target="_blank" data-type="mobile">
                             <div className="project__img"></div>
                             <div className="project__description">
-                                <h3>YouTube Mobile Site</h3>
-                                <span>Clone Coding with HTML, CSS, JS</span>
+                                <h3>Soon to be Open</h3>
+                                <span>Coming Soon!</span>
+                            </div>
+                        </a>
+                        <a href="/" className="project" target="_blank" data-type="mobile">
+                            <div className="project__img"></div>
+                            <div className="project__description">
+                                <h3>Soon to be Open</h3>
+                                <span>Coming Soon!</span>
                             </div>
                         </a>
                     </div>

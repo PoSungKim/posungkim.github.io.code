@@ -55,7 +55,7 @@ button:focus {
     text-align: center;
     background-color: var(--black-color);
     position: sticky;
-    top: 0px;
+    top: -2%;
 }
 .videoPlayer video {
     width: 100%;

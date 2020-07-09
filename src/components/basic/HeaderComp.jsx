@@ -28,6 +28,7 @@ class HeaderComp extends React.Component {
         console.log(toggleBtn);
         toggleBtn.addEventListener('click', (event)=> {
             console.log(event.target);
+            toggleBtn.scrollIntoView();
             if (event.target.tagName === "I" && event.target.parentNode.tagName === "BUTTON") {
                 menu.classList.toggle('active');
                 icons.classList.toggle('active');
@@ -79,13 +80,16 @@ class HeaderComp extends React.Component {
                     sideBarSection.classList.add("show");
                 }, window.scrollY <= window.innerHeight/2? 500: 1000);
             }
+        });
+
+        ["scroll", "click"].forEach(event => {
+            document.addEventListener(event, ()=> {
+                if (sideBarSection.matches(".show")) {
+                    sideBarSection.classList.remove("show");
+                }
+            })
         })
 
-        document.addEventListener("scroll", ()=> {
-            if (sideBarSection.matches(".show")) {
-                sideBarSection.classList.remove("show");
-            }
-        })
 
         // Navbar Scroll Action 추가
         const navbarHeight = navbar.getBoundingClientRect().height;

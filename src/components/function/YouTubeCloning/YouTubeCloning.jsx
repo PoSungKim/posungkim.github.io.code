@@ -1,5 +1,6 @@
 import React from "react";
 import "./YouTubeCloning.css";
+import youTubeMotion from "./youTubeMotion.mp4"
 
 class YouTubeCloning extends React.Component {
     componentDidMount() {
@@ -28,7 +29,7 @@ class YouTubeCloning extends React.Component {
 
                 {/* Video Player */}
                 <section className="videoPlayer">
-                    <video encrypted-media controls autoPlay src="https://cdn.videvo.net/videvo_files/video/free/2012-07/small_watermarked/hd0936_preview.webm"></video>
+                    <video encrypted-media controls loop autoPlay src={youTubeMotion} type="video/mp4"></video>
                 </section>
 
                 {/* info + Channel + upNext */}
