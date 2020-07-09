@@ -58,11 +58,12 @@ class ResumeComp extends React.Component {
             const pageX = event.pageX;
 
             // React Component로 인한 Offset 처리
-            const offsetWidth = document.querySelector('.row').childNodes[0].offsetWidth;
+            //const offsetWidth = document.querySelector('.row').childNodes[0].offsetWidth;
             const offsetHeight = document.querySelector('#navbar').offsetHeight;
             coordinate.style.opacity = 1;
             coordinate.innerText = `(${clientX}px, ${clientY}px)`;
-            coordinate.style.transform = `translate(${pageX - offsetWidth}px, ${pageY - offsetHeight}px)`;
+            coordinate.style.transform = `translate(${pageX}px, ${pageY - offsetHeight}px)`;
+            //coordinate.style.transform = `translate(${pageX - offsetWidth}px, ${pageY - offsetHeight}px)`;
 
         })
         document.addEventListener('scroll', (event) => {

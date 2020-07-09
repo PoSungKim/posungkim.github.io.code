@@ -1,9 +1,28 @@
-.row {
-    margin-top: 80px;
+section#content {
+    position: relative;
+    transform: translateY(85px);
+}
+
+section#sidebar {
+    position: absolute;
+    width: 400px;
+    height: 600px;
+    background-color: black;
+    opacity: 0.8;
+    transform: translate(-100%, 50px);
+    transition: transform 200ms ease-in;
+    z-index:1;
+}
+
+section#sidebar.show {
+    transform: translate(0px, 50px);
 }
 
 @media screen and (max-width: 768px) {
-    .row {
-        margin-top: 57px;
+    section#content {
+        transform: translateY(52px);
+    }
+    section#sidebar {
+        display: none;
     }
 }

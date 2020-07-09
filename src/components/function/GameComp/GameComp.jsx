@@ -29,7 +29,7 @@ export default class GameComp extends React.Component {
                     playFail();
                     break;
                 case Reason.win:
-                    message = "Congratulation! 😊";
+                    message = "Congratulations! 😊";
                     playWin();
                     break;
                 case Reason.lose:
