@@ -20,8 +20,10 @@ class AppRouter extends React.Component{
         const navbar = document.querySelector("#navbar");
         const content = document.querySelector("#content");
         window.addEventListener("resize", ()=> {
-            const heightOffset = navbar.clientHeight;
-            content.style.transform = `translateY(${heightOffset}px)`;
+            if(navbar.matches(".active")) {
+                const heightOffset = navbar.clientHeight;
+                content.style.transform = `translateY(${heightOffset}px)`;
+            }
         })
     }
 
