@@ -34,6 +34,7 @@ p {
     padding: calc(var(--padding)*2) 0 calc(var(--padding)*2) 0;
 }
 
+
 /* Coordinate */
 
 .pointer {
@@ -402,8 +403,8 @@ p {
     height: 50px;
     width: 50px;
     position: fixed;
-    right: 25px;
-    bottom: 5%;
+    right: 50px;
+    top: 90%;
     font-size: 30px;
     color: white;
     background-color: #e7a61a;
@@ -474,6 +475,10 @@ p {
 
     #about .right .content p:last-of-type {
         display: none;
+    }
+
+    #arrowUp {
+        top: 93%;
     }
 
 }
