@@ -17,6 +17,7 @@ class AppRouter extends React.Component{
 
     componentDidMount() {
         // Move the content section in accordance with height of the navbar
+        {/*
         const navbar = document.querySelector("#navbar");
         const content = document.querySelector("#content");
         window.addEventListener("resize", ()=> {
@@ -25,6 +26,7 @@ class AppRouter extends React.Component{
                 content.style.transform = `translateY(${heightOffset}px)`;
             }
         })
+        */}
     }
 
     render() {

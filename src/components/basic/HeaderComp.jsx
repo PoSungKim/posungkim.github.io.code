@@ -36,8 +36,8 @@ class HeaderComp extends React.Component {
             }
         })
 
-        {/*
-        const lsList = document.querySelector('.navbar__menu');
+
+        const lsList = document.querySelector('.navbar__menu').childNodes;
         for(let i = 0; i < lsList.length; i++) {
             lsList[i].addEventListener('click', ()=> {
                 menu.classList.toggle('active');
@@ -45,7 +45,7 @@ class HeaderComp extends React.Component {
                 navbar.classList.toggle('active');
             })
         }
-        */}
+
 
         // Section Scroll Action 추가
         const navbarMenu = document.querySelector('.navbar__menu');
@@ -61,7 +61,7 @@ class HeaderComp extends React.Component {
                     alert("해당 페이지에는 About Me가 없어요! Resume 페이지로 가주세요!");
                     return;
                 }
-                toScroll.scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
+                toScroll.scrollIntoView({behavior: "smooth", block: (id !== "#experience")? "center" : "start", inline: "center"});
             }
         })
 
