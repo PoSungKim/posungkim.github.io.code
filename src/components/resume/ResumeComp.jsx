@@ -5,20 +5,20 @@ import {Link} from "react-router-dom";
 class ResumeComp extends React.Component {
     componentDidMount() {
         // ArrowUp Button 액션 추가 -- 스크롤 내려갈 시 보이게
-        const button = document.querySelector('#arrowUp');
+        const arrowUpBtn = document.querySelector('#arrowUp');
         const about = document.querySelector('#navbar');
         document.addEventListener('scroll', () => {
             if (window.scrollY > about.getBoundingClientRect().height) {
-                button.classList.add("visible");
+                arrowUpBtn.classList.add("visible");
             }
             else {
-                button.classList.remove('visible');
+                arrowUpBtn.classList.remove('visible');
             }
         })
 
         // ArrowUp Button 액션 추가 -- 클릭 시 최상단으로 갈 수 있게
         const header = document.querySelector('#navbar');
-        button.addEventListener('click', ()=> {
+        arrowUpBtn.addEventListener('click', ()=> {
             console.log(header);
             window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
         })
@@ -278,7 +278,6 @@ class ResumeComp extends React.Component {
                         <button className="input__btn">Add Button</button>
                     </div>
                 </section>
-                <section id="last"/>
                 <button id="arrowUp">
                     <i className="fas fa-arrow-up"></i>
                 </button>
