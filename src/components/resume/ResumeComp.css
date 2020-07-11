@@ -45,6 +45,16 @@ p {
     margin: 15px;
 }
 
+#sidebar {
+    color: white;
+}
+
+#sidebar a {
+    text-decoration: none;
+    color: #e7a61a;
+    transition: transform 300ms ease-in;
+}
+
 /* Upper Poster */
 
 #about {

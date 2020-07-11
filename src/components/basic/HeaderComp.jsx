@@ -67,7 +67,7 @@ class HeaderComp extends React.Component {
 
         // SideBar Click Action 추가
         const sideBarBtn = document.querySelector(".navbar__menu__sidebar");
-        const sideBarSection = document.querySelector("section#sidebar");
+        const sideBarSection = document.querySelector("#sidebar");
         sideBarBtn.addEventListener("click", ()=>{
             console.log("sideBarBtn clicked!");
             if (sideBarSection.matches(".show")) {
@@ -112,8 +112,8 @@ class HeaderComp extends React.Component {
                         <a href="/"><i className="fas fa-puzzle-piece"></i> BeneBean's Coding</a>
                     </div>
 
-                    <ul className="navbar__menu">
-                        <li className="navbar__menu__sidebar">SideBar</li>
+                    <ol className="navbar__menu">
+                        <li className="navbar__menu__sidebar">Information</li>
                         <li className="navbar__menu__item" data-section="#about">About Me</li>
                         <li className="navbar__menu__item" data-section="#skills">Skills</li>
                         <li className="navbar__menu__item" data-section="#experience">Experience</li>
@@ -124,7 +124,7 @@ class HeaderComp extends React.Component {
                             <li><Link to={"/functions"}>Functions</Link></li>
                             <li><Link to={"/problems"}>Problem Solving </Link></li>
                         */}
-                    </ul>
+                    </ol>
 
                     <ul className="navbar__icons">
                         <li>
