@@ -21,7 +21,7 @@ class HeaderComp extends React.Component {
         })
 
         // 햄버거 Click Action 추가
-        const navbar = document.querySelector("header");
+        const navbar = document.querySelector(".header__navbar");
         const toggleBtn = document.querySelector(".navbar__toggleBtn");
         const menu = document.querySelector(".navbar__menu");
         const icons = document.querySelector(".navbar__icons");
@@ -106,40 +106,42 @@ class HeaderComp extends React.Component {
     render() {
         return (
             <header>
-                <audio src={bgMusic}></audio>
-                <div className="navbar__logo">
-                    <a href="/"><i className="fas fa-puzzle-piece"></i> BeneBean's Coding</a>
-                </div>
+                <nav className="header__navbar">
+                    <audio src={bgMusic}></audio>
+                    <div className="navbar__logo">
+                        <a href="/"><i className="fas fa-puzzle-piece"></i> BeneBean's Coding</a>
+                    </div>
 
-                <ul className="navbar__menu">
-                    <li className="navbar__menu__sidebar">SideBar</li>
-                    <li className="navbar__menu__item" data-section="#about">About Me</li>
-                    <li className="navbar__menu__item" data-section="#skills">Skills</li>
-                    <li className="navbar__menu__item" data-section="#experience">Experience</li>
-                    <li className="navbar__menu__item" data-section="#activity">Activity</li>
-                    {/*
-                        <li><Link to={"/journals"}>Journals</Link></li>
-                        <li><Link to={"/news"}>News</Link></li>
-                        <li><Link to={"/functions"}>Functions</Link></li>
-                        <li><Link to={"/problems"}>Problem Solving </Link></li>
-                    */}
-                </ul>
+                    <ul className="navbar__menu">
+                        <li className="navbar__menu__sidebar">SideBar</li>
+                        <li className="navbar__menu__item" data-section="#about">About Me</li>
+                        <li className="navbar__menu__item" data-section="#skills">Skills</li>
+                        <li className="navbar__menu__item" data-section="#experience">Experience</li>
+                        <li className="navbar__menu__item" data-section="#activity">Activity</li>
+                        {/*
+                            <li><Link to={"/journals"}>Journals</Link></li>
+                            <li><Link to={"/news"}>News</Link></li>
+                            <li><Link to={"/functions"}>Functions</Link></li>
+                            <li><Link to={"/problems"}>Problem Solving </Link></li>
+                        */}
+                    </ul>
 
-                <ul className="navbar__icons">
-                    <li>
-                        <a target="_blank" rel="noopener noreferrer" href="https://github.com/posungkim">
-                            <i className="fab fa-github"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a  target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/posung.kim">
-                            <i className="fab fa-facebook-square"></i>
-                        </a>
-                    </li>
-                </ul>
-                <button className="navbar__toggleBtn">
-                    <i className="fas fa-bars"></i>
-                </button>
+                    <ul className="navbar__icons">
+                        <li>
+                            <a target="_blank" rel="noopener noreferrer" href="https://github.com/posungkim">
+                                <i className="fab fa-github"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a  target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/posung.kim">
+                                <i className="fab fa-facebook-square"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <button className="navbar__toggleBtn">
+                        <i className="fas fa-bars"></i>
+                    </button>
+                </nav>
             </header>
         );
     }

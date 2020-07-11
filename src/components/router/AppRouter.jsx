@@ -34,7 +34,7 @@ class AppRouter extends React.Component{
             <div className="router">
                 <HeaderComp />
                 <main id="content">
-                    <section id="sidebar"/>
+                    <aside id="sidebar"/>
                     <BrowserRouter>
                         <Switch>
                             <Route exact path = "/" component={ResumeComp}/>
@@ -49,6 +49,7 @@ class AppRouter extends React.Component{
                             <Route exact path = "/problems" component={ProblemSolveComp}/>
                         </Switch>
                     </BrowserRouter>
+                    <FooterComp/>
                 </main>
             </div>
         )

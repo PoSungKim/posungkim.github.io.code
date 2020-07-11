@@ -3,7 +3,7 @@ main#content {
     transform: translateY(85px);
 }
 
-main#sidebar {
+main #sidebar {
     position: absolute;
     width: 400px;
     height: 600px;
@@ -14,7 +14,7 @@ main#sidebar {
     z-index:1;
 }
 
-main#sidebar.show {
+main #sidebar.show {
     transform: translate(0px, 50px);
 }
 
@@ -22,7 +22,7 @@ main#sidebar.show {
     main#content {
         transform: translateY(52px);
     }
-    main#sidebar {
+    main #sidebar {
         display: none;
     }
 }

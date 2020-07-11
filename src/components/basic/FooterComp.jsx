@@ -5,9 +5,11 @@ class FooterComp extends React.Component {
     render() {
         let current_year = new Date().getFullYear();
         return (
-            <nav className="footer__navbar">
-                <span>{current_year - 1} - {current_year} Rights Reserved By BeneBean </span>
-            </nav>
+            <footer>
+                <nav className="footer__navbar">
+                    <span>{current_year - 1} - {current_year} Rights Reserved By BeneBean </span>
+                </nav>
+            </footer>
         )
     };
 }
