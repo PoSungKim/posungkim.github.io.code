@@ -21,7 +21,7 @@ class HeaderComp extends React.Component {
         })
 
         // 햄버거 Click Action 추가
-        const navbar = document.querySelector("#navbar");
+        const navbar = document.querySelector("header");
         const toggleBtn = document.querySelector(".navbar__toggleBtn");
         const menu = document.querySelector(".navbar__menu");
         const icons = document.querySelector(".navbar__icons");
@@ -105,7 +105,7 @@ class HeaderComp extends React.Component {
 
     render() {
         return (
-            <nav id="navbar">
+            <header>
                 <audio src={bgMusic}></audio>
                 <div className="navbar__logo">
                     <a href="/"><i className="fas fa-puzzle-piece"></i> BeneBean's Coding</a>
@@ -140,7 +140,7 @@ class HeaderComp extends React.Component {
                 <button className="navbar__toggleBtn">
                     <i className="fas fa-bars"></i>
                 </button>
-            </nav>
+            </header>
         );
     }
 }

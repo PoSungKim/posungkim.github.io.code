@@ -1,9 +1,9 @@
-section#content {
+main#content {
     position: relative;
     transform: translateY(85px);
 }
 
-section#sidebar {
+main#sidebar {
     position: absolute;
     width: 400px;
     height: 600px;
@@ -14,15 +14,15 @@ section#sidebar {
     z-index:1;
 }
 
-section#sidebar.show {
+main#sidebar.show {
     transform: translate(0px, 50px);
 }
 
 @media screen and (max-width: 768px) {
-    section#content {
+    main#content {
         transform: translateY(52px);
     }
-    section#sidebar {
+    main#sidebar {
         display: none;
     }
 }

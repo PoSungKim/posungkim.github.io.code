@@ -6,7 +6,7 @@ class ResumeComp extends React.Component {
     componentDidMount() {
         // ArrowUp Button 액션 추가 -- 스크롤 내려갈 시 보이게
         const arrowUpBtn = document.querySelector('#arrowUp');
-        const about = document.querySelector('#navbar');
+        const about = document.querySelector('header');
         document.addEventListener('scroll', () => {
             if (window.scrollY > about.getBoundingClientRect().height) {
                 arrowUpBtn.classList.add("visible");
@@ -17,7 +17,7 @@ class ResumeComp extends React.Component {
         })
 
         // ArrowUp Button 액션 추가 -- 클릭 시 최상단으로 갈 수 있게
-        const header = document.querySelector('#navbar');
+        const header = document.querySelector('header');
         arrowUpBtn.addEventListener('click', ()=> {
             console.log(header);
             window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
@@ -46,29 +46,6 @@ class ResumeComp extends React.Component {
             const btn = document.querySelector('.category__btn.selected');
             btn.classList.remove('selected');
             targetBtn.classList.add('selected');
-        })
-
-        // Coordinate 액션 추가 -- 커서에 좌표가 함께 표시될 수 있게
-        const coordinate = document.querySelector('.pointer');
-        document.addEventListener('mousemove', (event) => {
-
-            const clientY = event.clientY;
-            const clientX = event.clientX;
-
-            const pageY = event.pageY;
-            const pageX = event.pageX;
-
-            // React Component로 인한 Offset 처리
-            //const offsetWidth = document.querySelector('.row').childNodes[0].offsetWidth;
-            const offsetHeight = document.querySelector('#navbar').offsetHeight;
-            coordinate.style.opacity = 1;
-            coordinate.innerText = `(${clientX}px, ${clientY}px)`;
-            coordinate.style.transform = `translate(${pageX}px, ${pageY - offsetHeight}px)`;
-            //coordinate.style.transform = `translate(${pageX - offsetWidth}px, ${pageY - offsetHeight}px)`;
-
-        })
-        document.addEventListener('scroll', (event) => {
-            coordinate.style.opacity = 0;
         })
 
         // Activity 액션 추가 -- 버튼 클릭 시 Activity 추가되게
@@ -124,9 +101,6 @@ class ResumeComp extends React.Component {
     render() {
         return (
             <div className="ResumeComp">
-                <section id="coordinate">
-                    <span className="pointer">(0 , 0)</span>
-                </section>
 
                 <section id="about" >
                     <div className = "blackCover"/>

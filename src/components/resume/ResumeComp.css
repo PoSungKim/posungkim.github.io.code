@@ -403,7 +403,7 @@ p {
     height: 50px;
     width: 50px;
     position: fixed;
-    right: 50px;
+    right: 10%;
     top: 90%;
     font-size: 30px;
     color: white;

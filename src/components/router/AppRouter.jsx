@@ -31,25 +31,26 @@ class AppRouter extends React.Component{
 
     render() {
         return (
-            <BrowserRouter>
+            <div className="router">
                 <HeaderComp />
-                <section id="content">
+                <main id="content">
                     <section id="sidebar"/>
-                    <Switch>
-                        <Route exact path = "/" component={ResumeComp}/>
-                        <Route exact path = "/journals" component={JournalComp}/>
-                        <Route exact path = "/news"  component={NewsComp}/>
-                        <Route exact path = "/news/create" component={NewsCreateComp}/>
-                        <Route exact path = {"/news/edit/:id"}  component={NewsCreateComp}/>
-                        <Route exact path = "/functions" component={FunctionComp}/>
-                        <Route exact path = "/functions/calculator" component={CalculatorComp}/>
-                        <Route exact path = "/functions/game" component={GameComp}/>
-                        <Route exact path = "/functions/youtube" component={YouTubeCloning}/>
-                        <Route exact path = "/problems" component={ProblemSolveComp}/>
-                    </Switch>
-                </section>
-                <FooterComp/>
-            </BrowserRouter>
+                    <BrowserRouter>
+                        <Switch>
+                            <Route exact path = "/" component={ResumeComp}/>
+                            <Route exact path = "/journals" component={JournalComp}/>
+                            <Route exact path = "/news"  component={NewsComp}/>
+                            <Route exact path = "/news/create" component={NewsCreateComp}/>
+                            <Route exact path = {"/news/edit/:id"}  component={NewsCreateComp}/>
+                            <Route exact path = "/functions" component={FunctionComp}/>
+                            <Route exact path = "/functions/calculator" component={CalculatorComp}/>
+                            <Route exact path = "/functions/game" component={GameComp}/>
+                            <Route exact path = "/functions/youtube" component={YouTubeCloning}/>
+                            <Route exact path = "/problems" component={ProblemSolveComp}/>
+                        </Switch>
+                    </BrowserRouter>
+                </main>
+            </div>
         )
     }
 }
