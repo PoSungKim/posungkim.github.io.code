@@ -274,6 +274,7 @@ p {
 }
 
 .project {
+    display: block;
     position: relative;
     width: 22vw;
     height: 40vh;

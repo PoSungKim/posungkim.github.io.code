@@ -16,7 +16,8 @@ export default class GameComp extends React.Component {
 
     componentDidMount() {
         // Home Page BGM Off
-        const backgroundMusic = document.querySelector('audio');
+        const backgroundMusic = document.querySelector('#bgmAudio');
+        console.log(backgroundMusic);
         if (backgroundMusic !== null)
             pauseMusic(backgroundMusic);
 

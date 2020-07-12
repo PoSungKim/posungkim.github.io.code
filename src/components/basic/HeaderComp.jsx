@@ -7,18 +7,9 @@ class HeaderComp extends React.Component {
 
     componentDidMount() {
         // Background Music Action 추가
-        const backgroundMusic = document.querySelector('audio');
-        //backgroundMusic.autoplay = true;
-        let isPlayed = false;
-        document.addEventListener("click", ()=> {
-            if (isPlayed)
-                return;
-            isPlayed = true;
-            //backgroundMusic.pause();
-            //backgroundMusic.currentTime = 0;
-            backgroundMusic.loop = false;
-            backgroundMusic.play();
-        })
+        const backgroundMusic = document.querySelector('#bgmAudio');
+        backgroundMusic.autoplay = true;
+        backgroundMusic.volume = 0.02;
 
         // 햄버거 Click Action 추가
         const navbar = document.querySelector(".header__navbar");
@@ -107,7 +98,7 @@ class HeaderComp extends React.Component {
         return (
             <header>
                 <nav className="header__navbar">
-                    <audio src={bgMusic}></audio>
+                    <audio id = "bgmAudio" src={bgMusic}></audio>
                     <div className="navbar__logo">
                         <a href="/"><i className="fas fa-puzzle-piece"></i> BeneBean's Coding</a>
                     </div>
