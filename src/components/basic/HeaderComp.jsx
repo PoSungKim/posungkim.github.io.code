@@ -6,11 +6,6 @@ import bgMusic from './homepageBgMusic.mp3';
 class HeaderComp extends React.Component {
 
     componentDidMount() {
-        // Background Music Action 추가
-        const backgroundMusic = document.querySelector('#bgmAudio');
-        backgroundMusic.autoplay = true;
-        backgroundMusic.volume = 0.02;
-
         // 햄버거 Click Action 추가
         const navbar = document.querySelector(".header__navbar");
         const toggleBtn = document.querySelector(".navbar__toggleBtn");

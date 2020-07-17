@@ -16,6 +16,13 @@ import "./AppRouter.css";
 class AppRouter extends React.Component{
 
     componentDidMount() {
+        // Background Music Action 추가
+        const backgroundMusic = document.querySelector('#bgmAudio');
+        backgroundMusic.autoplay = true;
+        backgroundMusic.volume = 0.2;
+        document.addEventListener("click", ()=>{
+            backgroundMusic.play();
+        })
         // Move the content section in accordance with height of the navbar
         {/*
         const navbar = document.querySelector("#navbar");

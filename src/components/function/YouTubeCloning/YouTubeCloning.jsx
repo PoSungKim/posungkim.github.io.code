@@ -28,9 +28,9 @@ class YouTubeCloning extends React.Component {
                 </section>
 
                 {/* Video Player */}
-                <section className="videoPlayer">
-                    <video encrypted-media controls loop autoPlay src={youTubeMotion} type="video/mp4"></video>
-                </section>
+                <figure className="videoPlayer">
+                    <video controls loop autoPlay src={youTubeMotion} type="video/mp4"></video>
+                </figure>
 
                 {/* info + Channel + upNext */}
                 <section className="infoAndupNext">
