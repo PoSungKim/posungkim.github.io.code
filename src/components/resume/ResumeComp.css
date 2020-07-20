@@ -100,11 +100,11 @@ p {
 
 @keyframes poster-animation {
     0% {
-        transform: rotateY(-15deg);
+        transform: rotateY(5deg);
     }
 
     100% {
-        transform: rotateY(15deg);
+        transform: rotateY(40deg);
     }
 }
 
