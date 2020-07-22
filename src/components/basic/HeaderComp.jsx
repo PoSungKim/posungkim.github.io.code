@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import './HeaderComp.css';
 import bgMusic from './homepageBgMusic.mp3';
+import CrossBtnComp from "./CrossBtnComp";
 
 class HeaderComp extends React.Component {
 
@@ -12,10 +13,10 @@ class HeaderComp extends React.Component {
         const menu = document.querySelector(".navbar__menu");
         const icons = document.querySelector(".navbar__icons");
         console.log(toggleBtn);
-        toggleBtn.addEventListener('click', (event)=> {
-            console.log(event.target);
+        toggleBtn.addEventListener('click' , (event)=> {
             toggleBtn.scrollIntoView();
-            if (event.target.tagName === "I" && event.target.parentNode.tagName === "BUTTON") {
+            console.log(event.target.tagName);
+            if (event.target.tagName === "INPUT") {
                 menu.classList.toggle('active');
                 icons.classList.toggle('active');
                 navbar.classList.toggle('active');
@@ -29,6 +30,7 @@ class HeaderComp extends React.Component {
                 menu.classList.toggle('active');
                 icons.classList.toggle('active');
                 navbar.classList.toggle('active');
+                toggleBtn.firstChild.checked = false;
             })
         }
 
@@ -94,9 +96,11 @@ class HeaderComp extends React.Component {
             <header>
                 <nav className="header__navbar">
                     <audio id = "bgmAudio" src={bgMusic}></audio>
+
                     <div className="navbar__logo">
                         <a href="/"><i className="fas fa-puzzle-piece"></i> BeneBean's Coding</a>
                     </div>
+                    <CrossBtnComp />
 
                     <ol className="navbar__menu">
                         <li className="navbar__menu__sidebar">Information</li>
@@ -124,9 +128,11 @@ class HeaderComp extends React.Component {
                             </a>
                         </li>
                     </ul>
+                    {/*
                     <button className="navbar__toggleBtn">
                         <i className="fas fa-bars"></i>
                     </button>
+                    */}
                 </nav>
             </header>
         );

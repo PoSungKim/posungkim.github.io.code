@@ -124,8 +124,8 @@
 
     .header__navbar .navbar__toggleBtn {
         position: absolute;
-        right: 10%;
-        top: 10px;
+        right: 7%;
+        top: 15px;
         display: block;
         font-size: 24px;
         color: #e7a61a;
