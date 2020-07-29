@@ -12,17 +12,23 @@ import JournalComp from "../journal/JournalComp";
 import ResumeComp from "../resume/ResumeComp";
 import YouTubeCloning from "../function/YouTubeCloning/YouTubeCloning";
 import "./AppRouter.css";
+import ShoppingComp from "../function/ShoppingComp/ShoppingComp";
 
 class AppRouter extends React.Component{
 
     componentDidMount() {
         // Background Music Action 추가
         const backgroundMusic = document.querySelector('#bgmAudio');
-        backgroundMusic.autoplay = true;
+        backgroundMusic.autoplay = false;
         backgroundMusic.volume = 0.2;
+
+        {/*
         document.addEventListener("click", ()=>{
             backgroundMusic.play();
         })
+        */}
+
+
         // Move the content section in accordance with height of the navbar
         {/*
         const navbar = document.querySelector("#navbar");
@@ -66,6 +72,7 @@ class AppRouter extends React.Component{
                             <Route exact path = "/functions/calculator" component={CalculatorComp}/>
                             <Route exact path = "/functions/game" component={GameComp}/>
                             <Route exact path = "/functions/youtube" component={YouTubeCloning}/>
+                            <Route exact path = "/functions/shopping" component={ShoppingComp}/>
                             <Route exact path = "/problems" component={ProblemSolveComp}/>
                         </Switch>
                     </BrowserRouter>

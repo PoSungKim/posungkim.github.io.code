@@ -2,6 +2,8 @@ input#crossBtn {
     display: none;
 }
 
+
+
 input#crossBtn + label {
     display: block;
     position: relative;

@@ -1,0 +1,67 @@
+{
+  "items" : [
+    {
+      "type": "tshirt",
+      "gender" : "male",
+      "size" : "big",
+      "color" : "red",
+      "image" : "./image/redTShirt.png"
+    },
+    {
+      "type": "cap",
+      "gender" : "male",
+      "size" : "big",
+      "color" : "red",
+      "image" : "./image/redCap.png"
+    },
+    {
+      "type": "shorts",
+      "gender" : "male",
+      "size" : "big",
+      "color" : "red",
+      "image" : "./image/redShorts.png"
+    },
+    {
+      "type": "tshirt",
+      "gender" : "male",
+      "size" : "medium",
+      "color" : "blue",
+      "image" : "./image/blueTShirt.png"
+    },
+    {
+      "type": "cap",
+      "gender" : "male",
+      "size" : "medium",
+      "color" : "blue",
+      "image" : "./image/blueCap.png"
+    },
+    {
+      "type": "shorts",
+      "gender" : "male",
+      "size" : "medium",
+      "color" : "blue",
+      "image" : "./image/blueShorts.png"
+    },
+    {
+      "type": "tshirt",
+      "gender" : "female",
+      "size" : "small",
+      "color" : "pink",
+      "image" : "./image/pinkTShirt.png"
+    },
+    {
+      "type": "cap",
+      "gender" : "female",
+      "size" : "small",
+      "color" : "pink",
+      "image" : "./image/pinkCap.png"
+    },
+    {
+      "type": "shorts",
+      "gender" : "female",
+      "size" : "small",
+      "color" : "pink",
+      "image" : "./image/pinkShorts.png"
+    }
+  ]
+}
