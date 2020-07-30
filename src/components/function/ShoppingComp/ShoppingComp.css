@@ -18,14 +18,22 @@
     height: 100vh;
     background-color: var(--color-bg);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #shoppingComp .MallImage {
-    height: 300px;
+    width: 300px;
+    transition: all 300ms;
+}
+
+#shoppingComp .MallImage:hover {
+    transform: scale(1.2);
 }
 
 #shoppingComp .btnList {
-    margin: auto;
     margin-bottom: 15px;
 }
 

@@ -20,7 +20,25 @@ class ShoppingComp extends React.Component {
 
     componentDidMount() {
         this.fetchItems()
-            .then(json => this.displayItems(json.items));
+            .then(json => {
+                this.displayItems(json.items);
+                this.setEventListener(json.items);
+            });
+    }
+    setEventListener = (items) => {
+        const shoppingMallImg = document.querySelector(".MallImage");
+        shoppingMallImg.addEventListener("click", () => this.displayItems(items));
+
+        const btnList = document.querySelector(".btnList");
+        btnList.addEventListener("click", event => this.onClickBtn(event, items));
+    }
+    onClickBtn = (event, items) => {
+        const dataset = event.target.dataset;
+
+        if (dataset.key == null || dataset.value == null)
+            return;
+
+        this.displayItems(items.filter(item=>item[dataset.key] === dataset.value));
     }
 
     fetchItems = () => {
@@ -78,17 +96,17 @@ class ShoppingComp extends React.Component {
                 <img className = "MallImage" src={shoppingMall} alt="shoppingMall"/>
                 <div className="btnList">
                     <button className="btn">
-                        <img className="btnImg" src={blueCap} alt="blueCap"/>
+                        <img data-key = "type" data-value = "cap" className="btnImg" src={blueCap} alt="blueCap"/>
                     </button>
                     <button className="btn">
-                        <img className="btnImg" src={blueTShirt} alt="blueTShirt"/>
+                        <img data-key = "type" data-value = "tshirt" className="btnImg" src={blueTShirt} alt="blueTShirt"/>
                     </button>
                     <button className="btn">
-                        <img className="btnImg" src={blueShorts} alt="blueShorts"/>
+                        <img data-key = "type" data-value = "shorts"  className="btnImg" src={blueShorts} alt="blueShorts"/>
                     </button>
-                    <button className="btn coloredBtn blue">Blue</button>
-                    <button className="btn coloredBtn red">Red</button>
-                    <button className="btn coloredBtn pink">Pink</button>
+                    <button data-key = "color" data-value = "blue" className="btn coloredBtn blue">Blue</button>
+                    <button data-key = "color" data-value = "red" className="btn coloredBtn red">Red</button>
+                    <button data-key = "color" data-value = "pink" className="btn coloredBtn pink">Pink</button>
                 </div>
                 <ul className="itemList">
                 </ul>
