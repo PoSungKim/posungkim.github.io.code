@@ -10,7 +10,7 @@ import pinkCap from "./image/pinkCap.png";
 import redTShirt from "./image/redTShirt.png";
 import redShorts from "./image/redShorts.png"
 import redCap from "./image/redCap.png";
-import dataJSON from "./data/data.json";
+
 
 class ShoppingComp extends React.Component {
 
@@ -19,7 +19,13 @@ class ShoppingComp extends React.Component {
     }
 
     componentDidMount() {
-        this.displayItems(dataJSON.items);
+        this.fetchItems()
+            .then(json => this.displayItems(json.items));
+    }
+
+    fetchItems = () => {
+        return fetch("/data/ShoppingComp.json")
+            .then(response => response.json())
     }
 
     displayItems = (items) => {
