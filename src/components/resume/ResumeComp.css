@@ -59,9 +59,9 @@ p {
 
 #about {
     background-image: url("https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80");
-    background-size: 100% auto;
-    background-position: left center;
+    background-position: center center;
     background-attachment: fixed;
+    background-size: cover;
     position: relative;
     display: flex;
     justify-content: center;
