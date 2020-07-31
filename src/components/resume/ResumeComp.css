@@ -301,6 +301,10 @@ p {
     background: url("./image/youTube.png") no-repeat center/cover;
 }
 
+.experience__projects a:nth-child(3) .project__img {
+    background: url("./image/shoppingMall.png") no-repeat center/cover;
+}
+
 .project__description {
     position: absolute;
     background-color: black;

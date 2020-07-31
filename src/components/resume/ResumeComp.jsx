@@ -199,13 +199,13 @@ class ResumeComp extends React.Component {
                             All <span className="category__count">4</span>
                         </button>
                         <button className="category__btn" data-filter="frontend" >
-                            Front-end <span className="category__count">1</span>
+                            Front-end <span className="category__count">2</span>
                         </button>
                         <button className="category__btn" data-filter="backend" >
                             Back-end <span className="category__count">1</span>
                         </button>
                         <button className="category__btn" data-filter="mobile">
-                            Mobile <span className="category__count">2</span>
+                            Mobile <span className="category__count">1</span>
                         </button>
                     </div>
                     <div className="experience__projects">
@@ -231,7 +231,7 @@ class ResumeComp extends React.Component {
                                 <span>Fetching JSON File <br/> Filtering Items using JS</span>
                             </div>
                         </Link>
-                        <Link href="/" className="project"  data-type="mobile">
+                        <Link href="/" className="project"  data-type="backend">
                             <div className="project__img"></div>
                             <div className="project__description">
                                 <h3>Soon to be Open</h3>
