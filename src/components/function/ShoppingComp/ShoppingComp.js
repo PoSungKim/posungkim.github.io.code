@@ -11,7 +11,6 @@ import redTShirt from "./image/redTShirt.png";
 import redShorts from "./image/redShorts.png"
 import redCap from "./image/redCap.png";
 
-
 class ShoppingComp extends React.Component {
 
     constructor(props) {

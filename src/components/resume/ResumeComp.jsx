@@ -224,11 +224,11 @@ class ResumeComp extends React.Component {
                                 <span>Clone Coding with HTML, CSS, JS</span>
                             </div>
                         </Link>
-                        <Link href="/" className="project"  data-type="backend">
+                        <Link to="/functions/shopping" className="project"  data-type="frontend">
                             <div className="project__img"></div>
                             <div className="project__description">
-                                <h3>Soon to be Open</h3>
-                                <span>Coming Soon!</span>
+                                <h3>Shopping Items</h3>
+                                <span>Fetching JSON File <br/> Filtering Items using JS</span>
                             </div>
                         </Link>
                         <Link href="/" className="project"  data-type="mobile">
