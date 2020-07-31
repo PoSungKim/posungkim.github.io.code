@@ -14,7 +14,6 @@
 .header__navbar.navbar--dark {
     background-color: white;
     box-shadow: rgba(0.5, 0.5, 0.5, 0.5) 0px 5px 5px 0px;
-    padding: 8px;
 }
 
 .header__navbar a {
@@ -51,11 +50,12 @@
 
 .header__navbar .navbar__menu li {
     padding : 8px 12px;
+    border-radius: 4px;
+    transition: background-color 200ms;
 }
 
 .header__navbar .navbar__menu li:hover {
     background-color: #e7a61a;
-    border-radius: 4px;
     color: white;
 }
 .header__navbar .navbar__menu li:hover a {

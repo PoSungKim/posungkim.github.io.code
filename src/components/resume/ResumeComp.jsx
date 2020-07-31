@@ -101,7 +101,6 @@ class ResumeComp extends React.Component {
     render() {
         return (
             <div className="ResumeComp">
-
                 <section id="about" >
                     <div className = "blackCover"/>
                     <div className="left">
