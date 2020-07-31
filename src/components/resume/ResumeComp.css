@@ -107,6 +107,7 @@ p {
 
     100% {
         transform: rotateY(20deg);
+
     }
 }
 
@@ -124,6 +125,14 @@ p {
     border: 1px solid lightgrey;
     animation: poster-animation 1.6s infinite linear alternate;
     transform-style: preserve-3d;
+}
+
+#about .poster:hover {
+    animation-play-state: paused;
+}
+
+#about .poster:hover .posterTitle::after {
+    content: "넵!";
 }
 
 #about .left .poster .posterTitle {
@@ -171,9 +180,12 @@ p {
     background-color: #e7e6e6;
     padding: var(--padding);
 }
-
-#skills .skillComps {
+#skills .skillCompsContainer {
     display: flex;
+}
+#skills .skillComps {
+    flex: 50%;
+    display: inline-flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
@@ -451,21 +463,10 @@ p {
         visibility: hidden;
     }
 
-    @keyframes poster-animation {
-        0% {
-            transform: rotateY(-20deg);
-        }
-
-        100% {
-            transform: rotateY(40deg);
-        }
-    }
-
     #about .left {
         width: 140px;
         height: auto;
         margin: 15px;
-
     }
 
     #about .left .poster {
@@ -473,12 +474,12 @@ p {
     }
 
     #about .left .poster .posterTitle {
-        font-size: var(--font-large);
+        text-align: center;
+        font-size: calc(var(--font-large)/1.5);
     }
 
     #about .right {
         margin: 5px 5px 25px 5px;
-
     }
 
     #about .right .title {
@@ -492,10 +493,26 @@ p {
     #about .right .content p:last-of-type {
         display: none;
     }
-
+    #skills .skillCompsContainer {
+        display: flex;
+        flex-direction: column;
+    }
+    #skills .skillComps .skill {
+        height: 70px;
+    }
     #arrowUp {
         top: 93%;
     }
-
 }
 
+@media screen and (max-width: 640px) {
+    #skills .skillComps .skill {
+        height: 59px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    #skills .skillComps .skill {
+        height: 49px;
+    }
+}

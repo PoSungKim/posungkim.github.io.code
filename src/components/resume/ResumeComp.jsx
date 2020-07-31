@@ -138,53 +138,57 @@ class ResumeComp extends React.Component {
 
                 <section id="skills" class="section">
                     <h1><strong>Skills</strong></h1>
-                    <div className="skillComps">
-                        <div className="skill">
-                            <img src="https://user-images.githubusercontent.com/42747200/46140125-da084900-c26d-11e8-8ea7-c45ae6306309.png" alt="c++ icon" className="skillComp"/>
-                            <div className="skill__description">
-                                <span>70%</span>
+                    <div className="skillCompsContainer">
+                        <div className="skillComps">
+                            <div className="skill">
+                                <img src="https://user-images.githubusercontent.com/42747200/46140125-da084900-c26d-11e8-8ea7-c45ae6306309.png" alt="c++ icon" className="skillComp"/>
+                                <div className="skill__description">
+                                    <span>70%</span>
+                                </div>
+                            </div>
+                            <div className="skill">
+                                <img src="https://cdn3.iconfinder.com/data/icons/logos-and-brands-adobe/512/267_Python-512.png" alt="python icon"className="skillComp"/>
+                                <div className="skill__description">
+                                    <span>70%</span>
+                                </div>
+                            </div>
+                            <div className="skill">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JS icon" className="skillComp"/>
+                                <div className="skill__description">
+                                    <span>70%</span>
+                                </div>
+                            </div>
+                            <div className="skill">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQVSn6huPlarccfZEFY__z79K6s-BrjBKVEWQ&usqp=CAU" alt="react icon" className="skillComp"/>
+                                <div className="skill__description">
+                                    <span>70%</span>
+                                </div>
                             </div>
                         </div>
-                        <div className="skill">
-                            <img src="https://cdn3.iconfinder.com/data/icons/logos-and-brands-adobe/512/267_Python-512.png" alt="python icon"className="skillComp"/>
-                            <div className="skill__description">
-                                <span>70%</span>
+                        <div className="skillComps">
+                            <div className="skill">
+                                <img src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/256/full/nodejslogo.png" alt="node.js icon" className="skillComp"/>
+                                <div className="skill__description">
+                                    <span>70%</span>
+                                </div>
                             </div>
-                        </div>
-                        <div className="skill">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JS icon" className="skillComp"/>
-                            <div className="skill__description">
-                                <span>70%</span>
+                            <div className="skill">
+                                <img src="https://pngimg.com/uploads/mysql/mysql_PNG23.png" alt="mysql icon" className="skillComp"/>
+                                <div className="skill__description">
+                                    <span>70%</span>
+                                </div>
                             </div>
-                        </div>
-                        <div className="skill">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQVSn6huPlarccfZEFY__z79K6s-BrjBKVEWQ&usqp=CAU" alt="react icon" className="skillComp"/>
-                            <div className="skill__description">
-                                <span>70%</span>
+                            <div className="skill">
+                                <img src="https://miro.medium.com/max/300/1*UdM3Isk3gfnEOX7r6lWI8A.png" alt="docker icon" className="skillComp"/>
+                                <div className="skill__description">
+                                    <span>70%</span>
+                                </div>
                             </div>
-                        </div>
-                        <div className="skill">
-                            <img src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/256/full/nodejslogo.png" alt="node.js icon" className="skillComp"/>
-                            <div className="skill__description">
-                                <span>70%</span>
-                            </div>
-                        </div>
-                        <div className="skill">
-                            <img src="https://pngimg.com/uploads/mysql/mysql_PNG23.png" alt="mysql icon" className="skillComp"/>
-                            <div className="skill__description">
-                                <span>70%</span>
-                            </div>
-                        </div>
-                        <div className="skill">
-                            <img src="https://miro.medium.com/max/300/1*UdM3Isk3gfnEOX7r6lWI8A.png" alt="docker icon" className="skillComp"/>
-                            <div className="skill__description">
-                                <span>70%</span>
-                            </div>
-                        </div>
-                        <div className="skill">
-                            <img src="https://cdn.iconscout.com/icon/free/png-512/jenkins-5-569553.png" alt="docker icon" className="skillComp"/>
-                            <div className="skill__description">
-                                <span>70%</span>
+                            <div className="skill">
+                                <img src="https://cdn.iconscout.com/icon/free/png-512/jenkins-5-569553.png" alt="docker icon" className="skillComp"/>
+                                <div className="skill__description">
+                                    <span>70%</span>
+                                </div>
                             </div>
                         </div>
                     </div>
