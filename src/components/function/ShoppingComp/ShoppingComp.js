@@ -47,7 +47,7 @@ class ShoppingComp extends React.Component {
             //.then(response => response.json())
 
          // async, await 함수 형태의 비동기 처리, try-catch를 통한 보다 세밀한 Error Catching이 가능해진다.
-         const response = await fetch("/data/Shoppingcomp.json");
+         const response = await fetch("/data/ShoppingComp.json");
          return response.json();
     }
 
