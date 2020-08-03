@@ -41,9 +41,14 @@ class ShoppingComp extends React.Component {
         this.displayItems(items.filter(item=>item[dataset.key] === dataset.value));
     }
 
-    fetchItems = () => {
-        return fetch("/data/ShoppingComp.json")
-            .then(response => response.json())
+     fetchItems = async () => {
+         // Then과 콜백 함수 형태의 비동기 처리
+         // return fetch("/data/ShoppingComp.json")
+            //.then(response => response.json())
+
+         // async, await 함수 형태의 비동기 처리, try-catch를 통한 보다 세밀한 Error Catching이 가능해진다.
+         const response = await fetch("/data/Shoppingcomp.json");
+         return response.json();
     }
 
     displayItems = (items) => {
