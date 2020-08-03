@@ -103,7 +103,7 @@ class ResumeComp extends React.Component {
             <div className="ResumeComp">
                 <section id="about" >
                     <div className = "blackCover"/>
-                    <div className="left">
+                    <div className= "left">
                         <div className="poster">
                             <h1 className="posterTitle"><strong>개발</strong>이 즐겁습니다!</h1>
                             <figure className="images">

@@ -186,7 +186,7 @@ p {
 #skills .skillComps {
     flex: 50%;
     display: inline-flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-around;
     align-items: center;
 }

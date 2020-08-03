@@ -11,6 +11,7 @@ import redTShirt from "./image/redTShirt.png";
 import redShorts from "./image/redShorts.png"
 import redCap from "./image/redCap.png";
 
+
 class ShoppingComp extends React.Component {
 
     constructor(props) {
@@ -51,39 +52,20 @@ class ShoppingComp extends React.Component {
     }
 
     convertToHTML = (item) => {
-        let srcImg;
-        switch(item.image) {
-            case "./image/blueTShirt.png" :
-                srcImg = blueTShirt;
-                break;
-            case "./image/blueShorts.png":
-                srcImg = blueShorts;
-                break;
-            case "./image/blueCap.png":
-                srcImg = blueCap;
-                break;
-            case "./image/pinkTShirt.png":
-                srcImg = pinkTShirt;
-                break;
-            case "./image/pinkShorts.png":
-                srcImg = pinkShorts;
-                break;
-            case "./image/pinkCap.png":
-                srcImg = pinkCap;
-                break;
-            case "./image/redTShirt.png" :
-                srcImg = redTShirt;
-                break;
-            case "./image/redShorts.png":
-                srcImg = redShorts;
-                break;
-            case "./image/redCap.png":
-                srcImg = redCap;
-                break;
+        const map = {
+            "./image/blueTShirt.png" : blueTShirt,
+            "./image/blueShorts.png" : blueShorts,
+            "./image/blueCap.png"    : blueCap,
+            "./image/pinkTShirt.png" : pinkTShirt,
+            "./image/pinkShorts.png" : pinkShorts,
+            "./image/pinkCap.png"    : pinkCap,
+            "./image/redTShirt.png"  : redTShirt,
+            "./image/redShorts.png"  : redShorts,
+            "./image/redCap.png"     : redCap
         }
         return`
             <li class="item">
-                <img src=${srcImg} alt="${item.color}, ${item.type}" class="itemImg"/>
+                <img src=${map[item.image]} alt="${item.color}, ${item.type}" class="itemImg"/>
                 <span class="description">${item.gender}, ${item.size}</span>
             </li>
             `;
