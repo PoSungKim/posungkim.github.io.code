@@ -136,7 +136,7 @@ class ResumeComp extends React.Component {
                 </section>
 
 
-                <section id="skills" class="section">
+                <section id="skills" className="section">
                     <h1><strong>Skills</strong></h1>
                     <div className="skillCompsContainer">
                         <div className="skillComps">
@@ -195,7 +195,7 @@ class ResumeComp extends React.Component {
                 </section>
 
 
-                <section id="experience" class="section">
+                <section id="experience" className="section">
                     <h1><strong>Experience</strong></h1>
                     <div className="experience__categories">
                         <button className="category__btn selected" data-filter="*" >
