@@ -29,6 +29,7 @@ class ShoppingComp extends React.Component {
         const shoppingMallImg = document.querySelector(".MallImage");
         shoppingMallImg.addEventListener("click", () => this.displayItems(items));
 
+
         const btnList = document.querySelector(".btnList");
         btnList.addEventListener("click", event => this.onClickBtn(event, items));
     }

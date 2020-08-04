@@ -74,6 +74,7 @@ class AppRouter extends React.Component{
                             <Route exact path = "/functions/youtube" component={YouTubeCloning}/>
                             <Route exact path = "/functions/shopping" component={ShoppingComp}/>
                             <Route exact path = "/problems" component={ProblemSolveComp}/>
+                            <Redirect from = "*" to={ResumeComp}/>
                         </Switch>
                     </BrowserRouter>
                     <FooterComp/>
