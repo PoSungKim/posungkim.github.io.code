@@ -3,9 +3,9 @@ import {Link} from "react-router-dom";
 import './HeaderComp.css';
 import bgMusic from './homepageBgMusic.mp3';
 import CrossBtnComp from "./CrossBtnComp";
+import styled from "styled-components";
 
 class HeaderComp extends React.Component {
-
     componentDidMount() {
         // 햄버거 Click Action 추가
         const navbar = document.querySelector(".header__navbar");

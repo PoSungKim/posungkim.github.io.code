@@ -12,8 +12,10 @@ import JournalComp from "../journal/JournalComp";
 import ResumeComp from "../resume/ResumeComp";
 import YouTubeCloning from "../function/YouTubeCloning/YouTubeCloning";
 import ShoppingComp from "../function/ShoppingComp/ShoppingComp";
+import TodoListComp from "../function/TodoListComp/TodoListComp";
 import SideBar from "./SideBar";
 import "./AppRouter.scss";
+
 
 class AppRouter extends React.Component{
 
@@ -61,6 +63,7 @@ class AppRouter extends React.Component{
                             <Route exact path = "/functions/game" component={GameComp}/>
                             <Route exact path = "/functions/youtube" component={YouTubeCloning}/>
                             <Route exact path = "/functions/shopping" component={ShoppingComp}/>
+                            <Route exact path = "/functions/todolist" component={TodoListComp}/>
                             <Route exact path = "/problems" component={ProblemSolveComp}/>
                             <Redirect from = "*" to="/" />
                         </Switch>
