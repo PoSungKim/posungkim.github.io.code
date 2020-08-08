@@ -242,9 +242,10 @@ class ResumeComp extends React.Component {
                             <div className="project__description">
                                 <h3>To Do List</h3>
                                 <span>
-                                    styled-components <br/>
-                                    hooks <br/>
-                                    context
+                                    Functional Components <br/>
+                                    Styled-components <br/>
+                                    Hooks <br/>
+                                    Context
                                 </span>
                             </div>
                         </Link>

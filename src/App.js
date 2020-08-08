@@ -1,6 +1,7 @@
 import React from "react";
 import AppRouter from "./components/router/AppRouter";
 import {createGlobalStyle} from "styled-components";
+import Users from "./components/function/UsersComp/UsersComp3";
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -23,8 +24,11 @@ ul {
 function App () {
     return (
         <div className="App">
-            <GlobalStyle/>
-            <AppRouter/>
+            <Users/>
+            {/*
+                <GlobalStyle/>
+                <AppRouter/>
+            */}
         </div>
     )
 }
