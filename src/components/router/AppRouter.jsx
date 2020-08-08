@@ -13,7 +13,7 @@ import ResumeComp from "../resume/ResumeComp";
 import YouTubeCloning from "../function/YouTubeCloning/YouTubeCloning";
 import ShoppingComp from "../function/ShoppingComp/ShoppingComp";
 import TodoListComp from "../function/TodoListComp/TodoListComp";
-import SideBar from "./SideBar";
+import SideBar from "../basic/SideBar";
 import "./AppRouter.scss";
 
 
