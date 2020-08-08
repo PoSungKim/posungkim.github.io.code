@@ -22,7 +22,7 @@ const TodoListCompTemplate = styled.div`
     
     margin: 0 auto;
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
     
     display: flex;
     flex-direction: column;

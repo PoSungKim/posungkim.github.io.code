@@ -231,14 +231,21 @@ class ResumeComp extends React.Component {
                             <div className="project__img"></div>
                             <div className="project__description">
                                 <h3>Shopping Items</h3>
-                                <span>Fetching JSON File <br/> Filtering Items using JS</span>
+                                <span>
+                                    Fetching JSON File <br/>
+                                    Filtering Items using JS
+                                </span>
                             </div>
                         </Link>
-                        <Link href="/" className="project"  data-type="backend">
+                        <Link to="/functions/todolist" className="project"  data-type="backend">
                             <div className="project__img"></div>
                             <div className="project__description">
-                                <h3>Soon to be Open</h3>
-                                <span>Coming Soon!</span>
+                                <h3>To Do List</h3>
+                                <span>
+                                    styled-components <br/>
+                                    hooks <br/>
+                                    context
+                                </span>
                             </div>
                         </Link>
                     </div>

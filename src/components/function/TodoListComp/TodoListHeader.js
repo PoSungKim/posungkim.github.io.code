@@ -4,7 +4,6 @@ import {useTodoState} from "./TodoListContext";
 
 const TodoListCompHeadBlock = styled.div`
     padding: 48px 32px 32px 24px;
-    border-bottom: 1px solid black;
     
     h1 {
         padding: 0;

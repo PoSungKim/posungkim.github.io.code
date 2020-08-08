@@ -316,6 +316,10 @@ p {
     background: url("./image/shoppingMall.png") no-repeat center/cover;
 }
 
+.experience__projects a:nth-child(4) .project__img {
+    background: url("./image/todoList.png") no-repeat center/cover;
+}
+
 .project__description {
     position: absolute;
     background-color: black;
