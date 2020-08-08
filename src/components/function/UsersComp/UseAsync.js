@@ -1,7 +1,7 @@
 import React, {useReducer, useEffect, useCallback} from "react";
 
 // 기능별 Reducer를 사용하는 것이 아니라,
-// 하나의 Reducer로 관련 기능들을 통합 관리하는 방식
+// 하나의 Reducer (UseAsync.js)로 관련 기능들을 통합 관리하는 방식
 function reducer(state, action) {
     switch(action.type) {
         case 'LOADING' :
