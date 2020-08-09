@@ -2,10 +2,20 @@ import React from 'react';
 import App from "./App";
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
+
+// Setup for ReduxPraticeComp and ReduxMiddleWarePracticeComp
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import {composeWithDevTools} from "redux-devtools-extension/index";
-import rootReducer from "./components/function/ReduxPracticeComp/Modules";
+
+// ReduxPraticeComp
+// import rootReducer from "./components/function/ReduxPracticeComp/Modules";
+
+// ReduxMiddleWarePracticeComp
+import rootReducer from "./components/function/ReduxMiddleWarePracticeComp/Modules";
+
+
+
 
 //하나의 Application에 하나의 Store만! 즉, rootReducer 안에 Applicaiton에 필요한 모든 reducer들을 넣어서 통합 관리
 const store = createStore(rootReducer, composeWithDevTools());
