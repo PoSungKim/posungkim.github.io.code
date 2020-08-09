@@ -13,13 +13,13 @@ import {composeWithDevTools} from "redux-devtools-extension/index";
 
 // ReduxMiddleWarePracticeComp
 import rootReducer from "./components/function/ReduxMiddleWarePracticeComp/Modules";
-
-
+import {applyMiddleware} from "redux";
+import myLogger from "./components/function/ReduxMiddleWarePracticeComp/Middlewares/myLogger";
 
 
 //하나의 Application에 하나의 Store만! 즉, rootReducer 안에 Applicaiton에 필요한 모든 reducer들을 넣어서 통합 관리
-const store = createStore(rootReducer, composeWithDevTools());
-console.log(store.getState());
+// const store = createStore(rootReducer, composeWithDevTools());
+const store = createStore(rootReducer, applyMiddleware(myLogger));
 
 ReactDOM.render(
     <React.StrictMode>
