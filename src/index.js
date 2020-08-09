@@ -4,10 +4,11 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
+import {composeWithDevTools} from "redux-devtools-extension/index";
 import rootReducer from "./components/function/ReduxPracticeComp/Modules";
 
-//하나의 Application에 하나의 Store만! 즉, rootReducer 안에 Applicaiton에 필요한 모든 reducer들을 넣고
-const store = createStore(rootReducer);
+//하나의 Application에 하나의 Store만! 즉, rootReducer 안에 Applicaiton에 필요한 모든 reducer들을 넣어서 통합 관리
+const store = createStore(rootReducer, composeWithDevTools());
 console.log(store.getState());
 
 ReactDOM.render(

@@ -3,7 +3,9 @@ import AppRouter from "./components/router/AppRouter";
 import {createGlobalStyle} from "styled-components";
 //import "./components/function/ReduxPracticeComp/ReduxPractice";
 import UserComp from "./components/function/UsersComp/UsersComp5";
-import CounterContainer from "./components/function/ReduxPracticeComp/Containers/CounterContainer";
+import CounterContainer from "./components/function/ReduxPracticeComp/CounterContainer/CounterContainer";
+import TodoComp from "./components/function/ReduxPracticeComp/TodoComp/TodoComp";
+import TodoContainer from "./components/function/ReduxPracticeComp/TodoContainer/TodoContainer";
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -27,6 +29,8 @@ function App () {
     return (
         <div className="App">
             <CounterContainer/>
+            <hr/>
+            <TodoContainer/>
             {/* <UserComp/>
 
 
