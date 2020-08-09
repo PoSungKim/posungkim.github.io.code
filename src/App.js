@@ -1,7 +1,9 @@
 import React from "react";
 import AppRouter from "./components/router/AppRouter";
 import {createGlobalStyle} from "styled-components";
+//import "./components/function/ReduxPracticeComp/ReduxPractice";
 import UserComp from "./components/function/UsersComp/UsersComp5";
+import CounterContainer from "./components/function/ReduxPracticeComp/Containers/CounterContainer";
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -24,11 +26,12 @@ ul {
 function App () {
     return (
         <div className="App">
-            <UserComp/>
+            <CounterContainer/>
+            {/* <UserComp/>
 
-            {/*
-                <GlobalStyle/>
-                <AppRouter/>
+
+            <GlobalStyle/>
+            <AppRouter/>
             */}
         </div>
     )
