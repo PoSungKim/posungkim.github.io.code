@@ -11,6 +11,8 @@ function PostContainer({postId}) {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        if (data)
+            return;
         dispatch(getPost(postId));
     }, [postId, dispatch]);
 
