@@ -10,7 +10,7 @@ function PostListContainer() {
     useEffect(() => {
         dispatch(getPosts());
     }, [dispatch]);
-    if (loading)
+    if (loading && !data)
         return <div>로딩 중...</div>;
     if (error)
         return <div>에러 발생! </div>;

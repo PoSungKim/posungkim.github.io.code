@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import PostComp from "../PostComp/Postcomp";
-import {getPost} from "../Modules/posts";
+import {getPost, clearPost} from "../Modules/posts";
 
 function PostContainer({postId}) {
 
@@ -10,6 +10,11 @@ function PostContainer({postId}) {
 
     useEffect(() => {
         dispatch(getPost(postId));
+
+        return () => {
+            dispatch(clearPost());
+        }
+
     }, [postId, dispatch]);
 
     if (loading)
