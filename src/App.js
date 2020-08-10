@@ -10,7 +10,12 @@ import TodoContainer from "./components/function/ReduxPracticeComp/TodoContainer
 //import CounterContainer from "./components/function/ReduxPracticeComp/CounterContainer/CounterContainer";
 
 // ReduxMiddleWarePracticeComp
-import CounterContainer from "./components/function/ReduxMiddleWarePracticeComp/CounterContainer/CounterContainer";
+import CounterContainer from "./components/function/ReduxLoggerComp/CounterContainer/CounterContainer";
+
+// ReduxThunkComp
+import PostListContainer from "./components/function/ReduxThunkComp/PostListContainer/PostListContainer";
+import PostPage from "./components/function/ReduxThunkComp/PostPage/PostPage";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -33,14 +38,23 @@ ul {
 function App () {
     return (
         <div className="App">
-            <CounterContainer/>
-            {/* <UserComp/>
-            <hr/>
-            <TodoContainer/>
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path ="/" component={PostListContainer}></Route>
+                    <Route path = "/:id" component={PostPage}></Route>
+                </Switch>
+            </BrowserRouter>
 
-            <GlobalStyle/>
-            <AppRouter/>
+            {/*
+                <CounterContainer/>
+                <UserComp/>
+                <hr/>
+                <TodoContainer/>
+
+                <GlobalStyle/>
+                <AppRouter/>
             */}
+
         </div>
     )
 }
