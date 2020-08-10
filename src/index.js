@@ -1,5 +1,5 @@
 import React from 'react';
-import App from "./App";
+import App, {customHistory} from "./App";
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
@@ -27,10 +27,9 @@ import ReduxThunk from 'redux-thunk';
 import rootReducer from "./components/function/ReduxThunkComp/Modules/index";
 
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(ReduxThunk, logger)));
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(ReduxThunk.withExtraArgument({history: customHistory}), logger)));
 
 ReactDOM.render(
-
     <React.StrictMode>
         <Provider store = {store}>
             <App/>

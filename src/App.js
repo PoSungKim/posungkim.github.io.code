@@ -15,7 +15,8 @@ import CounterContainer from "./components/function/ReduxLoggerComp/CounterConta
 // ReduxThunkComp
 import PostListContainer from "./components/function/ReduxThunkComp/PostListContainer/PostListContainer";
 import PostPage from "./components/function/ReduxThunkComp/PostPage/PostPage";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {Router, BrowserRouter, Switch, Route} from "react-router-dom";
+import {createBrowserHistory} from 'history';
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -35,15 +36,17 @@ ul {
 }
 `
 
+export const customHistory = createBrowserHistory();
+
 function App () {
     return (
         <div className="App">
-            <BrowserRouter>
+            <Router history = {customHistory}>
                 <Switch>
                     <Route exact path ="/" component={PostListContainer}></Route>
                     <Route path = "/:id" component={PostPage}></Route>
                 </Switch>
-            </BrowserRouter>
+            </Router>
 
             {/*
                 <CounterContainer/>
