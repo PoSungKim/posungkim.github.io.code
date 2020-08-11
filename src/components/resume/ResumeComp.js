@@ -100,7 +100,7 @@ class ResumeComp extends React.Component {
 
     render() {
         return (
-            <div className="ResumeComp">
+            <section className="ResumeComp">
                 <section id="about" >
                     <div className = "blackCover"/>
                     <div className= "left">
@@ -266,7 +266,7 @@ class ResumeComp extends React.Component {
                 <button id="arrowUp">
                     <i className="fas fa-arrow-up"></i>
                 </button>
-            </div>
+            </section>
         );
     }
 }

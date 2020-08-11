@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Router, Route, Switch, Redirect} from "react-router-dom";
 import NewsComp from "../news/NewsComp";
 import HeaderComp from "../basic/HeaderComp";
@@ -17,25 +17,58 @@ import SideBar from "../basic/SideBar";
 import "./AppRouter.scss";
 
 import {createBrowserHistory} from 'history';
+
 export const customHistory = createBrowserHistory();
 
-class AppRouter extends React.Component{
+function AppRouter () {
 
-    componentDidMount() {
+    useEffect(() => {
         // Background Music Action 추가
         const backgroundMusic = document.querySelector('#bgmAudio');
-        backgroundMusic.autoplay = false;
         backgroundMusic.volume = 0.2;
+        //backgroundMusic.autoPlay = false;
+        //backgroundMusic.play();
+    })
 
-        {/*
+    return (
+        <>
+            <HeaderComp/>
+            <main id="content">
+                <SideBar/>
+                <Router history={customHistory}>
+                    <Switch>
+                        <Route exact path="/" component={ResumeComp}/>
+                        <Route exact path="/journals" component={JournalComp}/>
+                        <Route exact path="/news" component={NewsComp}/>
+                        <Route exact path="/news/create" component={NewsCreateComp}/>
+                        <Route exact path={"/news/edit/:id"} component={NewsCreateComp}/>
+                        <Route exact path="/functions" component={FunctionComp}/>
+                        <Route exact path="/functions/calculator" component={CalculatorComp}/>
+                        <Route exact path="/functions/game" component={GameComp}/>
+                        <Route exact path="/functions/youtube" component={YouTubeCloning}/>
+                        <Route exact path="/functions/shopping" component={ShoppingComp}/>
+                        <Route exact path="/functions/todolist" component={TodoListComp}/>
+                        <Route exact path="/problems" component={ProblemSolveComp}/>
+                        <Redirect from="*" to="/"/>
+                    </Switch>
+                </Router>
+                <FooterComp/>
+            </main>
+        </>
+    )
+}
+
+export default AppRouter;
+
+{/*
         document.addEventListener("click", ()=>{
             backgroundMusic.play();
         })
         */}
 
 
-        // Move the content section in accordance with height of the navbar
-        {/*
+// Move the content section in accordance with height of the navbar
+{/*
         const navbar = document.querySelector("#navbar");
         const content = document.querySelector("#content");
         window.addEventListener("resize", ()=> {
@@ -45,35 +78,3 @@ class AppRouter extends React.Component{
             }
         })
         */}
-    }
-
-    render() {
-        return (
-            <div className="router">
-                <HeaderComp />
-                <main id="content">
-                    <SideBar/>
-                    <Router history = {customHistory}>
-                        <Switch>
-                            <Route exact path = "/" component={ResumeComp}/>
-                            <Route exact path = "/journals" component={JournalComp}/>
-                            <Route exact path = "/news"  component={NewsComp}/>
-                            <Route exact path = "/news/create" component={NewsCreateComp}/>
-                            <Route exact path = {"/news/edit/:id"}  component={NewsCreateComp}/>
-                            <Route exact path = "/functions" component={FunctionComp}/>
-                            <Route exact path = "/functions/calculator" component={CalculatorComp}/>
-                            <Route exact path = "/functions/game" component={GameComp}/>
-                            <Route exact path = "/functions/youtube" component={YouTubeCloning}/>
-                            <Route exact path = "/functions/shopping" component={ShoppingComp}/>
-                            <Route exact path = "/functions/todolist" component={TodoListComp}/>
-                            <Route exact path = "/problems" component={ProblemSolveComp}/>
-                            <Redirect from = "*" to="/" />
-                        </Switch>
-                    </Router>
-                    <FooterComp/>
-                </main>
-            </div>
-        )
-    }
-}
-export default AppRouter;
