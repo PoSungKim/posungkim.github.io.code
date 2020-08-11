@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
+import {Router, Route, Switch, Redirect} from "react-router-dom";
 import NewsComp from "../news/NewsComp";
 import HeaderComp from "../basic/HeaderComp";
 import FooterComp from "../basic/FooterComp";
@@ -16,6 +16,8 @@ import TodoListComp from "../function/TodoListComp/TodoListComp";
 import SideBar from "../basic/SideBar";
 import "./AppRouter.scss";
 
+import {createBrowserHistory} from 'history';
+export const customHistory = createBrowserHistory();
 
 class AppRouter extends React.Component{
 
@@ -51,7 +53,7 @@ class AppRouter extends React.Component{
                 <HeaderComp />
                 <main id="content">
                     <SideBar/>
-                    <BrowserRouter>
+                    <Router history = {customHistory}>
                         <Switch>
                             <Route exact path = "/" component={ResumeComp}/>
                             <Route exact path = "/journals" component={JournalComp}/>
@@ -67,7 +69,7 @@ class AppRouter extends React.Component{
                             <Route exact path = "/problems" component={ProblemSolveComp}/>
                             <Redirect from = "*" to="/" />
                         </Switch>
-                    </BrowserRouter>
+                    </Router>
                     <FooterComp/>
                 </main>
             </div>

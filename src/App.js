@@ -3,20 +3,19 @@ import AppRouter from "./components/router/AppRouter";
 import {createGlobalStyle} from "styled-components";
 //import "./components/function/ReduxPracticeComp/ReduxPractice";
 import UserComp from "./components/function/UsersComp/UsersComp5";
-import TodoComp from "./components/function/ReduxPracticeComp/TodoComp/TodoComp";
-import TodoContainer from "./components/function/ReduxPracticeComp/TodoContainer/TodoContainer";
+import TodoComp from "./components/reduxpractice/ReduxPracticeComp/TodoComp/TodoComp";
+import TodoContainer from "./components/reduxpractice/ReduxPracticeComp/TodoContainer/TodoContainer";
 
 // ReduxPracticeComp
 //import CounterContainer from "./components/function/ReduxPracticeComp/CounterContainer/CounterContainer";
 
 // ReduxThunkSagaComp
-import CounterContainer from "./components/function/ReduxThunkSagaComp/CounterContainer/CounterContainer";
+import CounterContainer from "./components/reduxpractice/ReduxThunkSagaComp/CounterContainer/CounterContainer";
 
 // ReduxThunkComp
-import PostListContainer from "./components/function/ReduxThunkSagaComp/PostListContainer/PostListContainer";
-import PostPage from "./components/function/ReduxThunkSagaComp/PostPage/PostPage";
-import {Router, BrowserRouter, Switch, Route} from "react-router-dom";
-import {createBrowserHistory} from 'history';
+import PostListContainer from "./components/reduxpractice/ReduxThunkSagaComp/PostListContainer/PostListContainer";
+import PostPage from "./components/reduxpractice/ReduxThunkSagaComp/PostPage/PostPage";
+
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -35,30 +34,11 @@ ul {
     margin-bottom: 0;
 }
 `
-
-export const customHistory = createBrowserHistory();
-
-function App () {
+    function App () {
     return (
         <div className="App">
-            <Router history = {customHistory}>
-                <CounterContainer/>
-                <Switch>
-                    <Route exact path ="/" component={PostListContainer}></Route>
-                    <Route path = "/:id" component={PostPage}></Route>
-                </Switch>
-            </Router>
-
-            {/*
-                <CounterContainer/>
-                <UserComp/>
-                <hr/>
-                <TodoContainer/>
-
                 <GlobalStyle/>
                 <AppRouter/>
-            */}
-
         </div>
     )
 }
