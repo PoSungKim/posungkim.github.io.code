@@ -9,12 +9,12 @@ import TodoContainer from "./components/function/ReduxPracticeComp/TodoContainer
 // ReduxPracticeComp
 //import CounterContainer from "./components/function/ReduxPracticeComp/CounterContainer/CounterContainer";
 
-// ReduxMiddleWarePracticeComp
-import CounterContainer from "./components/function/ReduxLoggerComp/CounterContainer/CounterContainer";
+// ReduxThunkSagaComp
+import CounterContainer from "./components/function/ReduxThunkSagaComp/CounterContainer/CounterContainer";
 
 // ReduxThunkComp
-import PostListContainer from "./components/function/ReduxThunkComp/PostListContainer/PostListContainer";
-import PostPage from "./components/function/ReduxThunkComp/PostPage/PostPage";
+import PostListContainer from "./components/function/ReduxThunkSagaComp/PostListContainer/PostListContainer";
+import PostPage from "./components/function/ReduxThunkSagaComp/PostPage/PostPage";
 import {Router, BrowserRouter, Switch, Route} from "react-router-dom";
 import {createBrowserHistory} from 'history';
 
@@ -42,6 +42,7 @@ function App () {
     return (
         <div className="App">
             <Router history = {customHistory}>
+                <CounterContainer/>
                 <Switch>
                     <Route exact path ="/" component={PostListContainer}></Route>
                     <Route path = "/:id" component={PostPage}></Route>

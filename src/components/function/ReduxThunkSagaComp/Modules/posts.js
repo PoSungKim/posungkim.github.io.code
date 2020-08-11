@@ -6,7 +6,9 @@ import {
     handleAsyncActionsById,
     reducerUtils
 } from "../lib/asyncUtils";
+import {call, put, takeEvery} from "redux-saga/effects";
 
+// Action 정의
 const GET_POSTS = 'posts/GET_POSTS';
 const GET_POSTS_SUCCESS = 'posts/GET_POSTS_SUCCESS';
 const GET_POSTS_ERROR = 'posts/GET_POSTS_ERROR';
@@ -17,6 +19,7 @@ const GET_POST_ERROR = 'posts/GET_POST_ERROR';
 
 const CLEAR_POST = 'posts/CLEAR_POST';
 
+// 초기 상태 정의
 const initialState = {
     posts : reducerUtils.initial(),
     post : {}
@@ -25,6 +28,7 @@ const initialState = {
 const getPostsReducer = handleAsyncActions(GET_POSTS, 'posts', true);
 const getPostReducer = handleAsyncActionsById(GET_POST, 'post', true);
 
+// Reducer 함수
 export default function posts(state = initialState, action) {
     switch(action.type) {
         case GET_POSTS:
@@ -45,9 +49,58 @@ export default function posts(state = initialState, action) {
     }
 }
 
+// Redux-saga Action
+export const getPosts  = () => ({type: GET_POSTS});
+export const getPost  = (id) => ({
+    type: GET_POST,
+    payload: id, // Redux-saga 용도
+    meta: id     // Reducer 용도
+});
 
-export const getPosts = createPromiseThunk(GET_POSTS, postsAPI.getPosts);
-export const getPost = createPromiseThunkById(GET_POST, postsAPI.getPostById);
+// Redux-saga action 처리 함수
+function* getPostsSaga() {
+    console.log("getPostsSaga()");
+    try {
+        const posts = yield call(postsAPI.getPosts); // Promise 반환 값이 올 때까지 대기하게 된다 (yield)
+        yield put({
+            type: GET_POSTS_SUCCESS,
+            payload: posts
+        });
+    } catch (error) {
+        yield put({
+            type: GET_POSTS_ERROR,
+            payload: error,
+            error: true
+        });
+    }
+}
+
+function* getPostSaga(action) {
+    const id = action.payload;
+    try {
+        const post = yield call(postsAPI.getPostById, id); // Promise 반환 값이 올 때까지 대기하게 된다 (yield)
+        yield put({
+            type: GET_POST_SUCCESS,
+            payload: post,
+            meta: id
+        });
+    } catch (error) {
+        yield put({
+            type: GET_POST_ERROR,
+            payload: error,
+            error: true,
+            meta: id
+        });
+    }
+}
+
+// Redux-saga action 모니터링 함수
+export function* postsSaga() {
+    yield takeEvery(GET_POSTS, getPostsSaga);
+    yield takeEvery(GET_POST, getPostSaga);
+}
+
+
 export const goToHome = () => (dispatch, getState, { history }) => {
     history.push("/");
 }
@@ -55,7 +108,11 @@ export const goToHome = () => (dispatch, getState, { history }) => {
 export const clearPost = () => ({type: CLEAR_POST});
 
 
+// Redux-thunk 코드
 /*
+export const getPosts = createPromiseThunk(GET_POSTS, postsAPI.getPosts);
+export const getPost = createPromiseThunkById(GET_POST, postsAPI.getPostById);
+
 //const getPostReducer = handleAsyncActions(GET_POST, 'post');
 const getPostReducer = (state, action) => {
     const id = action.meta;

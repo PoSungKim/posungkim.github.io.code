@@ -22,12 +22,27 @@ import logger from "redux-logger";
 // ReduxThunk 라이브러리
 import ReduxThunk from 'redux-thunk';
 
+// ReduxSaga 라이브러리
+import createSagaMiddleware from 'redux-saga';
+
 //하나의 Application에 하나의 Store만! 즉, rootReducer 안에 Applicaiton에 필요한 모든 reducer들을 넣어서 통합 관리
 // const store = createStore(rootReducer, );
-import rootReducer from "./components/function/ReduxThunkComp/Modules/index";
+import rootReducer from "./components/function/ReduxThunkSagaComp/Modules/index";
+import {rootSaga} from "./components/function/ReduxThunkSagaComp/Modules";
 
+const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(ReduxThunk.withExtraArgument({history: customHistory}), logger)));
+const store = createStore(rootReducer,
+    composeWithDevTools(
+        applyMiddleware(
+            ReduxThunk.withExtraArgument({history: customHistory}),
+            sagaMiddleware,
+            logger
+        )
+    )
+);
+
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
     <React.StrictMode>
