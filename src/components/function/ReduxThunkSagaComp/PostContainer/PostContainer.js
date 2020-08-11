@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import PostComp from "../PostComp/Postcomp";
-import {getPost, goToHome} from "../Modules/posts";
+import {getPost, goToHome, printState} from "../Modules/posts";
 import {reducerUtils} from "../lib/asyncUtils";
 
 function PostContainer({postId}) {
@@ -26,6 +26,7 @@ function PostContainer({postId}) {
     return (
         <>
             <button onClick={() => dispatch(goToHome())}>홈으로 이동</button>
+            <button onClick={() => dispatch(printState())}>상태 출력</button>
             <PostComp post={data}/>
         </>
     )

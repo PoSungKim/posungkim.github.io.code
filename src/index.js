@@ -30,7 +30,11 @@ import createSagaMiddleware from 'redux-saga';
 import rootReducer from "./components/function/ReduxThunkSagaComp/Modules/index";
 import {rootSaga} from "./components/function/ReduxThunkSagaComp/Modules";
 
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware({
+    context: {
+        history : customHistory
+    }
+});
 
 const store = createStore(rootReducer,
     composeWithDevTools(

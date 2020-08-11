@@ -6,7 +6,7 @@ import {
     handleAsyncActionsById,
     reducerUtils
 } from "../lib/asyncUtils";
-import {call, put, takeEvery} from "redux-saga/effects";
+import {call, put, takeEvery, getContext, select} from "redux-saga/effects";
 
 // Action 정의
 const GET_POSTS = 'posts/GET_POSTS';
@@ -17,7 +17,9 @@ const GET_POST = 'posts/GET_POST';
 const GET_POST_SUCCESS = 'posts/GET_POST_SUCCESS';
 const GET_POST_ERROR = 'posts/GET_POST_ERROR';
 
+const GO_TO_HOME = "posts/GO_TO_HOME"
 const CLEAR_POST = 'posts/CLEAR_POST';
+const PRINT_STATE = "posts/PRINT_STATE";
 
 // 초기 상태 정의
 const initialState = {
@@ -56,6 +58,7 @@ export const getPost  = (id) => ({
     payload: id, // Redux-saga 용도
     meta: id     // Reducer 용도
 });
+export const printState = () => ({type: PRINT_STATE});
 
 // Redux-saga action 처리 함수
 function* getPostsSaga() {
@@ -94,24 +97,36 @@ function* getPostSaga(action) {
     }
 }
 
+function* goToHomeSaga() {
+    const history = yield getContext('history');
+    history.push("/");
+}
+
+function* printStateSaga() {
+    const state = yield select(state => state.posts);
+    console.log(state);
+}
+
 // Redux-saga action 모니터링 함수
 export function* postsSaga() {
     yield takeEvery(GET_POSTS, getPostsSaga);
     yield takeEvery(GET_POST, getPostSaga);
+    yield takeEvery(GO_TO_HOME, goToHomeSaga);
+    yield takeEvery(PRINT_STATE, printStateSaga);
 }
 
-
-export const goToHome = () => (dispatch, getState, { history }) => {
-    history.push("/");
-}
+export const goToHome = () => ({type: GO_TO_HOME})
 
 export const clearPost = () => ({type: CLEAR_POST});
-
 
 // Redux-thunk 코드
 /*
 export const getPosts = createPromiseThunk(GET_POSTS, postsAPI.getPosts);
 export const getPost = createPromiseThunkById(GET_POST, postsAPI.getPostById);
+
+export const goToHome = () => (dispatch, getState, { history }) => {
+    history.push("/");
+}
 
 //const getPostReducer = handleAsyncActions(GET_POST, 'post');
 const getPostReducer = (state, action) => {
