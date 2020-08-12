@@ -2,7 +2,7 @@ import React from 'react';
 import welshCorgiImg from "./image/welshCorgiImg.png";
 import bullDogImg from "./image/bullDogImg.png";
 
-function randomNumber (min, max) {
+function randomNumber(min, max) {
     return Math.random() * (max - min) + min;
 }
 
@@ -32,7 +32,7 @@ export class GameFieldComp extends React.Component {
     _addIcon = (className, count) => {
         const x1 = 0, y1 = 0;
         const x2 = this.fieldRect.width - this.props.sizeOffset, y2 = this.fieldRect.height - this.props.sizeOffset;
-        for(let i = 0; i < count; i++) {
+        for (let i = 0; i < count; i++) {
             const icon = document.createElement("img");
             const nx = randomNumber(x1, x2), ny = randomNumber(y1, y2);
             icon.className = className;
@@ -55,8 +55,7 @@ export class GameFieldComp extends React.Component {
                 return;
             targetElement.remove();
 
-        }
-        else if (event.target.matches(".bulldog")) {
+        } else if (event.target.matches(".bulldog")) {
             this.onClickItem && this.onClickItem(Icons.bulldog);
 
         }

@@ -11,20 +11,20 @@ const TodoListCompItemAreaBlock = styled.div`
     background: white;
 `
 
-function TodoListItemArea () {
+function TodoListItemArea() {
     const items = useTodoState();
 
     return (
-      <TodoListCompItemAreaBlock>
-          {items.map(item => (
-              <TodoItem
-                  key={item.id}
-                  id={item.id}
-                  text={item.text}
-                  done={item.done}
-              />
-          ))}
-      </TodoListCompItemAreaBlock>
+        <TodoListCompItemAreaBlock>
+            {items.map(item => (
+                <TodoItem
+                    key={item.id}
+                    id={item.id}
+                    text={item.text}
+                    done={item.done}
+                />
+            ))}
+        </TodoListCompItemAreaBlock>
     )
 
 }

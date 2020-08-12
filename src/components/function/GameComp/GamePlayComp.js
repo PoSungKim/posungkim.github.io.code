@@ -26,11 +26,10 @@ export default class GamePlayComp extends React.Component {
         this.timer = document.querySelector(".header__timer");
         this.scorer = document.querySelector(".header__score");
         this.startBtn = document.querySelector(".header__startBtn");
-        this.startBtn.addEventListener("click", ()=> {
+        this.startBtn.addEventListener("click", () => {
             if (!this.isStarted) {
                 this.start();
-            }
-            else {
+            } else {
                 this.stop(Reason.quit);
             }
         })
@@ -64,7 +63,7 @@ export default class GamePlayComp extends React.Component {
     }
 
     onClickItem = (item) => {
-        if(!this.isStarted) {
+        if (!this.isStarted) {
             return true;
         }
         if (item === Icons.corgi) {
@@ -73,8 +72,7 @@ export default class GamePlayComp extends React.Component {
             if (this.score === this.corgiCount) {
                 this.stop(Reason.win);
             }
-        }
-        else if (item === Icons.bulldog) {
+        } else if (item === Icons.bulldog) {
             playLoss();
             this.stop(Reason.lose);
         }
@@ -88,7 +86,7 @@ export default class GamePlayComp extends React.Component {
     initSetting = () => {
         this.showGameBtn();
         this.score = 0;
-        this.scorer.innerHTML = `${ this.corgiCount } score`;
+        this.scorer.innerHTML = `${this.corgiCount} score`;
     }
 
     initStopBtn = () => {
@@ -103,7 +101,7 @@ export default class GamePlayComp extends React.Component {
     }
 
     updateTimer = (time) => {
-        const minutes = Math.floor(time/60);
+        const minutes = Math.floor(time / 60);
         const seconds = time % 60;
         this.timer.innerHTML = `${minutes} min ${seconds} sec`;
     }
@@ -137,6 +135,7 @@ export default class GamePlayComp extends React.Component {
     showGameBtn = () => {
         this.startBtn.style.visibility = "visible";
     }
+
     render() {
         return (
             <section className="game">
@@ -151,7 +150,8 @@ export default class GamePlayComp extends React.Component {
                             0
                         </span>
                 </section>
-                <GameFieldComp corgiCount = {this.props.corgiCount} bulldogCount = {this.props.bulldogCount} sizeOffset = {this.props.sizeOffset} />
+                <GameFieldComp corgiCount={this.props.corgiCount} bulldogCount={this.props.bulldogCount}
+                               sizeOffset={this.props.sizeOffset}/>
             </section>
         );
     }

@@ -2,12 +2,12 @@ import React, {useEffect} from "react";
 import "./YouTubeCloning.css";
 import youTubeMotion from "./youTubeMotion.mp4"
 
-function YouTubeCloning () {
+function YouTubeCloning() {
     useEffect(() => {
         const moreBtn = document.querySelector('.info .metaData .titleAndButton .moreBtn');
         const title = document.querySelector('.info .metaData .titleAndButton .title');
 
-        moreBtn.addEventListener('click', ()=> {
+        moreBtn.addEventListener('click', () => {
             moreBtn.classList.toggle("clicked");
             title.classList.toggle("clamp");
         });
@@ -93,7 +93,9 @@ function YouTubeCloning () {
                     {/* Channel Description */}
                     <section className="channel">
                         <div className="metaData">
-                            <img src="https://avatars2.githubusercontent.com/u/37537227?s=460&u=202a41ec807e7d974885904913c6c46649020392&v=4" alt="channelImg"/>
+                            <img
+                                src="https://avatars2.githubusercontent.com/u/37537227?s=460&u=202a41ec807e7d974885904913c6c46649020392&v=4"
+                                alt="channelImg"/>
                             <div className="info">
                         <span className="channelName">
                             BeneBean's Coding
@@ -115,7 +117,9 @@ function YouTubeCloning () {
                     <ul>
                         <li className="item">
                             <div className="img">
-                                <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--YPqzSSWz--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/8i1bx8y9p3t9x223bjhf.png" alt="react banner"/>
+                                <img
+                                    src="https://res.cloudinary.com/practicaldev/image/fetch/s--YPqzSSWz--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/8i1bx8y9p3t9x223bjhf.png"
+                                    alt="react banner"/>
                             </div>
                             <div className="info">
                                 <span className="title">React 1</span>
@@ -126,7 +130,9 @@ function YouTubeCloning () {
                         </li>
                         <li className="item">
                             <div className="img">
-                                <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--YPqzSSWz--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/8i1bx8y9p3t9x223bjhf.png" alt="react banner"/>
+                                <img
+                                    src="https://res.cloudinary.com/practicaldev/image/fetch/s--YPqzSSWz--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/8i1bx8y9p3t9x223bjhf.png"
+                                    alt="react banner"/>
                             </div>
                             <div className="info">
                                 <span className="title">React 2</span>
@@ -137,7 +143,9 @@ function YouTubeCloning () {
                         </li>
                         <li className="item">
                             <div className="img">
-                                <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--YPqzSSWz--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/8i1bx8y9p3t9x223bjhf.png" alt="react banner"/>
+                                <img
+                                    src="https://res.cloudinary.com/practicaldev/image/fetch/s--YPqzSSWz--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/8i1bx8y9p3t9x223bjhf.png"
+                                    alt="react banner"/>
                             </div>
                             <div className="info">
                                 <span className="title">React 3</span>
@@ -152,4 +160,5 @@ function YouTubeCloning () {
         </div>
     );
 }
+
 export default YouTubeCloning;

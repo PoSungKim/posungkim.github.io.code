@@ -2,14 +2,14 @@ import React, {useState} from "react";
 
 const TodoItem = React.memo(function TodoItem({todo, onToggle}) {
     return (
-      <li
-          style={{
-              textDecoration: todo.done ? 'line-through' : 'none',
-          }}
-          onClick={() => onToggle(todo.id)}
-      >
-          {todo.text}
-      </li>
+        <li
+            style={{
+                textDecoration: todo.done ? 'line-through' : 'none',
+            }}
+            onClick={() => onToggle(todo.id)}
+        >
+            {todo.text}
+        </li>
     );
 });
 
@@ -19,9 +19,9 @@ const TodoList = React.memo(function TodoList({todos, onToggle}) {
             {todos.map(
                 todo =>
                     (<TodoItem
-                        key = {todo.id}
-                        todo = {todo}
-                        onToggle = {onToggle}
+                        key={todo.id}
+                        todo={todo}
+                        onToggle={onToggle}
                     >
                     </TodoItem>)
             )}
@@ -50,10 +50,11 @@ function TodoComp({todos, onCreate, onToggle}) {
                 </form>
             </div>
             <TodoList
-                todos = {todos}
+                todos={todos}
                 onToggle={onToggle}
             />
         </>
     );
 }
+
 export default React.memo(TodoComp);

@@ -54,7 +54,6 @@ button:focus {
 }
 
 
-
 /* Video Player */
 .videoPlayer {
     text-align: center;
@@ -62,6 +61,7 @@ button:focus {
     position: sticky;
     top: -2%;
 }
+
 .videoPlayer video {
     width: 100%;
     height: 100%;
@@ -70,9 +70,8 @@ button:focus {
 }
 
 
-
 /* Information */
-body>.info {
+body > .info {
     padding: var(--padding);
 }
 
@@ -99,7 +98,7 @@ body>.info {
     padding: 0 var(--padding);
 }
 
-.info .metaData .titleAndButton .title.clamp{
+.info .metaData .titleAndButton .title.clamp {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -124,7 +123,6 @@ body>.info {
 }
 
 
-
 /* Actions */
 .info .actions {
     display: flex;
@@ -142,7 +140,7 @@ body>.info {
 
 .info .actions button i {
     /* align-items: center를 위에서 해도 되고, 해당 tag에 margin: 0 auto;을 해줘도 된다.*/
-    margin-bottom: calc(var(--padding)/2);
+    margin-bottom: calc(var(--padding) / 2);
     font-size: 16px;
 }
 
@@ -203,10 +201,10 @@ body>.info {
     padding: 0 var(--padding);
 }
 
-.upNext>.title {
+.upNext > .title {
     font-size: var(--font-medium);
     color: var(--grey-dark-color);
-    margin-bottom: calc(var(--padding)/2);
+    margin-bottom: calc(var(--padding) / 2);
 }
 
 .upNext .item {

@@ -23,8 +23,8 @@ const PRINT_STATE = "posts/PRINT_STATE";
 
 // 초기 상태 정의
 const initialState = {
-    posts : reducerUtils.initial(),
-    post : {}
+    posts: reducerUtils.initial(),
+    post: {}
 }
 
 const getPostsReducer = handleAsyncActions(GET_POSTS, 'posts', true);
@@ -32,7 +32,7 @@ const getPostReducer = handleAsyncActionsById(GET_POST, 'post', true);
 
 // Reducer 함수
 export default function posts(state = initialState, action) {
-    switch(action.type) {
+    switch (action.type) {
         case GET_POSTS:
         case GET_POSTS_SUCCESS:
         case GET_POSTS_ERROR:
@@ -52,8 +52,8 @@ export default function posts(state = initialState, action) {
 }
 
 // Redux-saga Action
-export const getPosts  = () => ({type: GET_POSTS});
-export const getPost  = (id) => ({
+export const getPosts = () => ({type: GET_POSTS});
+export const getPost = (id) => ({
     type: GET_POST,
     payload: id, // Redux-saga 용도
     meta: id     // Reducer 용도

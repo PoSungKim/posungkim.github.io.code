@@ -9,9 +9,9 @@ class JournalComp extends React.Component {
     render() {
         return (
             <div className="JournalComp">
-                <ReactMarkdown source={title} />
+                <ReactMarkdown source={title}/>
                 <br/>
-                <ReactMarkdown source={content} />
+                <ReactMarkdown source={content}/>
                 <div className="code__Area">
                     <code>int i = 0 </code><br/>
                     <code>int j = 0 </code>

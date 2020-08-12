@@ -25,7 +25,7 @@ const Text = styled.div`
     flex: 1;
     font-size: 21px;
     color: $495057;
-    ${props => props.done && 
+    ${props => props.done &&
     css`
         color: #ced4da;        
     `}
@@ -68,9 +68,9 @@ function TodoItem({id, done, text}) {
     });
     return (
         <TodoItemBlock>
-            <CheckCircle onClick = {onToggle} done={done}>{done && <MdDone/>}</CheckCircle>
+            <CheckCircle onClick={onToggle} done={done}>{done && <MdDone/>}</CheckCircle>
             <Text done={done}>{text}</Text>
-            <Remove onClick = {onRemove}>
+            <Remove onClick={onRemove}>
                 <MdDelete/>
             </Remove>
         </TodoItemBlock>

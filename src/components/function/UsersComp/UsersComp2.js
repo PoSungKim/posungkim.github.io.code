@@ -12,14 +12,13 @@ function Users() {
         error: null
     });
 
-    const fetchUsers = async() => {
-        dispatch({type:'LOADING'});
+    const fetchUsers = async () => {
+        dispatch({type: 'LOADING'});
         try {
             const response = await axios.get('https://jsonplaceholder.typicode.com/users/');
-            dispatch({type:'SUCCESS', data: response.data});
-        }
-        catch (error) {
-            dispatch({type:'ERROR', error: error});
+            dispatch({type: 'SUCCESS', data: response.data});
+        } catch (error) {
+            dispatch({type: 'ERROR', error: error});
         }
     };
 

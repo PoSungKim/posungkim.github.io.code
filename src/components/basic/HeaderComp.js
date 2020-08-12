@@ -13,7 +13,7 @@ class HeaderComp extends React.Component {
         const menu = document.querySelector(".navbar__menu");
         const icons = document.querySelector(".navbar__icons");
         console.log(toggleBtn);
-        toggleBtn.addEventListener('click' , (event)=> {
+        toggleBtn.addEventListener('click', (event) => {
             toggleBtn.scrollIntoView();
             console.log(event.target.tagName);
             if (event.target.tagName === "INPUT") {
@@ -25,8 +25,8 @@ class HeaderComp extends React.Component {
 
 
         const lsList = document.querySelector('.navbar__menu').childNodes;
-        for(let i = 0; i < lsList.length; i++) {
-            lsList[i].addEventListener('click', ()=> {
+        for (let i = 0; i < lsList.length; i++) {
+            lsList[i].addEventListener('click', () => {
                 menu.classList.toggle('active');
                 icons.classList.toggle('active');
                 navbar.classList.toggle('active');
@@ -49,29 +49,32 @@ class HeaderComp extends React.Component {
                     alert("해당 페이지에는 About Me가 없어요! Resume 페이지로 가주세요!");
                     return;
                 }
-                toScroll.scrollIntoView({behavior: "smooth", block: (id !== "#experience")? "center" : "start", inline: "center"});
+                toScroll.scrollIntoView({
+                    behavior: "smooth",
+                    block: (id !== "#experience") ? "center" : "start",
+                    inline: "center"
+                });
             }
         })
 
         // SideBar Click Action 추가
         const sideBarBtn = document.querySelector(".navbar__menu__sidebar");
         const sideBarSection = document.querySelector("#sidebar");
-        sideBarBtn.addEventListener("click", ()=>{
+        sideBarBtn.addEventListener("click", () => {
             console.log("sideBarBtn clicked!");
             if (sideBarSection.matches(".show")) {
                 sideBarSection.classList.remove("show");
                 sideBarSection.scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
-            }
-            else {
+            } else {
                 sideBarSection.scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
                 window.setTimeout(() => {
                     sideBarSection.classList.add("show");
-                }, window.scrollY <= window.innerHeight/2? 500: 1000);
+                }, window.scrollY <= window.innerHeight / 2 ? 500 : 1000);
             }
         });
 
         ["scroll", "click"].forEach(event => {
-            document.addEventListener(event, ()=> {
+            document.addEventListener(event, () => {
                 if (sideBarSection.matches(".show")) {
                     sideBarSection.classList.remove("show");
                 }
@@ -82,10 +85,9 @@ class HeaderComp extends React.Component {
         // Navbar Scroll Action 추가
         const navbarHeight = navbar.getBoundingClientRect().height;
         document.addEventListener("scroll", () => {
-            if (window.scrollY > navbarHeight/5) {
+            if (window.scrollY > navbarHeight / 5) {
                 navbar.classList.add("navbar--dark");
-            }
-            else {
+            } else {
                 navbar.classList.remove("navbar--dark");
             }
         })
@@ -95,12 +97,12 @@ class HeaderComp extends React.Component {
         return (
             <header>
                 <nav className="header__navbar">
-                    <audio id = "bgmAudio" src={bgMusic}></audio>
+                    <audio id="bgmAudio" src={bgMusic}></audio>
 
                     <div className="navbar__logo">
                         <a href="/"><i className="fas fa-puzzle-piece"></i> BeneBean's Coding</a>
                     </div>
-                    <CrossBtnComp />
+                    <CrossBtnComp/>
 
                     <ol className="navbar__menu">
                         <li className="navbar__menu__sidebar">Information</li>
@@ -123,7 +125,7 @@ class HeaderComp extends React.Component {
                             </a>
                         </li>
                         <li>
-                            <a  target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/posung.kim">
+                            <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/posung.kim">
                                 <i className="fab fa-facebook-square"></i>
                             </a>
                         </li>

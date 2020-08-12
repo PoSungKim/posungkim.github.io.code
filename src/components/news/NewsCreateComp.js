@@ -9,7 +9,7 @@ class NewsCreateComp extends React.Component {
         this.state = this.initialState;
     }
 
-    initialState = {"id" : -1, "title" : "", "content" : ""}
+    initialState = {"id": -1, "title": "", "content": ""}
 
     componentDidMount() {
         const newsId = this.props.match.params.id;
@@ -21,7 +21,7 @@ class NewsCreateComp extends React.Component {
 
     findNewsById = (newsId) => {
         axios.get("http://localhost:8080/rest/news/" + newsId)
-            .then( response => {
+            .then(response => {
                 if (response.data != null) {
                     this.setState({
                         id: response.data.id,
@@ -30,7 +30,7 @@ class NewsCreateComp extends React.Component {
                     });
                 }
             })
-            .catch( err => {
+            .catch(err => {
                 alert(err)
             })
     }
@@ -43,7 +43,7 @@ class NewsCreateComp extends React.Component {
     }
     updateNews = (event) => {
         this.setState({
-            [event.target.name] : event.target.value
+            [event.target.name]: event.target.value
         })
     }
 
@@ -51,8 +51,8 @@ class NewsCreateComp extends React.Component {
         event.preventDefault()
 
         const news = {
-            title : this.state.title,
-            content : this.state.content
+            title: this.state.title,
+            content: this.state.content
         }
 
         axios.post("http://localhost:8080/rest/news/submit/", news)
@@ -95,28 +95,29 @@ class NewsCreateComp extends React.Component {
                         </Form.Label>
                         <Col sm="11">
                             <Form.Control required
-                                type="text" name="title" placeholder="제목을 작성해주세요"
-                                value={this.state.title}
-                                onChange={this.updateNews}
+                                          type="text" name="title" placeholder="제목을 작성해주세요"
+                                          value={this.state.title}
+                                          onChange={this.updateNews}
                             />
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row}  controlId="formPlaintextContent">
+                    <Form.Group as={Row} controlId="formPlaintextContent">
                         <Form.Label column sm="2" className="ml-2">
                             내용
                         </Form.Label>
                         <Col sm="11" style={{height: "25rem"}}>
                             <Form.Control required style={{height: "100%"}}
-                                type="text" name="content" placeholder="내용을 작성해주세요"
-                                as = "textarea" value = {this.state.content}
-                                onChange={this.updateNews}
+                                          type="text" name="content" placeholder="내용을 작성해주세요"
+                                          as="textarea" value={this.state.content}
+                                          onChange={this.updateNews}
                             />
-                            <div className = "mt-3" style = {{"textAlign" : "right"}}>
-                                <Button onClick = {this.goBack} variant="success" type={"submit"}>
+                            <div className="mt-3" style={{"textAlign": "right"}}>
+                                <Button onClick={this.goBack} variant="success" type={"submit"}>
                                     뒤로 가기
                                 </Button>
                                 {" "}
-                                <Button onClick = {this.state.id === -1 ? this.submitNews : this.editNews } variant="primary" type={"submit"}>
+                                <Button onClick={this.state.id === -1 ? this.submitNews : this.editNews}
+                                        variant="primary" type={"submit"}>
                                     {this.state.id === -1 ? "Save" : "Edit"}
                                 </Button>
                             </div>

@@ -19,7 +19,8 @@ ul {
     margin-bottom: 0;
 }
 `
-function App () {
+
+function App() {
     return (
         <>
             <GlobalStyle/>
@@ -27,4 +28,5 @@ function App () {
         </>
     )
 }
+
 export default App;

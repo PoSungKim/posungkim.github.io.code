@@ -1,6 +1,6 @@
 import React from "react";
 
-function CounterComp({ number, diff, onIncrease, onDecrease, onSetDiff }) {
+function CounterComp({number, diff, onIncrease, onDecrease, onSetDiff}) {
     const onChange = event => {
         onSetDiff(parseInt(event.target.value, 10));
     };

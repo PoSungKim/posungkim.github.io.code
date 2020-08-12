@@ -36,11 +36,11 @@ function usersReducer(state, action) {
 const UsersStateContext = createContext(null);
 const UsersDispatchContext = createContext(null);
 
-export function UsersProvider( {children} ) {
-    const [state, dispatch] = useReducer(usersReducer, initialState) ;
+export function UsersProvider({children}) {
+    const [state, dispatch] = useReducer(usersReducer, initialState);
     return (
-        <UsersStateContext.Provider value = {state}>
-            <UsersDispatchContext.Provider value = {dispatch}>
+        <UsersStateContext.Provider value={state}>
+            <UsersDispatchContext.Provider value={dispatch}>
                 {children}
             </UsersDispatchContext.Provider>
         </UsersStateContext.Provider>

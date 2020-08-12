@@ -81,7 +81,7 @@
 
 #shoppingComp .itemList .item {
     background: var(--color-item);
-    line-height: calc(var(--size-img)*1.2);
+    line-height: calc(var(--size-img) * 1.2);
     font-size: var(--size-font);
     margin-bottom: 10px;
 }

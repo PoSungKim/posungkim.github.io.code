@@ -22,7 +22,7 @@ import {rootSaga} from "./components/reduxpractice/ReduxThunkSagaComp/Modules";
 
 const sagaMiddleware = createSagaMiddleware({
     context: {
-        history : customHistory
+        history: customHistory
     }
 });
 
@@ -40,7 +40,7 @@ sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
     <React.StrictMode>
-        <Provider store = {store}>
+        <Provider store={store}>
             <App/>
         </Provider>
     </React.StrictMode>,

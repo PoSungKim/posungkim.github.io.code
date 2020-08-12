@@ -17,10 +17,11 @@ import SideBar from "../basic/SideBar";
 import "./AppRouter.scss";
 
 import {createBrowserHistory} from 'history';
+import UserContainer from "../user/UserContainer";
 
 export const customHistory = createBrowserHistory();
 
-function AppRouter () {
+function AppRouter() {
 
     useEffect(() => {
         // Background Music Action 추가
@@ -28,7 +29,7 @@ function AppRouter () {
         backgroundMusic.volume = 0.2;
         //backgroundMusic.autoPlay = false;
         //backgroundMusic.play();
-    })
+    }, [])
 
     return (
         <>
@@ -49,6 +50,7 @@ function AppRouter () {
                         <Route exact path="/functions/shopping" component={ShoppingComp}/>
                         <Route exact path="/functions/todolist" component={TodoListComp}/>
                         <Route exact path="/problems" component={ProblemSolveComp}/>
+                        <Route exact path="/users" component={UserContainer}/>
                         <Redirect from="*" to="/"/>
                     </Switch>
                 </Router>
@@ -64,7 +66,8 @@ export default AppRouter;
         document.addEventListener("click", ()=>{
             backgroundMusic.play();
         })
-        */}
+        */
+}
 
 
 // Move the content section in accordance with height of the navbar
@@ -77,4 +80,5 @@ export default AppRouter;
                 content.style.transform = `translateY(${heightOffset}px)`;
             }
         })
-        */}
+        */
+}

@@ -48,7 +48,7 @@ export const decreaseAsync = () => (dispatch, getState) => {
 const initialState = 0;
 
 // Counter Reducer 생성
-export default function counter (state = initialState, action) {
+export default function counter(state = initialState, action) {
     switch (action.type) {
         case INCREASE:
             return state + 1;

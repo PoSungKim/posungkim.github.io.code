@@ -11,7 +11,8 @@ function CounterContainer() {
         number: state.counter.number,
         diff: state.counter.diff,
     }), (left, right) => left.number === right.number && left.diff === right.diff);
-    */}
+    */
+    }
 
     const {number, diff} = useSelector(state => ({
         number: state.counter.number,

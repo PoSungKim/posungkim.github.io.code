@@ -7,7 +7,7 @@ function Users() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const fetchUsers = async() => {
+    const fetchUsers = async () => {
         try {
             setUsers(null);
             setError(null);
@@ -15,13 +15,11 @@ function Users() {
 
             const response = await axios.get('https://jsonplaceholder.typicode.com/users/');
             setUsers(response.data);
-        }
-
-        catch (error) {
+        } catch (error) {
             console.log(error.response.status);
             setError(error);
         }
-        setLoading (false);
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -35,11 +33,11 @@ function Users() {
     return (
         <>
             <ul>
-            {users.map(user => (
-                <li key={user.id}>
-                    {user.username} ({user.name})
-                </li>
-            ))}
+                {users.map(user => (
+                    <li key={user.id}>
+                        {user.username} ({user.name})
+                    </li>
+                ))}
             </ul>
             <button onClick={fetchUsers}>다시 불러오기</button>
         </>

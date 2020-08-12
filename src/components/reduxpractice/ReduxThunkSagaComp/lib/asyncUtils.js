@@ -35,7 +35,7 @@ export const createPromiseThunk = (type, promiseCreator) => {
                 type: SUCCESS,
                 payload,
             });
-        }catch (error) {
+        } catch (error) {
             dispatch({
                 type: ERROR,
                 payload: error,
@@ -60,7 +60,7 @@ export const createPromiseThunkById = (type, promiseCreator, idSelector = defaul
                 payload,
                 meta: id
             });
-        }catch (error) {
+        } catch (error) {
             dispatch({
                 type: ERROR,
                 payload: error,
@@ -74,21 +74,21 @@ export const createPromiseThunkById = (type, promiseCreator, idSelector = defaul
 export const handleAsyncActions = (type, key, keepData) => {
     const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
     const reducer = (state, action) => {
-        switch(action.type) {
+        switch (action.type) {
             case type:
                 return {
                     ...state,
-                    [key]: reducerUtils.loading(keepData ? state[key].data: null)
+                    [key]: reducerUtils.loading(keepData ? state[key].data : null)
                 }
             case SUCCESS :
                 return {
                     ...state,
-                    [key] : reducerUtils.success(action.payload)
+                    [key]: reducerUtils.success(action.payload)
                 };
             case ERROR :
                 return {
                     ...state,
-                    [key] : reducerUtils.error(action.payload)
+                    [key]: reducerUtils.error(action.payload)
                 };
             default:
                 return state;
@@ -102,29 +102,29 @@ export const handleAsyncActionsById = (type, key, keepData) => {
     const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
     const reducer = (state, action) => {
         const id = action.meta;
-        switch(action.type) {
+        switch (action.type) {
             case type:
                 return {
                     ...state,
                     [key]: {
                         ...state[key],
-                        [id]: reducerUtils.loading(keepData ? (state[key][id] && state[key][id].data): null)
+                        [id]: reducerUtils.loading(keepData ? (state[key][id] && state[key][id].data) : null)
                     }
                 }
             case SUCCESS :
                 return {
                     ...state,
-                    [key] : {
+                    [key]: {
                         ...state[key],
-                        [id] : reducerUtils.success(action.payload)
+                        [id]: reducerUtils.success(action.payload)
                     }
                 };
             case ERROR :
                 return {
                     ...state,
-                    [key] : {
+                    [key]: {
                         ...state[key],
-                        [id] : reducerUtils.error(action.payload)
+                        [id]: reducerUtils.error(action.payload)
                     }
                 };
             default:

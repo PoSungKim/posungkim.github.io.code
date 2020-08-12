@@ -41,7 +41,8 @@ function todoReducer(state, action) {
             return state.filter(todo => todo.id !== action.id);
         default:
             throw new Error(`Unhandled action type: ${action.type}`);
-    };
+    }
+    ;
 }
 
 const TodoStateContext = createContext();
@@ -53,10 +54,10 @@ export function TodoContextProvider({children}) {
     const nextID = useRef(5);
 
     return (
-        <TodoStateContext.Provider value = {state}>
-            <TodoDispatchContext.Provider value = {dispatch}>
-                <TodoNextIdContext.Provider value = {nextID}>
-                {children}
+        <TodoStateContext.Provider value={state}>
+            <TodoDispatchContext.Provider value={dispatch}>
+                <TodoNextIdContext.Provider value={nextID}>
+                    {children}
                 </TodoNextIdContext.Provider>
             </TodoDispatchContext.Provider>
         </TodoStateContext.Provider>
@@ -71,14 +72,14 @@ export function useTodoState() {
 }
 
 export function useTodoDispatch() {
-    const context =  useContext(TodoDispatchContext);
+    const context = useContext(TodoDispatchContext);
     if (!context)
         throw new Error('Cannot find TodoProvider');
     return context;
 }
 
 export function useTodoNextId() {
-    const context =  useContext(TodoNextIdContext);
+    const context = useContext(TodoNextIdContext);
     if (!context)
         throw new Error('Cannot find TodoProvider');
     return context;

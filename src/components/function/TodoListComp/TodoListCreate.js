@@ -102,12 +102,12 @@ function TodoListCreate() {
         <>
             {open && (
                 <InsertFormPositioner>
-                    <InsertForm onSubmit = {onSubmit}>
+                    <InsertForm onSubmit={onSubmit}>
                         <Input
-                            placeholder = "할 일을 입력 후, Enter를 누르세요"
+                            placeholder="할 일을 입력 후, Enter를 누르세요"
                             autoFocus
-                            onChange = {onChange}
-                            value = {value}
+                            onChange={onChange}
+                            value={value}
                         />
                     </InsertForm>
                 </InsertFormPositioner>

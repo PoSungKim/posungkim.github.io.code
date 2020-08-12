@@ -12,9 +12,9 @@ function TodoContainer() {
     const onToggle = useCallback(id => dispatch(toggleTodo(id)), [dispatch]);
 
     return <TodoComp
-        todos = {todos}
-        onCreate = {onCreate}
-        onToggle = {onToggle}
+        todos={todos}
+        onCreate={onCreate}
+        onToggle={onToggle}
     />
 }
 

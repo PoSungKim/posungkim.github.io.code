@@ -10,15 +10,14 @@ class ResumeComp extends React.Component {
         document.addEventListener('scroll', () => {
             if (window.scrollY > about.getBoundingClientRect().height) {
                 arrowUpBtn.classList.add("visible");
-            }
-            else {
+            } else {
                 arrowUpBtn.classList.remove('visible');
             }
         })
 
         // ArrowUp Button 액션 추가 -- 클릭 시 최상단으로 갈 수 있게
         const header = document.querySelector('header');
-        arrowUpBtn.addEventListener('click', ()=> {
+        arrowUpBtn.addEventListener('click', () => {
             console.log(header);
             window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
         })
@@ -29,15 +28,15 @@ class ResumeComp extends React.Component {
         const projects = document.querySelectorAll(".project")
         expBtnContainer.addEventListener('click', (event) => {
 
-            const data = (event.target.dataset.filter)? event.target.dataset.filter :event.target.parentNode.dataset.filter;
-            const targetBtn = (event.target.nodeName === 'BUTTON')? event.target : event.target.parentNode;
+            const data = (event.target.dataset.filter) ? event.target.dataset.filter : event.target.parentNode.dataset.filter;
+            const targetBtn = (event.target.nodeName === 'BUTTON') ? event.target : event.target.parentNode;
             if (data === undefined) return;
 
             projContainer.classList.add("animation-bottom");
-            setTimeout(()=> {
-                projects.forEach( (project) => {
+            setTimeout(() => {
+                projects.forEach((project) => {
                     const type = project.dataset.type;
-                    (data === '*' || data === type) ?  project.classList.remove("invisible") : project.classList.add("invisible");
+                    (data === '*' || data === type) ? project.classList.remove("invisible") : project.classList.add("invisible");
                 })
                 projContainer.classList.remove("animation-bottom");
             }, 300);
@@ -52,6 +51,7 @@ class ResumeComp extends React.Component {
         const items = document.querySelector(".items");
         const addBtn = document.querySelector(".input__btn");
         const inputArea = document.querySelector(".input__area");
+
         function onAddBtn() {
             const inputValue = inputArea.value;
             if (inputValue === '') {
@@ -64,13 +64,15 @@ class ResumeComp extends React.Component {
             inputArea.value = "";
             inputArea.focus();
         }
+
         let id = 0;
+
         function createItem(inputValue) {
             const item = document.createElement("li");
             item.setAttribute("class", "item");
             item.setAttribute("data-id", id);
             item.innerHTML =
-            `
+                `
                 <div class="item__content">
                     <span class="item__name">${inputValue}</span>
                     <button class="item__delete">
@@ -82,7 +84,8 @@ class ResumeComp extends React.Component {
             id++;
             return item;
         }
-        items.addEventListener('click', (event)=> {
+
+        items.addEventListener('click', (event) => {
             const id = event.target.dataset.id;
             if (id) {
                 const Deleted = document.querySelector(`.item[data-id="${id}"]`);
@@ -101,9 +104,9 @@ class ResumeComp extends React.Component {
     render() {
         return (
             <section className="ResumeComp">
-                <section id="about" >
-                    <div className = "blackCover"/>
-                    <div className= "left">
+                <section id="about">
+                    <div className="blackCover"/>
+                    <div className="left">
                         <div className="poster">
                             <h1 className="posterTitle"><strong>개발</strong>이 즐겁습니다!</h1>
                             <figure className="images">
@@ -114,7 +117,7 @@ class ResumeComp extends React.Component {
                         </div>
                     </div>
                     <div className="right">
-                        <h3 className="title"><strong>Proactive</strong> <strong>Developer</strong> </h3>
+                        <h3 className="title"><strong>Proactive</strong> <strong>Developer</strong></h3>
                         <div className="content">
                             <p>
                                 컴퓨터를 통해 머리 속의 모든 것이 구현될 수 있는 세상에 큰 매력을 느끼게 되었습니다.
@@ -141,25 +144,32 @@ class ResumeComp extends React.Component {
                     <div className="skillCompsContainer">
                         <div className="skillComps">
                             <div className="skill">
-                                <img src="https://user-images.githubusercontent.com/42747200/46140125-da084900-c26d-11e8-8ea7-c45ae6306309.png" alt="c++ icon" className="skillComp"/>
+                                <img
+                                    src="https://user-images.githubusercontent.com/42747200/46140125-da084900-c26d-11e8-8ea7-c45ae6306309.png"
+                                    alt="c++ icon" className="skillComp"/>
                                 <div className="skill__description">
                                     <span>70%</span>
                                 </div>
                             </div>
                             <div className="skill">
-                                <img src="https://cdn3.iconfinder.com/data/icons/logos-and-brands-adobe/512/267_Python-512.png" alt="python icon"className="skillComp"/>
+                                <img
+                                    src="https://cdn3.iconfinder.com/data/icons/logos-and-brands-adobe/512/267_Python-512.png"
+                                    alt="python icon" className="skillComp"/>
                                 <div className="skill__description">
                                     <span>70%</span>
                                 </div>
                             </div>
                             <div className="skill">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JS icon" className="skillComp"/>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
+                                     alt="JS icon" className="skillComp"/>
                                 <div className="skill__description">
                                     <span>70%</span>
                                 </div>
                             </div>
                             <div className="skill">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQVSn6huPlarccfZEFY__z79K6s-BrjBKVEWQ&usqp=CAU" alt="react icon" className="skillComp"/>
+                                <img
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQVSn6huPlarccfZEFY__z79K6s-BrjBKVEWQ&usqp=CAU"
+                                    alt="react icon" className="skillComp"/>
                                 <div className="skill__description">
                                     <span>70%</span>
                                 </div>
@@ -167,25 +177,30 @@ class ResumeComp extends React.Component {
                         </div>
                         <div className="skillComps">
                             <div className="skill">
-                                <img src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/256/full/nodejslogo.png" alt="node.js icon" className="skillComp"/>
+                                <img
+                                    src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/000/256/full/nodejslogo.png"
+                                    alt="node.js icon" className="skillComp"/>
                                 <div className="skill__description">
                                     <span>70%</span>
                                 </div>
                             </div>
                             <div className="skill">
-                                <img src="https://pngimg.com/uploads/mysql/mysql_PNG23.png" alt="mysql icon" className="skillComp"/>
+                                <img src="https://pngimg.com/uploads/mysql/mysql_PNG23.png" alt="mysql icon"
+                                     className="skillComp"/>
                                 <div className="skill__description">
                                     <span>70%</span>
                                 </div>
                             </div>
                             <div className="skill">
-                                <img src="https://miro.medium.com/max/300/1*UdM3Isk3gfnEOX7r6lWI8A.png" alt="docker icon" className="skillComp"/>
+                                <img src="https://miro.medium.com/max/300/1*UdM3Isk3gfnEOX7r6lWI8A.png"
+                                     alt="docker icon" className="skillComp"/>
                                 <div className="skill__description">
                                     <span>70%</span>
                                 </div>
                             </div>
                             <div className="skill">
-                                <img src="https://cdn.iconscout.com/icon/free/png-512/jenkins-5-569553.png" alt="docker icon" className="skillComp"/>
+                                <img src="https://cdn.iconscout.com/icon/free/png-512/jenkins-5-569553.png"
+                                     alt="docker icon" className="skillComp"/>
                                 <div className="skill__description">
                                     <span>70%</span>
                                 </div>
@@ -198,13 +213,13 @@ class ResumeComp extends React.Component {
                 <section id="experience" className="section">
                     <h1><strong>Experience</strong></h1>
                     <div className="experience__categories">
-                        <button className="category__btn selected" data-filter="*" >
+                        <button className="category__btn selected" data-filter="*">
                             All <span className="category__count">4</span>
                         </button>
-                        <button className="category__btn" data-filter="frontend" >
+                        <button className="category__btn" data-filter="frontend">
                             Front-end <span className="category__count">2</span>
                         </button>
-                        <button className="category__btn" data-filter="backend" >
+                        <button className="category__btn" data-filter="backend">
                             Back-end <span className="category__count">1</span>
                         </button>
                         <button className="category__btn" data-filter="mobile">
@@ -220,14 +235,14 @@ class ResumeComp extends React.Component {
                             </div>
                         </Link>
 
-                        <Link to="/functions/youtube" className="project"  data-type="mobile">
+                        <Link to="/functions/youtube" className="project" data-type="mobile">
                             <div className="project__img"></div>
                             <div className="project__description">
                                 <h3>YouTube Mobile</h3>
                                 <span>Clone Coding with HTML, CSS, JS</span>
                             </div>
                         </Link>
-                        <Link to="/functions/shopping" className="project"  data-type="frontend">
+                        <Link to="/functions/shopping" className="project" data-type="frontend">
                             <div className="project__img"></div>
                             <div className="project__description">
                                 <h3>Shopping Items</h3>
@@ -237,7 +252,7 @@ class ResumeComp extends React.Component {
                                 </span>
                             </div>
                         </Link>
-                        <Link to="/functions/todolist" className="project"  data-type="backend">
+                        <Link to="/functions/todolist" className="project" data-type="backend">
                             <div className="project__img"></div>
                             <div className="project__description">
                                 <h3>To Do List</h3>
@@ -259,7 +274,7 @@ class ResumeComp extends React.Component {
                         </ul>
                     </div>
                     <div className="input">
-                        <input type="text" placeholder = "Activity를 기입해주세요" className="input__area"/>
+                        <input type="text" placeholder="Activity를 기입해주세요" className="input__area"/>
                         <button className="input__btn">Add Button</button>
                     </div>
                 </section>

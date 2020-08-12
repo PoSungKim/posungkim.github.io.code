@@ -1,6 +1,6 @@
 /* LOADING, SUCCESS, ERROR */
 function userReducer(state, action) {
-    switch(action.type) {
+    switch (action.type) {
         case 'LOADING' :
             return {
                 loading: true,

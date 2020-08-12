@@ -30,7 +30,7 @@ const addToList = (item) => ({
 });
 
 function reducer(state = initialState, action) {
-    switch(action.type) {
+    switch (action.type) {
         case INCREASE :
             return {
                 ...state,
@@ -45,7 +45,7 @@ function reducer(state = initialState, action) {
             return {
                 ...state,
                 text: action.text
-        }
+            }
         case ADD_TO_LIST :
             return {
                 ...state,
@@ -72,6 +72,6 @@ const unsubscribe = store.subscribe(listener);
 store.dispatch(increase());
 store.dispatch(decrease());
 store.dispatch(changeText('안녕하세요'));
-store.dispatch(addToList({id:1, text: '와우'}));
+store.dispatch(addToList({id: 1, text: '와우'}));
 
 window.store = store;

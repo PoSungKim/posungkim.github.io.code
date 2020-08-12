@@ -1,6 +1,6 @@
 import React from "react";
 
-function SideBar () {
+function SideBar() {
     return (
         <aside id="sidebar">
             <article>

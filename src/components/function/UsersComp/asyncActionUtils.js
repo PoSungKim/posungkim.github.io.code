@@ -3,19 +3,19 @@ export default function createAsyncDispatcher(type, promiseFn) {
     const ERROR = `${type}_ERROR`;
 
     async function actionHandler(dispatch, ...rest) {
-         dispatch({type});
-         try {
-             const data = await promiseFn(...rest);
-             dispatch ({
-                 type: SUCCESS,
-                 data,
-             });
-         } catch (error) {
-             dispatch({
-                 type: ERROR,
-                 error: error,
-             });
-         }
+        dispatch({type});
+        try {
+            const data = await promiseFn(...rest);
+            dispatch({
+                type: SUCCESS,
+                data,
+            });
+        } catch (error) {
+            dispatch({
+                type: ERROR,
+                error: error,
+            });
+        }
     }
 
     return actionHandler;
@@ -50,25 +50,26 @@ export function createAsyncHandler(type, key) {
     const ERROR = `${type}_ERROR`;
 
     function handler(state, action) {
-        switch(action.type) {
+        switch (action.type) {
             case type :
                 return {
                     ...state,
-                    [key] : loadingState
+                    [key]: loadingState
                 }
             case SUCCESS :
                 return {
                     ...state,
-                    [key] : success(action.data)
+                    [key]: success(action.data)
                 }
             case ERROR:
                 return {
                     ...state,
-                    [key] : error(action.error)
+                    [key]: error(action.error)
                 }
             default:
                 return state;
         }
     }
+
     return handler;
 }

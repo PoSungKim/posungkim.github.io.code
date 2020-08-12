@@ -10,7 +10,7 @@ export default class GamePopUpComp extends React.Component {
         this.popUp = document.querySelector(".game__popUp");
         this.popUpMessage = document.querySelector(".popUp__message");
         this.popUpRefreshBtn = document.querySelector(".popUp__refresh");
-        this.popUpRefreshBtn.addEventListener('click', ()=> {
+        this.popUpRefreshBtn.addEventListener('click', () => {
             this.onClickFunc && this.onClickFunc();
             this.hide();
         })

@@ -5,9 +5,9 @@ function PostListComp({posts}) {
     return (
         <ul>
             {
-                posts.map( post => (
-                    <li key = {post.id}>
-                        <Link to = {`${post.id}`}> {post.title} </Link>
+                posts.map(post => (
+                    <li key={post.id}>
+                        <Link to={`${post.id}`}> {post.title} </Link>
                     </li>
                 ))
             }

@@ -52,9 +52,10 @@ export default class GameComp extends React.Component {
 
     render() {
         return (
-            <section id = "flashGame">
-                <GamePlayComp sizeOffset = {this.sizeOffset} gameSecDuration = {this.gameSecDuration} corgiCount = {this.corgiCount} bulldogCount = {this.bulldogCount} />
-                <GamePopUpComp />
+            <section id="flashGame">
+                <GamePlayComp sizeOffset={this.sizeOffset} gameSecDuration={this.gameSecDuration}
+                              corgiCount={this.corgiCount} bulldogCount={this.bulldogCount}/>
+                <GamePopUpComp/>
             </section>
         )
     };
