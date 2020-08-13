@@ -17,8 +17,8 @@ import createSagaMiddleware from 'redux-saga';
 import {customHistory} from './components/router/AppRouter';
 
 // MiddleWare 사용에 필요한 컴포넌트
-import rootReducer from "./components/reduxpractice/ReduxThunkSagaComp/Modules/index";
-import {rootSaga} from "./components/reduxpractice/ReduxThunkSagaComp/Modules";
+import rootReducer from "./_reducers/indexReducer";
+import {rootSaga} from "./_reducers/indexReducer";
 
 const sagaMiddleware = createSagaMiddleware({
     context: {

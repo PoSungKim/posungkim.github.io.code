@@ -1,35 +1,21 @@
 import React, {useCallback, useEffect, useMemo, useState} from "react";
-import axios from "axios";
-
-const BASE_URL = "http://localhost:8080/users";
-const TEST_URL = "https://jsonplaceholder.typicode.com/users";
-
-const getUsers = async () => {
-    try {
-        const response = await axios.get(BASE_URL);
-        return response.data;
-    } catch (error) {
-        console.error(error);
-    }
-}
+import {useDispatch, useSelector} from "react-redux";
+import {getUsers} from "../../_actions/userAction";
 
 const UserContainer = () => {
-    const [users, setUsers] = useState([]);
+    const users = useSelector(state => state.userReducer.payload);
+    const dispatch = useDispatch();
 
-    useEffect(() => {
-        getUsers()
-            .then((users) => {
-                console.log(users);
-                setUsers(users);
-            });
-    }, []);
+    const onClick = () => {
+        dispatch(getUsers());
+    }
 
     console.log("render ");
 
     return (
         <>
             <h2>SpringBoot 연동 및 회원가입 시작</h2>
-            <p>{BASE_URL}</p>
+            <button onClick={onClick}>Get Users</button>
             <ul>
                 {users && users.map(user => (<li key={user.id}>
                     {user.username} {user.password}
