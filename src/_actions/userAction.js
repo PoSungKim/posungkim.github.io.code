@@ -12,6 +12,9 @@ export const USERS_SUCCESS = 'user/USERS_SUCCESS';
 export const USERS_ERROR = 'user/USERS_ERROR';
 
 
+export const GO_TO_HOME = "user/GO_TO_HOME"
+
+
 
 // Action 생성
 export const getUsers = () => (
@@ -25,4 +28,7 @@ export const logOutUser = () => (
 );
 export const registerUser = () => (
     {type: REGISTER}
+);
+export const goToHome = () => (
+    {type: GO_TO_HOME}
 );

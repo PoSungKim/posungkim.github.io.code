@@ -1,22 +1,22 @@
 import React from 'react';
-import PageWrapper from "./framework/PageWrapper";
-import InputWithLabel from "./framework/InputWithLabel";
+import PageWrapper from "./frame/PageWrapper";
+import InputWithLabel from "./frame/InputWithLabel";
 import {useDispatch, useSelector} from "react-redux";
-import {getUsers} from "../../_actions/userAction";
+import {getUsers, goToHome} from "../../_actions/userAction";
 import {Link} from "react-router-dom";
-import LinkButton from "./framework/LinkButton";
+import LinkButton from "./frame/LinkButton";
 
 
 const LoginPage = () => {
-  const users = useSelector(state => state.userReducer.data);
-  const dispatch = useDispatch();
+    const users = useSelector(state => state.userReducer);
+    const dispatch = useDispatch();
 
-  const onClick = () => {
+    const onClick = () => {
     dispatch(getUsers());
-  }
-
-  console.log("render ");
-  return (
+    }
+    users.currentUser && dispatch(goToHome());
+    console.log("render ", users);
+    return (
       <PageWrapper>
         <InputWithLabel label="이메일" name="email" placeholder="이메일"/>
         <InputWithLabel label="비밀번호" name="password" placeholder="비밀번호" type="password"/>
@@ -26,12 +26,12 @@ const LoginPage = () => {
         <LinkButton content="Get Users" onClick={onClick}/>
 
         <ul>
-          {users && users.map(user => (<li key={user.id}>
+          {users.data && users.data.map(user => (<li key={user.id}>
             {user.username} {user.password}
           </li>))}
         </ul>
       </PageWrapper>
-  )
+    )
 };
 
 export default LoginPage; 

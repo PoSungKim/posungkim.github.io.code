@@ -1,5 +1,6 @@
-import {call, put, takeEvery, takeLatest} from "redux-saga/effects";
+import {call, getContext, put, takeEvery, takeLatest} from "redux-saga/effects";
 import {
+    GO_TO_HOME, goToHome,
     LOGIN,
     loginUser,
     LOGOUT,
@@ -39,7 +40,7 @@ function* registerUserSaga (action) {
         yield call(userApi.registerUser, action.data);
         yield put({
             type: REGISTER_SUCCESS,
-            payload: "회원가입이 성공적으로 되었습니다",
+            payload: action.data,
         });
     } catch (error) {
         yield put ({
@@ -50,17 +51,18 @@ function* registerUserSaga (action) {
     }
 }
 
+function* goToHomeSaga () {
+    const history = yield getContext('history');
+    history.push("/");
+}
+
 function* loginSaga() {
     yield put(loginUser());
 }
 
-function* logoutSaga() {
-    yield put(logOutUser());
-}
-
 export function* userSaga() {
     yield takeEvery(LOGIN, loginSaga);
-    yield takeLatest(LOGOUT, logoutSaga);
     yield takeEvery(USERS, getUsersSaga);
     yield takeEvery(REGISTER, registerUserSaga);
+    yield takeEvery(GO_TO_HOME, goToHomeSaga);
 }

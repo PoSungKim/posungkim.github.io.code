@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import PageWrapper from "./framework/PageWrapper";
-import InputWithLabel from "./framework/InputWithLabel";
+import PageWrapper from "./frame/PageWrapper";
+import InputWithLabel from "./frame/InputWithLabel";
+import LinkButton from "./frame/LinkButton";
 import {useDispatch, useSelector} from "react-redux";
-import {registerUser} from "../../_actions/userAction";
-import LinkButton from "./framework/LinkButton";
+import {goToHome, registerUser} from "../../_actions/userAction";
+
 
 const initialState = {
     username: null,
@@ -12,7 +13,7 @@ const initialState = {
 }
 
 const RegisterPage = () => {
-    const users = useSelector(state => state.userReducer.data);
+    const users = useSelector(state => state.userReducer);
     const dispatch = useDispatch();
     const [state, setState] = useState(initialState);
 
@@ -20,6 +21,7 @@ const RegisterPage = () => {
         dispatch({...registerUser(),
             data: {...state},
         });
+
     }
 
     const onChange = (event) => {
@@ -29,7 +31,7 @@ const RegisterPage = () => {
         })
         console.log(state);
     }
-
+    users.currentUser && dispatch(goToHome());
     console.log("render ");
     return (
         <PageWrapper>

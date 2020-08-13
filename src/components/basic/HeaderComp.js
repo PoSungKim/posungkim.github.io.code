@@ -4,6 +4,8 @@ import './HeaderComp.css';
 import bgMusic from './homepageBgMusic.mp3';
 import CrossBtnComp from "./CrossBtnComp";
 import styled from "styled-components";
+import {goToHome, logOutUser} from "../../_actions/userAction";
+import {useSelector, useDispatch} from "react-redux";
 
 const HeaderComp = () => {
     useEffect(()=>{
@@ -93,50 +95,58 @@ const HeaderComp = () => {
         })
 
     }, [])
+    const users = useSelector(state => state.userReducer);
+    const dispatch = useDispatch();
+    const onLogOut = () => {
+        dispatch(logOutUser());
+        console.log(users.currentUser);
+    }
+    return (
+        <header>
+            <nav className="header__navbar">
+                <audio id="bgmAudio" src={bgMusic}></audio>
 
-        return (
-            <header>
-                <nav className="header__navbar">
-                    <audio id="bgmAudio" src={bgMusic}></audio>
+                <div className="navbar__logo">
+                    <a href="/"><i className="fas fa-puzzle-piece"></i> BeneBean's Coding</a>
+                </div>
+                <CrossBtnComp/>
 
-                    <div className="navbar__logo">
-                        <a href="/"><i className="fas fa-puzzle-piece"></i> BeneBean's Coding</a>
-                    </div>
-                    <CrossBtnComp/>
+                <ol className="navbar__menu">
+                    <li className="navbar__menu__sidebar">Information</li>
+                    <li className="navbar__menu__item" data-section="#about">About Me</li>
+                    <li className="navbar__menu__item" data-section="#skills">Skills</li>
+                    <li className="navbar__menu__item" data-section="#experience">Experience</li>
+                    <li className="navbar__menu__item" data-section="#activity">Activity</li>
+                    {/*
+                        <li><Link to={"/journals"}>Journals</Link></li>
+                        <li><Link to={"/news"}>News</Link></li>
+                        <li><Link to={"/functions"}>Functions</Link></li>
+                        <li><Link to={"/problems"}>Problem Solving </Link></li>
+                    */}
+                </ol>
 
-                    <ol className="navbar__menu">
-                        <li className="navbar__menu__sidebar">Information</li>
-                        <li className="navbar__menu__item" data-section="#about">About Me</li>
-                        <li className="navbar__menu__item" data-section="#skills">Skills</li>
-                        <li className="navbar__menu__item" data-section="#experience">Experience</li>
-                        <li className="navbar__menu__item" data-section="#activity">Activity</li>
-                        {/*
-                            <li><Link to={"/journals"}>Journals</Link></li>
-                            <li><Link to={"/news"}>News</Link></li>
-                            <li><Link to={"/functions"}>Functions</Link></li>
-                            <li><Link to={"/problems"}>Problem Solving </Link></li>
-                        */}
-                    </ol>
-
-                    <ul className="navbar__icons">
-                        <li>
-                            <Link to = "/login"><span>Log In</span></Link>
-                        </li>
-                        <li>
-                            <a target="_blank" rel="noopener noreferrer" href="https://github.com/posungkim">
-                                <i className="fab fa-github"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/posung.kim">
-                                <i className="fab fa-facebook-square"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </header>
-        );
+                <ul className="navbar__icons">
+                    <li>
+                        {!users.currentUser
+                            ? <Link to = "/login"><span>Log In</span></Link>
+                            : <span style={{color: "black"}} onClick={onLogOut}>Log Out</span>
+                        }
+                    </li>
+                    <li>
+                        <a target="_blank" rel="noopener noreferrer" href="https://github.com/posungkim">
+                            <i className="fab fa-github"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/posung.kim">
+                            <i className="fab fa-facebook-square"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    );
 
 }
 
-export default HeaderComp;
+export default React.memo(HeaderComp);
