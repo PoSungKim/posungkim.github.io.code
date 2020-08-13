@@ -24,8 +24,6 @@ const ContentWrapper = styled.div`
 
 
 const LoginPageWrapper = ({children}) => {
-    console.log(children);
-
     return (
         <LoginPageContainer>
             <LoginPageSection>
