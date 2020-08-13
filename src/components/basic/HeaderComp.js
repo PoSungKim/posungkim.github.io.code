@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link} from "react-router-dom";
 import './HeaderComp.css';
 import bgMusic from './homepageBgMusic.mp3';
 import CrossBtnComp from "./CrossBtnComp";
 import styled from "styled-components";
 
-class HeaderComp extends React.Component {
-    componentDidMount() {
+const HeaderComp = () => {
+    useEffect(()=>{
         // 햄버거 Click Action 추가
         const navbar = document.querySelector(".header__navbar");
         const toggleBtn = document.querySelector(".navbar__toggleBtn");
@@ -91,9 +91,9 @@ class HeaderComp extends React.Component {
                 navbar.classList.remove("navbar--dark");
             }
         })
-    };
 
-    render() {
+    }, [])
+
         return (
             <header>
                 <nav className="header__navbar">
@@ -120,6 +120,9 @@ class HeaderComp extends React.Component {
 
                     <ul className="navbar__icons">
                         <li>
+                            <Link to = "/login"><span>Log In</span></Link>
+                        </li>
+                        <li>
                             <a target="_blank" rel="noopener noreferrer" href="https://github.com/posungkim">
                                 <i className="fab fa-github"></i>
                             </a>
@@ -131,14 +134,14 @@ class HeaderComp extends React.Component {
                         </li>
                     </ul>
                     {/*
-                    <button className="navbar__toggleBtn">
-                        <i className="fas fa-bars"></i>
-                    </button>
+                        <button className="navbar__toggleBtn">
+                            <i className="fas fa-bars"></i>
+                        </button>
                     */}
                 </nav>
             </header>
         );
-    }
+
 }
 
 export default HeaderComp;

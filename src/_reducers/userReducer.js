@@ -15,6 +15,7 @@ export default function userReducer(state = initialState, action) {
     console.log(action);
     switch (action.type) {
         case USERS:
+            console.log("action.type 실행");
             return {
                 ...state,
                 loading: true,
@@ -22,7 +23,7 @@ export default function userReducer(state = initialState, action) {
         case USERS_SUCCESS:
             return {
                 ...state,
-                payload: action.payload
+                data: action.payload
             }
         default:
             return state;

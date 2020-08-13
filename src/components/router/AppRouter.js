@@ -33,10 +33,10 @@ function AppRouter() {
 
     return (
         <>
+        <Router history={customHistory}>
             <HeaderComp/>
             <main id="content">
                 <SideBar/>
-                <Router history={customHistory}>
                     <Switch>
                         <Route exact path="/" component={ResumeComp}/>
                         <Route exact path="/journals" component={JournalComp}/>
@@ -50,12 +50,13 @@ function AppRouter() {
                         <Route exact path="/functions/shopping" component={ShoppingComp}/>
                         <Route exact path="/functions/todolist" component={TodoListComp}/>
                         <Route exact path="/problems" component={ProblemSolveComp}/>
-                        <Route exact path="/users" component={UserContainer}/>
+                        <Route exact path="/login" component={UserContainer}/>
                         <Redirect from="*" to="/"/>
                     </Switch>
-                </Router>
+
                 <FooterComp/>
             </main>
+        </Router>
         </>
     )
 }

@@ -1,16 +1,19 @@
 import React from "react";
-import "./CrossBtnComp.css";
+import "./CrossBtnComp.scss";
+import styled, {css} from "styled-components";
+const navbarToggleBtn = styled.div`
+`;
 
-const CrossBtnComp = (props) => {
+const CrossBtnComp = () => {
     return (
-        <div className="navbar__toggleBtn">
+        <navbarToggleBtn className="navbar__toggleBtn">
             <input type="checkbox" id="crossBtn"/>
             <label for="crossBtn">
                 <span></span>
                 <span></span>
                 <span></span>
             </label>
-        </div>
+        </navbarToggleBtn>
     );
 }
 export default CrossBtnComp;

@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getUsers} from "../../_actions/userAction";
 
 const UserContainer = () => {
-    const users = useSelector(state => state.userReducer.payload);
+    const users = useSelector(state => state.userReducer.data);
     const dispatch = useDispatch();
 
     const onClick = () => {
