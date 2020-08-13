@@ -14,10 +14,10 @@ import YouTubeCloning from "../function/YouTubeCloning/YouTubeCloning";
 import ShoppingComp from "../function/ShoppingComp/ShoppingComp";
 import TodoListComp from "../function/TodoListComp/TodoListComp";
 import SideBar from "../basic/SideBar";
+import LoginPage from "../user/LoginPage";
 import "./AppRouter.scss";
-
 import {createBrowserHistory} from 'history';
-import UserContainer from "../user/UserContainer";
+
 
 export const customHistory = createBrowserHistory();
 
@@ -50,10 +50,9 @@ function AppRouter() {
                         <Route exact path="/functions/shopping" component={ShoppingComp}/>
                         <Route exact path="/functions/todolist" component={TodoListComp}/>
                         <Route exact path="/problems" component={ProblemSolveComp}/>
-                        <Route exact path="/login" component={UserContainer}/>
+                        <Route exact path="/login" component={LoginPage}/>
                         <Redirect from="*" to="/"/>
                     </Switch>
-
                 <FooterComp/>
             </main>
         </Router>

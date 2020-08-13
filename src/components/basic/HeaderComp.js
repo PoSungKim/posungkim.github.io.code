@@ -133,11 +133,6 @@ const HeaderComp = () => {
                             </a>
                         </li>
                     </ul>
-                    {/*
-                        <button className="navbar__toggleBtn">
-                            <i className="fas fa-bars"></i>
-                        </button>
-                    */}
                 </nav>
             </header>
         );
