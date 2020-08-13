@@ -2,7 +2,7 @@
 import {all} from "redux-saga/effects";
 import {combineReducers} from "redux";
 import userReducer from "./userReducer";
-import {userSaga} from "../_actions/userAction";
+import {userSaga} from "../_actions/userReduxSaga";
 
 
 const rootReducer = combineReducers({userReducer});

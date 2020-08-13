@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 class ResumeComp extends React.Component {
     componentDidMount() {
-        // ArrowUp Button 액션 추가 -- 스크롤 내려갈 시 보이게
+        // ArrowUp LinkButton 액션 추가 -- 스크롤 내려갈 시 보이게
         const arrowUpBtn = document.querySelector('#arrowUp');
         const about = document.querySelector('header');
         document.addEventListener('scroll', () => {
@@ -15,7 +15,7 @@ class ResumeComp extends React.Component {
             }
         })
 
-        // ArrowUp Button 액션 추가 -- 클릭 시 최상단으로 갈 수 있게
+        // ArrowUp LinkButton 액션 추가 -- 클릭 시 최상단으로 갈 수 있게
         const header = document.querySelector('header');
         arrowUpBtn.addEventListener('click', () => {
             console.log(header);
@@ -41,7 +41,7 @@ class ResumeComp extends React.Component {
                 projContainer.classList.remove("animation-bottom");
             }, 300);
 
-            // Button 액션 추가 -- 클릭된 Button의 Background가 바뀌게
+            // LinkButton 액션 추가 -- 클릭된 Button의 Background가 바뀌게
             const btn = document.querySelector('.category__btn.selected');
             btn.classList.remove('selected');
             targetBtn.classList.add('selected');

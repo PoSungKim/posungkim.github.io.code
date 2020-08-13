@@ -17,6 +17,7 @@ import SideBar from "../basic/SideBar";
 import LoginPage from "../user/LoginPage";
 import "./AppRouter.scss";
 import {createBrowserHistory} from 'history';
+import RegisterPage from "../user/RegisterPage";
 
 
 export const customHistory = createBrowserHistory();
@@ -51,6 +52,7 @@ function AppRouter() {
                         <Route exact path="/functions/todolist" component={TodoListComp}/>
                         <Route exact path="/problems" component={ProblemSolveComp}/>
                         <Route exact path="/login" component={LoginPage}/>
+                        <Route exact path="/register" component={RegisterPage}/>
                         <Redirect from="*" to="/"/>
                     </Switch>
                 <FooterComp/>

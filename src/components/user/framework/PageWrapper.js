@@ -1,8 +1,5 @@
 import React, {useCallback, useEffect, useMemo, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {getUsers} from "../../_actions/userAction";
 import styled from "styled-components";
-import InputWithLabel from "./InputWithLabel";
 import LogoArea from "./LogoArea";
 
 const LoginPageContainer = styled.section`
@@ -23,7 +20,7 @@ const ContentWrapper = styled.div`
 `;
 
 
-const LoginPageWrapper = ({children}) => {
+const PageWrapper = ({children}) => {
     return (
         <LoginPageContainer>
             <LoginPageSection>
@@ -36,4 +33,4 @@ const LoginPageWrapper = ({children}) => {
     )
 }
 
-export default LoginPageWrapper;
+export default PageWrapper;

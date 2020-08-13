@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Logo = styled.div`
-    background: orange;
+    background: #fcc419;
     height: 10vh;
     display: flex;
     justify-content: center;

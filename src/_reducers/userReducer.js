@@ -1,7 +1,7 @@
 // 로그인, 로그아웃 등 회원가입 관련 Reducer 생성
 
 // InitialState 생성
-import {USERS, USERS_SUCCESS} from "../_actions/userAction";
+import {REGISTER, USERS, USERS_SUCCESS} from "../_actions/userAction";
 
 const initialState = {
     loading: false,
@@ -24,6 +24,11 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 data: action.payload
+            };
+        case REGISTER:
+            return {
+                ...state,
+                loading: true,
             }
         default:
             return state;

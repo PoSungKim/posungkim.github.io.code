@@ -1,35 +1,44 @@
-import React from 'react';
-import LoginPageWrapper from "./LoginPageWrapper";
-import InputWithLabel, {LoginButton} from "./InputWithLabel";
+import React, {useState} from 'react';
+import PageWrapper from "./framework/PageWrapper";
+import InputWithLabel from "./framework/InputWithLabel";
 import {useDispatch, useSelector} from "react-redux";
-import {getUsers} from "../../_actions/userAction";
-import styled from "styled-components";
-import {Link} from "react-router-dom";
+import {registerUser} from "../../_actions/userAction";
+import LinkButton from "./framework/LinkButton";
 
-const LoginPage = () => {
+const initialState = {
+    username: null,
+    email: null,
+    password: null
+}
+
+const RegisterPage = () => {
     const users = useSelector(state => state.userReducer.data);
     const dispatch = useDispatch();
+    const [state, setState] = useState(initialState);
 
     const onClick = () => {
-        dispatch(getUsers());
+        dispatch({...registerUser(),
+            data: {...state},
+        });
+    }
+
+    const onChange = (event) => {
+        setState({
+            ...state,
+            [event.target.name] : event.target.value
+        })
+        console.log(state);
     }
 
     console.log("render ");
     return (
-        <LoginPageWrapper>
-            <InputWithLabel label="이메일" name="email" placeholder="이메일"/>
-            <InputWithLabel label="비밀번호" name="password" placeholder="비밀번호" type="password"/>
-
-            <LoginButton>로그인</LoginButton>
-            <Link to = "/register" ><LoginButton>회원가입</LoginButton></Link>
-            <LoginButton onClick={onClick}>Get Users</LoginButton>
-            <ul>
-                {users && users.map(user => (<li key={user.id}>
-                    {user.username} {user.password}
-                </li>))}
-            </ul>
-        </LoginPageWrapper>
+        <PageWrapper>
+            <InputWithLabel label="사용자 이름" name="username" placeholder="사용자 이름" onChange={onChange}/>
+            <InputWithLabel label="이메일" name="email" placeholder="이메일" onChange={onChange}/>
+            <InputWithLabel label="비밀번호" name="password" placeholder="비밀번호" type="password" onChange={onChange}/>
+            <LinkButton to = "/register" content = "회원가입" width = "100%" onClick={onClick} />
+        </PageWrapper>
     )
 };
 
-export default LoginPage;
+export default RegisterPage;
