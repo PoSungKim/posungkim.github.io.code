@@ -26,9 +26,20 @@ export const registerUser = async (action) => {
 }
 
 export const findUser = async (action) => {
-    console.log("userApi/checkUser() 함수 실행", action);
+    console.log("userApi/findUser() 함수 실행", action);
     try {
         const response = await axios.post(BASE_URL + "finduser", action);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+export const logInUser = async (action) => {
+    console.log("userApi/logIn() 함수 실행", action);
+    try {
+        const response = await axios.post(BASE_URL + "login", action);
         return response.data;
     } catch (error) {
         console.error(error);

@@ -3,7 +3,7 @@ import {
     FINDUSER,
     FINDUSER_ERROR, FINDUSER_SUCCESS,
     GO_TO_HOME, goToHome,
-    LOGIN, loginUser,
+    LOGIN, LOGIN_ERROR, LOGIN_SUCCESS, loginUser,
     LOGOUT,
     logOutUser,
     REGISTER,
@@ -70,14 +70,28 @@ function* findUserSaga(action) {
     }
 }
 
+function* loginSaga(action) {
+    console.log("loginSaga() 실행", action);
+    try {
+        const result = yield call(userApi.logInUser, action.data);
+        yield put({
+            type: result? LOGIN_SUCCESS : LOGIN_ERROR,
+            payload: {...action.data, isLoggedIn: result},
+        })
+    } catch (error) {
+        yield put ({
+            type: LOGIN_ERROR,
+            payload: error,
+            error: true,
+        })
+    }
+}
+
 function* goToHomeSaga () {
     const history = yield getContext('history');
     history.push("/");
 }
 
-function* loginSaga() {
-    yield put(loginUser());
-}
 
 
 

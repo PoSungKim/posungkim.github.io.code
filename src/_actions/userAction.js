@@ -1,6 +1,9 @@
 // 로그인, 로그아웃 등 회원가입 관련 Action
 
 export const LOGIN = 'user/LOGIN';
+export const LOGIN_SUCCESS = 'user/LOGIN_SUCCESS';
+export const LOGIN_ERROR = 'user/LOGIN_ERROR';
+
 export const LOGOUT = 'user/LOGOUT';
 
 export const REGISTER = 'user/REGISTER';

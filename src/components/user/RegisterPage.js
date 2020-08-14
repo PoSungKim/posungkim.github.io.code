@@ -44,7 +44,7 @@ const RegisterPage = () => {
     }
 
     useEffect( () => {
-        const {warning, result} = RegisterInfoValidator(registerState, errorState, setError, dispatch);
+        const {warning, result} = RegisterInfoValidator(registerState, dispatch);
         setError({warning, isValid: result});
         if (users.isExisted.username || users.isExisted.email) {
             setError({
@@ -52,13 +52,11 @@ const RegisterPage = () => {
                 isValid: false
             });
         }
-
     }, [registerState, dispatch, users.isExisted.username, users.isExisted.email]);
 
     users.isLoggedIn && dispatch(goToHome());
 
     console.log("render ");
-    console.log("errorState 확인", errorState)
     return (
         <PageWrapper>
             <InputWithLabel

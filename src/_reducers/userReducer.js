@@ -2,8 +2,8 @@
 
 // InitialState 생성
 import {
-    FINDUSER, FINDUSER_SUCCESS,
-    GO_TO_HOME, LOGOUT,
+    FINDUSER, FINDUSER_ERROR, FINDUSER_SUCCESS,
+    GO_TO_HOME, LOGIN, LOGIN_ERROR, LOGIN_SUCCESS, LOGOUT,
     REGISTER,
     REGISTER_ERROR,
     REGISTER_SUCCESS,
@@ -61,7 +61,7 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 transmission: {
-                    data: [action.payload],
+                    data: action.payload,
                     error: action.error,
                 }
             };
@@ -87,7 +87,7 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 transmission: {
-                    data: [action.payload],
+                    data: action.payload,
                     error: action.error,
                 },
             };
@@ -110,6 +110,43 @@ export default function userReducer(state = initialState, action) {
                     username: action.payload.username,
                     email: action.payload.email
                 }
+            }
+        case FINDUSER_ERROR:
+            return {
+                ...state,
+                transmission: {
+                    data: action.payload,
+                    error: action.error,
+                },
+            }
+        case LOGIN :
+            return {
+                ...state,
+                transmission: {
+                    ...state.transmission,
+                    loading: true,
+                }
+            }
+        case LOGIN_SUCCESS :
+            return {
+                ...state,
+                transmission: {
+                    ...state.transmission,
+                    data: action.payload,
+                },
+                login: {
+                    email: action.payload.email,
+                    password: action.payload.password,
+                },
+                isLoggedIn: action.payload.isLoggedIn,
+            }
+        case LOGIN_ERROR:
+            return {
+                ...state,
+                transmission: {
+                    data: action.payload,
+                    error: action.error,
+                },
             }
         case LOGOUT:
             return {

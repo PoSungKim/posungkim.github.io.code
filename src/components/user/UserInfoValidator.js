@@ -1,10 +1,11 @@
 import {isEmail, isLength, isAlphanumeric} from 'validator';
-import {useDispatch} from "react-redux";
 import {findUser} from "../../_actions/userAction";
 
-export const RegisterInfoValidator = (info, errorState, setError, dispatch) => {
+export const RegisterInfoValidator = (info, dispatch) => {
 
     const {username, email, password, passwordConfirm} = info;
+
+    // 원격 Backend에서 데이터 중복 검사
     dispatch({
         ...findUser(),
         data: {
@@ -12,13 +13,14 @@ export const RegisterInfoValidator = (info, errorState, setError, dispatch) => {
             email
         }
     });
-    console.log(info);
+
+    // 로컬 Frontend에서 데이터 형식 검사
     let message = {
         warning: [],
         result: true,
     }
 
-    if (!isAlphanumeric(username) || !isLength(username, { min:4, max: 15})) {
+    if (!isAlphanumeric(username) || !isLength(username, { min:4, max: 16})) {
         if(username)
             message.warning.push('아이디는 4~15 글자의 알파벳 혹은 숫자로 이뤄져야 합니다.');
         message.result = false;
