@@ -12,10 +12,22 @@ import {
 } from "../_actions/userAction";
 
 const initialState = {
-    loading: false,
-    data: [],
-    error: null,
-    currentUser: null,
+    transmission : {
+        loading: false,
+        data: [],
+        error: null,
+    },
+    register: {
+        username: null,
+        email: null,
+        password: null,
+        passwordConfirm: null,
+    },
+    login: {
+        email: null,
+        password: null,
+    },
+    isLoggedIn: false
 }
 
 // Counter Reducer 생성
@@ -27,39 +39,57 @@ export default function userReducer(state = initialState, action) {
             console.log("action.type 실행");
             return {
                 ...state,
-                loading: true,
+                transmission: {
+                    ...state.transmission,
+                    loading: true
+                },
             };
         case USERS_SUCCESS:
             return {
                 ...state,
-                data: action.payload
+                transmission: {
+                    ...state.transmission,
+                    data: action.payload
+                }
             };
         case USERS_ERROR:
             return {
                 ...state,
-                data: [action.payload],
-                error: action.error,
+                transmission: {
+                    data: [action.payload],
+                    error: action.error,
+                }
             };
         case REGISTER:
             return {
                 ...state,
-                loading: true,
+                transmission: {
+                    ...state.transmission,
+                    loading: true,
+                }
             }
         case REGISTER_SUCCESS :
             return {
                 ...state,
-                currentUser: action.payload,
+                transmission: {
+                    ...state.transmission,
+                    data: action.payload,
+                },
+                register: action.payload,
+                isLoggedIn: true,
             }
         case REGISTER_ERROR:
             return {
                 ...state,
-                data: [action.payload],
-                error: action.error,
+                transmission: {
+                    data: [action.payload],
+                    error: action.error,
+                },
             };
         case LOGOUT:
             return {
                 ...state,
-                currentUser: null,
+                isLoggedIn: false
             }
         default:
             return state;

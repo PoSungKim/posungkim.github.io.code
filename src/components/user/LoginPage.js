@@ -14,7 +14,7 @@ const LoginPage = () => {
     const onClick = () => {
     dispatch(getUsers());
     }
-    users.currentUser && dispatch(goToHome());
+    users.isLoggedIn && dispatch(goToHome());
     console.log("render ", users);
     return (
       <PageWrapper>

@@ -127,7 +127,7 @@ const HeaderComp = () => {
 
                 <ul className="navbar__icons">
                     <li>
-                        {!users.currentUser
+                        {!users.isLoggedIn
                             ? <Link to = "/login"><span>Log In</span></Link>
                             : <span style={{color: "black"}} onClick={onLogOut}>Log Out</span>
                         }

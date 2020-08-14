@@ -36,6 +36,7 @@ function* getUsersSaga() {
 
 function* registerUserSaga (action) {
     console.log("registerUserSaga() 실행", action);
+
     try {
         yield call(userApi.registerUser, action.data);
         yield put({
