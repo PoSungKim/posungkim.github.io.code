@@ -1,8 +1,9 @@
 import {call, getContext, put, takeEvery, takeLatest} from "redux-saga/effects";
 import {
+    FINDUSER,
+    FINDUSER_ERROR, FINDUSER_SUCCESS,
     GO_TO_HOME, goToHome,
-    LOGIN,
-    loginUser,
+    LOGIN, loginUser,
     LOGOUT,
     logOutUser,
     REGISTER,
@@ -52,6 +53,23 @@ function* registerUserSaga (action) {
     }
 }
 
+function* findUserSaga(action) {
+    console.log("findUserSaga() 실행", action);
+    try {
+        const user = yield call(userApi.findUser, action.data);
+        yield put({
+            type: FINDUSER_SUCCESS,
+            payload: user,
+        });
+    } catch(error) {
+        yield put ({
+            type: FINDUSER_ERROR,
+            payload: error,
+            error: true,
+        });
+    }
+}
+
 function* goToHomeSaga () {
     const history = yield getContext('history');
     history.push("/");
@@ -61,9 +79,12 @@ function* loginSaga() {
     yield put(loginUser());
 }
 
+
+
 export function* userSaga() {
     yield takeEvery(LOGIN, loginSaga);
     yield takeEvery(USERS, getUsersSaga);
     yield takeEvery(REGISTER, registerUserSaga);
     yield takeEvery(GO_TO_HOME, goToHomeSaga);
+    yield takeEvery(FINDUSER, findUserSaga);
 }

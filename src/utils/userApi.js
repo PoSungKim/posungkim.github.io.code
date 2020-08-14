@@ -24,3 +24,14 @@ export const registerUser = async (action) => {
         return null;
     }
 }
+
+export const findUser = async (action) => {
+    console.log("userApi/checkUser() 함수 실행", action);
+    try {
+        const response = await axios.post(BASE_URL + "finduser", action);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}

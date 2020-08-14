@@ -2,6 +2,7 @@
 
 // InitialState 생성
 import {
+    FINDUSER, FINDUSER_SUCCESS,
     GO_TO_HOME, LOGOUT,
     REGISTER,
     REGISTER_ERROR,
@@ -22,6 +23,10 @@ const initialState = {
         email: null,
         password: null,
         passwordConfirm: null,
+    },
+    isExisted: {
+        username: null,
+        email: null,
     },
     login: {
         email: null,
@@ -86,6 +91,26 @@ export default function userReducer(state = initialState, action) {
                     error: action.error,
                 },
             };
+        case FINDUSER:
+            return {
+                ...state,
+                transmission: {
+                    ...state.transmission,
+                    loading: true,
+                }
+            }
+        case FINDUSER_SUCCESS :
+            return {
+                ...state,
+                transmission: {
+                    ...state.transmission,
+                    data: action.payload,
+                },
+                isExisted: {
+                    username: action.payload.username,
+                    email: action.payload.email
+                }
+            }
         case LOGOUT:
             return {
                 ...state,

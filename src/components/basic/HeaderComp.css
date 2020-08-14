@@ -69,6 +69,7 @@
 .header__navbar .navbar__icons {
     color: white;
     display: flex;
+    align-items: center;
     list-style: none;
     padding-right: 0;
     margin-bottom: 0;

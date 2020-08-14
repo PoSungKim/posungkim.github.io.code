@@ -1,39 +1,64 @@
-import React, {useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import PageWrapper from "./frame/PageWrapper";
 import InputWithLabel from "./frame/InputWithLabel";
 import LinkButton from "./frame/LinkButton";
 import {useDispatch, useSelector} from "react-redux";
 import {goToHome, registerUser} from "../../_actions/userAction";
+import {RegisterInfoValidator} from "./UserInfoValidator";
+import RegisterError from "./frame/RegisterError";
 
 // Store에 반영하기 전에 준비해놓을 Local State
-const initialState = {
-    username: null,
-    email: null,
-    password: null,
-    passwordConfirm: null,
-}
+const initialRegisterState = {
+    username: "",
+    email: "",
+    password: "",
+    passwordConfirm: "",
+};
+
+const initialErrorState = {
+    warning: [],
+    isValid: false,
+};
 
 const RegisterPage = () => {
     const users = useSelector(state => state.userReducer);
     const dispatch = useDispatch();
-    const [state, setState] = useState(initialState);
+    const [registerState, setRegister] = useState(initialRegisterState);
+    const [errorState, setError] = useState(initialErrorState);
+    const {username, email, password, passwordConfirm} = registerState;
 
     const onClick = () => {
+        if (!errorState.isValid) {
+            return ;
+        }
         dispatch({...registerUser(),
-            data: {...state},
+            data: {...registerState},
         });
     }
 
     const onChange = (event) => {
-        setState({
-            ...state,
+        setRegister({
+            ...registerState,
             [event.target.name] : event.target.value
         })
-        console.log(state);
     }
+
+    useEffect( () => {
+        const {warning, result} = RegisterInfoValidator(registerState, errorState, setError, dispatch);
+        setError({warning, isValid: result});
+        if (users.isExisted.username || users.isExisted.email) {
+            setError({
+                warning: [...warning, "중복된 유저이름 혹은 이메일이 존재합니다."],
+                isValid: false
+            });
+        }
+
+    }, [registerState, dispatch, users.isExisted.username, users.isExisted.email]);
+
     users.isLoggedIn && dispatch(goToHome());
+
     console.log("render ");
-    const {username, email, password, passwordConfirm} = state;
+    console.log("errorState 확인", errorState)
     return (
         <PageWrapper>
             <InputWithLabel
@@ -48,6 +73,10 @@ const RegisterPage = () => {
             <InputWithLabel
                 label="비밀번호 확인" name="passwordConfirm" placeholder="비밀번호 확인"
                 type="password" onChange={onChange} value={passwordConfirm}/>
+            {!errorState.isValid
+                && errorState.warning.map(warning=>
+                (<RegisterError>{warning}</RegisterError>))
+            }
             <LinkButton to = "/register" content = "회원가입" width = "100%" onClick={onClick} />
         </PageWrapper>
     )

@@ -7,6 +7,10 @@ export const REGISTER = 'user/REGISTER';
 export const REGISTER_SUCCESS = 'user/REGISTER_SUCCESS';
 export const REGISTER_ERROR = 'user/REGISTER_ERROR';
 
+export const FINDUSER = 'user/FINDUSER';
+export const FINDUSER_SUCCESS = 'user/FINDUSER_SUCCESS';
+export const FINDUSER_ERROR = 'user/FINDUSER_ERROR';
+
 export const USERS = 'user/USERS';
 export const USERS_SUCCESS = 'user/USERS_SUCCESS';
 export const USERS_ERROR = 'user/USERS_ERROR';
@@ -31,4 +35,7 @@ export const registerUser = () => (
 );
 export const goToHome = () => (
     {type: GO_TO_HOME}
+);
+export const findUser = () => (
+    {type: FINDUSER}
 );

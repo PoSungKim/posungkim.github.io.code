@@ -1,6 +1,7 @@
 import React from "react";
 import styled, {css} from "styled-components";
 import {Link} from "react-router-dom";
+import os from "open-color";
 
 const Button = styled.button`
     
@@ -9,7 +10,10 @@ const Button = styled.button`
     
     padding: 8px 12px;
     border-radius: 4px;
-    background-color: #ffd43b;
+    background-color: ${os.yellow[4]};
+    &:focus {
+        background-color: ${os.yellow[4]};
+    }
     ${props => props.content && css`
         &::after {
             content: "${props.content}";

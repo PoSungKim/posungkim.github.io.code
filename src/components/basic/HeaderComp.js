@@ -6,6 +6,7 @@ import CrossBtnComp from "./CrossBtnComp";
 import styled from "styled-components";
 import {goToHome, logOutUser} from "../../_actions/userAction";
 import {useSelector, useDispatch} from "react-redux";
+import NavbarButton from "./frame/NavbarButton";
 
 const HeaderComp = () => {
     useEffect(()=>{
@@ -128,8 +129,8 @@ const HeaderComp = () => {
                 <ul className="navbar__icons">
                     <li>
                         {!users.isLoggedIn
-                            ? <Link to = "/login"><span>Log In</span></Link>
-                            : <span style={{color: "black"}} onClick={onLogOut}>Log Out</span>
+                            ? <NavbarButton to = "/login">Log In</NavbarButton>
+                            : <NavbarButton to = "/" onClick={onLogOut}>Log Out</NavbarButton>
                         }
                     </li>
                     <li>
