@@ -4,7 +4,7 @@ import NavBarWrapper from "./HeaderFrame/NavBarWrapper";
 
 const Header = ()=> {
     const [visible, setVisible] = useState(false);
-    const [className, setClassName] = useState("");
+    const [shadowClassName, setShadow] = useState("");
     const NavBar = useRef();
 
     const showDrawer = () => {
@@ -14,10 +14,10 @@ const Header = ()=> {
     const onClose = () => {
         setVisible(false)
     };
-
+    
+    // NavBar 위치에 따라 그림자 효과 주기
     const onScroll = () => {
-        window.scrollY > 10 ? setClassName("navbar--dark") :  setClassName("");
-        console.log(window.scrollY);
+        window.scrollY > 10 ? setShadow("navbar--dark") :  setShadow("");
     }
 
     useEffect( ()=> {
@@ -25,10 +25,10 @@ const Header = ()=> {
             onScroll();
             return ()=>document.removeEventListener("scroll", onScroll);
         })
-    }, [])
+    }, []);
 
     return (
-        <NavBarWrapper ref={NavBar} className={className}>
+        <NavBarWrapper ref={NavBar} className={shadowClassName}>
             <NavBarSection className = "navbar__logo" flex={2} justifyContent={"center"}  >
                 <a href="/"><i className="fas fa-puzzle-piece"></i> <span>BeneBean's Coding</span></a>
             </NavBarSection>
