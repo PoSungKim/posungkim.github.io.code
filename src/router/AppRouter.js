@@ -1,23 +1,28 @@
 import React, {useEffect} from "react";
+import MainContent from "../components/AreaSplit/MainContent";
+import Header from "../components/AreaSplit/Header";
+
 import {Router, Route, Switch, Redirect} from "react-router-dom";
-import NewsComp from "../news/NewsComp";
-import HeaderComp from "../basic/HeaderComp";
-import FooterComp from "../basic/FooterComp";
-import FunctionComp from "../function/FunctionComp";
-import ProblemSolveComp from "../problem/ProblemSolveComp";
-import GameComp from "../function/GameComp/GameComp";
-import NewsCreateComp from "../news/NewsCreateComp";
-import CalculatorComp from "../function/CalculatorComp";
-import JournalComp from "../journal/JournalComp";
-import ResumeComp from "../resume/ResumeComp";
-import YouTubeCloning from "../function/YouTubeCloning/YouTubeCloning";
-import ShoppingComp from "../function/ShoppingComp/ShoppingComp";
-import TodoListComp from "../function/TodoListComp/TodoListComp";
-import SideBar from "../basic/SideBar";
-import LoginPage from "../user/LoginPage";
-import "./AppRouter.scss";
+import NewsComp from "../components/news/NewsComp";
+import HeaderComp from "../components/AreaSplit/HeaderComp";
+import Footer from "../components/AreaSplit/Footer";
+import FunctionComp from "../components/function/FunctionComp";
+import ProblemSolveComp from "../components/problem/ProblemSolveComp";
+import GameComp from "../components/function/GameComp/GameComp";
+import NewsCreateComp from "../components/news/NewsCreateComp";
+import CalculatorComp from "../components/function/CalculatorComp";
+import JournalComp from "../components/journal/JournalComp";
+import ResumeComp from "../components/resume/ResumeComp";
+import YouTubeCloning from "../components/function/YouTubeCloning/YouTubeCloning";
+import ShoppingComp from "../components/function/ShoppingComp/ShoppingComp";
+import TodoListComp from "../components/function/TodoListComp/TodoListComp";
+import SideBar from "../components/AreaSplit/SideBar";
+import LoginPage from "../components/UserPage/LoginPage";
 import {createBrowserHistory} from 'history';
-import RegisterPage from "../user/RegisterPage";
+import RegisterPage from "../components/UserPage/RegisterPage";
+import UploadProductPage from "../components/UploadProductPage/UploadProductPage";
+import HomePage from "../components/HomePage/HomePage";
+
 
 
 export const customHistory = createBrowserHistory();
@@ -35,11 +40,13 @@ function AppRouter() {
     return (
         <>
         <Router history={customHistory}>
+            <Header/>
             <HeaderComp/>
-            <main id="content">
+            <MainContent id="content">
                 <SideBar/>
                     <Switch>
-                        <Route exact path="/" component={ResumeComp}/>
+                        <Route exact path ="/" component={HomePage}/>
+                        <Route exact path="/resume" component={ResumeComp}/>
                         <Route exact path="/journals" component={JournalComp}/>
                         <Route exact path="/news" component={NewsComp}/>
                         <Route exact path="/news/create" component={NewsCreateComp}/>
@@ -53,10 +60,11 @@ function AppRouter() {
                         <Route exact path="/problems" component={ProblemSolveComp}/>
                         <Route exact path="/login" component={LoginPage}/>
                         <Route exact path="/register" component={RegisterPage}/>
+                        <Route exact path="/uploadproduct" component={UploadProductPage}/>
                         <Redirect from="*" to="/"/>
                     </Switch>
-                <FooterComp/>
-            </main>
+                <Footer/>
+            </MainContent>
         </Router>
         </>
     )

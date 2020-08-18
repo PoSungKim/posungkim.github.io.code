@@ -1,10 +1,11 @@
 import React, {useCallback, useEffect, useMemo, useState} from "react";
 import styled from "styled-components";
 import LogoArea from "./LogoArea";
+import oc from "open-color";
 
 const LoginPageContainer = styled.section`
     height: 100vh;
-    background: #fff3bf;
+    background: ${oc.gray[1]};
     padding-top: 50px; 
 `;
 

@@ -1,6 +1,7 @@
 .header__navbar {
     position: fixed;
     top: 0;
+    height: 10vh;
     width: 100vw;
     display: flex;
     justify-content: space-around;
@@ -89,10 +90,11 @@
 /* Below 768px width screen reaction */
 @media screen and (max-width: 768px) {
     .header__navbar {
+        height: auto;
         background-color: white;
         flex-direction: column;
         align-items: flex-start;
-        padding: 8px 20px;
+        padding: 20px;
         transition: all 200ms ease-in-out;
     }
 
@@ -131,8 +133,8 @@
 
     .header__navbar .navbar__toggleBtn {
         position: absolute;
+        top: 30px;
         right: 7%;
-        top: 15px;
         display: block;
         font-size: 24px;
         color: #e7a61a;

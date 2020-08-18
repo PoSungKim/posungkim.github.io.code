@@ -14,7 +14,7 @@ import ReduxThunk from 'redux-thunk';
 
 // ReduxSaga
 import createSagaMiddleware from 'redux-saga';
-import {customHistory} from './components/router/AppRouter';
+import {customHistory} from './router/AppRouter';
 
 // MiddleWare 사용에 필요한 컴포넌트
 import rootReducer from "./_reducers/indexReducer";

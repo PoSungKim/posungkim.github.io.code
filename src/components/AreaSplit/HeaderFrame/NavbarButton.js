@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
+
 const ButtonWrapper = styled.button`
     box-sizing: border-box;
     width: 4rem;

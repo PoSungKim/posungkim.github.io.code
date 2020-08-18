@@ -1,14 +1,24 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {Link} from "react-router-dom";
 import './HeaderComp.css';
 import bgMusic from './homepageBgMusic.mp3';
-import CrossBtnComp from "./CrossBtnComp";
+import CrossBtnComp from "./HeaderFrame/CrossBtnComp";
 import styled from "styled-components";
 import {goToHome, logOutUser} from "../../_actions/userAction";
 import {useSelector, useDispatch} from "react-redux";
-import NavbarButton from "./frame/NavbarButton";
+import NavbarButton from "./HeaderFrame/NavbarButton";
 
 const HeaderComp = () => {
+    const users = useSelector(state => state.userReducer);
+    const dispatch = useDispatch();
+    const onLogOut = () => {
+        dispatch(logOutUser());
+        console.log(users.currentUser);
+    }
+
+    const navbarRef = useRef();
+    console.log("asdfadfadsfasfadsf",navbarRef);
+
     useEffect(()=>{
         // 햄버거 Click Action 추가
         const navbar = document.querySelector(".header__navbar");
@@ -95,16 +105,11 @@ const HeaderComp = () => {
             }
         })
 
-    }, [])
-    const users = useSelector(state => state.userReducer);
-    const dispatch = useDispatch();
-    const onLogOut = () => {
-        dispatch(logOutUser());
-        console.log(users.currentUser);
-    }
+    }, []);
+
     return (
         <header>
-            <nav className="header__navbar">
+            <nav className="header__navbar" ref={navbarRef}>
                 <audio id="bgmAudio" src={bgMusic}></audio>
 
                 <div className="navbar__logo">
@@ -127,6 +132,9 @@ const HeaderComp = () => {
                 </ol>
 
                 <ul className="navbar__icons">
+                    <li>
+                        <NavbarButton to = "/uploadproduct">Upload</NavbarButton>
+                    </li>
                     <li>
                         {!users.isLoggedIn
                             ? <NavbarButton to = "/login">Log In</NavbarButton>

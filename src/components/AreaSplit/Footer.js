@@ -11,7 +11,7 @@ const FooterNavbar = styled.footer`
         font-size: 10px;
 }`
 
-const FooterComp = () => {
+const Footer = () => {
     let current_year = new Date().getFullYear();
     return (
         <FooterNavbar>
@@ -22,4 +22,4 @@ const FooterComp = () => {
     )
 }
 
-export default FooterComp;
+export default Footer;
