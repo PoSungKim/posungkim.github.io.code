@@ -34,7 +34,9 @@ const Header = styled.header`
                 font-size: 1.5rem;
             }
             &:hover {
-                transform: scale(1.5);
+                i {
+                    transform: scale(1.5);
+                }
                 a { 
                     color: #007bff;
                 }
@@ -80,7 +82,7 @@ const NavBar = styled.nav`
                         padding: 0;
                         li {
                             width: 100%;
-                            padding: 3px 0;
+                            padding: 6px 0;
                             text-align: center;
                         }
                     }

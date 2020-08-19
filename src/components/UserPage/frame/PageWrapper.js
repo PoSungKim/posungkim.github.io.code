@@ -8,7 +8,8 @@ const LoginPageContainer = styled.section`
     padding-top: 50px; 
     
     @media screen and (max-width: 768px) {
-        height: auto;  
+        height: 90vh;
+        padding-top: 0;
     }
 `;
 

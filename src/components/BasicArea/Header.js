@@ -57,8 +57,8 @@ const Header = ()=> {
                 <Link to = "/"><i className="fas fa-puzzle-piece"></i> <span>BeneBean's Coding</span></Link>
             </NavBarSection>
 
-            <NavBarSection className = {navbarContainerActive ? "navbar__container active" : "navbar__container"} flex={8} justifyContent={"center"}>
-                <NavBarSection flex={2} ulList ulStyle={"padding: 0 120px"}>
+            <NavBarSection onClick={onClickCrossBtn} className = {navbarContainerActive ? "navbar__container active" : "navbar__container"} flex={8} justifyContent={"center"}>
+                <NavBarSection flex={6} ulList ulStyle={"padding: 0 60px"}>
                     <ul>
                         <Link to = "/"><li>Home</li></Link>
                         <Link to = "/"><li>Community</li></Link>
@@ -67,7 +67,7 @@ const Header = ()=> {
                         <Link to = "/uploadproduct"><li>Upload</li></Link>
                     </ul>
                 </NavBarSection>
-                <NavBarSection flex={1} ulList ulStyle={"padding: 0 30px"}>
+                <NavBarSection flex={4} ulList >
                     <ul>
                         <li>
                             {
