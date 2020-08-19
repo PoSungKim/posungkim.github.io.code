@@ -57,8 +57,8 @@ const Header = ()=> {
                 <Link to = "/"><i className="fas fa-puzzle-piece"></i> <span>BeneBean's Coding</span></Link>
             </NavBarSection>
 
-            <NavBarSection onClick={onClickCrossBtn} className = {navbarContainerActive ? "navbar__container active" : "navbar__container"} flex={8} justifyContent={"center"}>
-                <NavBarSection flex={6} ulList ulStyle={"padding: 0 60px"}>
+            <NavBarSection  className = {navbarContainerActive ? "navbar__container active" : "navbar__container"} flex={8} justifyContent={"center"}>
+                <NavBarSection onClick={onClickCrossBtn} flex={6} ulList ulStyle={"padding: 0 60px"}>
                     <ul>
                         <Link to = "/"><li>Home</li></Link>
                         <Link to = "/"><li>Community</li></Link>
@@ -69,14 +69,14 @@ const Header = ()=> {
                 </NavBarSection>
                 <NavBarSection flex={4} ulList >
                     <ul>
-                        <li>
+                        <li onClick={onClickCrossBtn}>
                             {
                                 !users.isLoggedIn
                                 ? <NavbarBtn to = "/login">Log In</NavbarBtn>
                                 : <NavbarBtn to = "/" onClick={onLogOut}>Log Out</NavbarBtn>
                             }
                         </li>
-                        <li>
+                        <li onClick={onClickCrossBtn}>
                             {
                                 !users.isLoggedIn
                                 && <NavbarBtn to = "/register">Sign In</NavbarBtn>
