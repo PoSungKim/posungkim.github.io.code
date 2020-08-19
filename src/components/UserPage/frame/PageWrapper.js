@@ -6,7 +6,7 @@ import oc from "open-color";
 const LoginPageContainer = styled.section`
     height: 100vh;
     padding-top: 50px;
-    
+    background: ${oc.yellow[0]};
     @media screen and (max-width: 768px) {
         height: 90vh;
         padding-top: 0;
