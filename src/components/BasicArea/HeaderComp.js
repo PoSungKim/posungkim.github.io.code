@@ -2,11 +2,11 @@ import React, {useEffect, useRef} from 'react';
 import {Link} from "react-router-dom";
 import './HeaderComp.css';
 import bgMusic from './homepageBgMusic.mp3';
-import CrossBtnComp from "./HeaderFrame/CrossBtnComp";
+import CrossBtnComp from "./HeaderFrame/CrossBtn";
 import styled from "styled-components";
 import {goToHome, logOutUser} from "../../_actions/userAction";
 import {useSelector, useDispatch} from "react-redux";
-import NavbarButton from "./HeaderFrame/NavbarButton";
+import NavbarBtn from "./HeaderFrame/NavbarBtn";
 
 const HeaderComp = () => {
     const users = useSelector(state => state.userReducer);
@@ -133,12 +133,12 @@ const HeaderComp = () => {
 
                 <ul className="navbar__icons">
                     <li>
-                        <NavbarButton to = "/uploadproduct">Upload</NavbarButton>
+                        <NavbarBtn to = "/uploadproduct">Upload</NavbarBtn>
                     </li>
                     <li>
                         {!users.isLoggedIn
-                            ? <NavbarButton to = "/login">Log In</NavbarButton>
-                            : <NavbarButton to = "/" onClick={onLogOut}>Log Out</NavbarButton>
+                            ? <NavbarBtn to = "/login">Log In</NavbarBtn>
+                            : <NavbarBtn to = "/" onClick={onLogOut}>Log Out</NavbarBtn>
                         }
                     </li>
                     <li>

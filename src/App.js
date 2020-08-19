@@ -1,10 +1,10 @@
 import React from "react";
 import AppRouter from "./router/AppRouter";
 import {createGlobalStyle} from "styled-components";
-
+import oc from "open-color";
 const GlobalStyle = createGlobalStyle`
 body {
-    background-color: white;
+    background: ${oc.white};
     font-family: 'Source Sans Pro', sans-serif;
 }
 

@@ -5,8 +5,11 @@ import oc from "open-color";
 
 const LoginPageContainer = styled.section`
     height: 100vh;
-    background: ${oc.gray[1]};
     padding-top: 50px; 
+    
+    @media screen and (max-width: 768px) {
+        height: auto;  
+    }
 `;
 
 const LoginPageSection = styled.div`
@@ -14,6 +17,10 @@ const LoginPageSection = styled.div`
     margin: auto;
     min-height: 20vh;
     background: white;
+    
+    @media screen and (max-width: 768px) {
+        width: auto;  
+    }
 `;
 
 const ContentWrapper = styled.div`

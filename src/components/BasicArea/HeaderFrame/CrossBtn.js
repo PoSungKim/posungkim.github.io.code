@@ -1,6 +1,20 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled, {css} from "styled-components";
+import oc from "open-color";
+
 const NavbarToggleBtn = styled.div`
+    display: none;
+    
+    @media screen and (max-width: 768px) {
+        position: absolute;
+        display: block;
+        right: 15vw;
+        top: 28px;
+    }
+    @media screen and (max-width: 321px) {
+        right: 8vw;
+    }
+    
     input {
         &#crossBtn {
             display: none;
@@ -17,7 +31,7 @@ const NavbarToggleBtn = styled.div`
                     width: 100%;
                     height: 4px;
                     border-radius: 30px;
-                    background-color: #e7a61a;
+                    background-color: ${oc.yellow[5]};
                     transition: all 300ms;
                     &:nth-child(1) {
                         top: 0;
@@ -31,7 +45,8 @@ const NavbarToggleBtn = styled.div`
                     }
                 }
             }
-            &:checked {
+            
+            ${props=>props.navbarContainerActive && css`
                 + label span{
                     &:nth-child(1) {
                         top: 50%;
@@ -47,21 +62,24 @@ const NavbarToggleBtn = styled.div`
                         transform: translateY(50%) rotate(-45deg);
                     }
                 }
-            }
+            `}
+                
+            
         }
     }
 `;
 
-const CrossBtnComp = () => {
+const CrossBtn = ({...rest}) => {
+
     return (
-        <NavbarToggleBtn className="navbar__toggleBtn">
-            <input type="checkbox" id="crossBtn"/>
-            <label for="crossBtn">
+        <NavbarToggleBtn {...rest} >
+            <input type="checkbox" id="crossBtn" />
+            <label for="crossBtn" >
                 <span></span>
                 <span></span>
                 <span></span>
             </label>
         </NavbarToggleBtn>
     );
-}
-export default CrossBtnComp;
+};
+export default CrossBtn;

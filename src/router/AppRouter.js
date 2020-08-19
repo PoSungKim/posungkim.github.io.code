@@ -1,11 +1,11 @@
 import React, {useEffect} from "react";
-import MainContent from "../components/AreaSplit/MainContent";
-import Header from "../components/AreaSplit/Header";
+import MainContent from "../components/BasicArea/MainContent";
+import Header from "../components/BasicArea/Header";
 
 import {Router, Route, Switch, Redirect} from "react-router-dom";
 import NewsComp from "../components/news/NewsComp";
-import HeaderComp from "../components/AreaSplit/HeaderComp";
-import Footer from "../components/AreaSplit/Footer";
+import HeaderComp from "../components/BasicArea/HeaderComp";
+import Footer from "../components/BasicArea/Footer";
 import FunctionComp from "../components/function/FunctionComp";
 import ProblemSolveComp from "../components/problem/ProblemSolveComp";
 import GameComp from "../components/function/GameComp/GameComp";
@@ -16,7 +16,7 @@ import ResumeComp from "../components/resume/ResumeComp";
 import YouTubeCloning from "../components/function/YouTubeCloning/YouTubeCloning";
 import ShoppingComp from "../components/function/ShoppingComp/ShoppingComp";
 import TodoListComp from "../components/function/TodoListComp/TodoListComp";
-import SideBar from "../components/AreaSplit/SideBar";
+import SideBar from "../components/BasicArea/SideBar";
 import LoginPage from "../components/UserPage/LoginPage";
 import {createBrowserHistory} from 'history';
 import RegisterPage from "../components/UserPage/RegisterPage";
@@ -31,8 +31,8 @@ function AppRouter() {
 
     useEffect(() => {
         // Background Music Action 추가
-        const backgroundMusic = document.querySelector('#bgmAudio');
-        backgroundMusic.volume = 0.2;
+        //const backgroundMusic = document.querySelector('#bgmAudio');
+        //backgroundMusic.volume = 0.2;
         //backgroundMusic.autoPlay = false;
         //backgroundMusic.play();
     }, [])
@@ -41,7 +41,7 @@ function AppRouter() {
         <>
         <Router history={customHistory}>
             <Header/>
-            <HeaderComp/>
+            {/*<HeaderComp/> */}
             <MainContent id="content">
                 <SideBar/>
                     <Switch>

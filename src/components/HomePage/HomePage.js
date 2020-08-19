@@ -5,7 +5,6 @@ import oc from "open-color";
 const ContentContainer = styled.section`
     width: 100%;
     min-height: 90vh;
-    background: ${oc.white};
 `;
 
 const HomePage = () => {

@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import oc from "open-color";
 
 const MainContentWrapper = styled.main`
     
@@ -26,10 +25,12 @@ const MainContentWrapper = styled.main`
     @media screen and (max-width: 768px) {
         
         transform: translateY(10vh);
+        height: auto;
         
         #sidebar {
             display: none;
         }
+        
     }
 `;
 
