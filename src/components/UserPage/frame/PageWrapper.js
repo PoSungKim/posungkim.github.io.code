@@ -5,7 +5,7 @@ import oc from "open-color";
 
 const LoginPageContainer = styled.section`
     height: 100vh;
-    padding-top: 50px; 
+    padding-top: 50px;
     
     @media screen and (max-width: 768px) {
         height: 90vh;
@@ -18,9 +18,11 @@ const LoginPageSection = styled.div`
     margin: auto;
     min-height: 20vh;
     background: white;
+    box-shadow: rgba(0.5, 0.5, 0.5, 0.5) 0px 5px 5px 0px;
     
     @media screen and (max-width: 768px) {
         width: auto;  
+        box-shadow: none;
     }
 `;
 
@@ -29,11 +31,11 @@ const ContentWrapper = styled.div`
 `;
 
 
-const PageWrapper = ({children}) => {
+const PageWrapper = ({children, info}) => {
     return (
         <LoginPageContainer>
             <LoginPageSection>
-                <LogoArea logo={"BeneBean's Coding"}/>
+                <LogoArea logo={info}/>
                 <ContentWrapper>
                     {children}
                 </ContentWrapper>

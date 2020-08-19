@@ -58,7 +58,7 @@ const RegisterPage = () => {
 
     console.log("render ");
     return (
-        <PageWrapper>
+        <PageWrapper info = {"Sign In Page"}>
             <InputWithLabel
                 label="사용자 이름" name="username" placeholder="사용자 이름"
                 onChange={onChange} value={username}/>

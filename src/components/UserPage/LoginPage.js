@@ -39,7 +39,7 @@ const LoginPage = () => {
     console.log("render ", users);
 
     return (
-      <PageWrapper>
+      <PageWrapper info = {"Log In Page"}>
         <InputWithLabel label="이메일" name="email" placeholder="이메일" onChange={onChange} value={email}/>
         <InputWithLabel label="비밀번호" name="password" placeholder="비밀번호" type="password" onChange={onChange} value={password}/>
 
