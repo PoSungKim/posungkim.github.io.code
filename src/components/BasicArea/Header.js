@@ -76,12 +76,12 @@ const Header = ()=> {
                                 : <NavbarBtn to = "/" onClick={onLogOut}>Log Out</NavbarBtn>
                             }
                         </li>
-                        <li onClick={onClickCrossBtn}>
                             {
                                 !users.isLoggedIn
-                                && <NavbarBtn to = "/register">Sign In</NavbarBtn>
+                                && <li onClick={onClickCrossBtn}>
+                                    <NavbarBtn to = "/register">Sign In</NavbarBtn>
+                                </li>
                             }
-                        </li>
                         <li>
                             <a target="_blank" rel="noopener noreferrer" href="https://github.com/posungkim">
                                 <i className="fab fa-github"></i>
