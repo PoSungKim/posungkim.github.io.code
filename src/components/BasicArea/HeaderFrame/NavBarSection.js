@@ -3,9 +3,7 @@ import styled, {css} from "styled-components";
 
 const NavBarSectionArea = styled.div`
     display: flex;
-    padding: 20px 10px;
     align-items: center;
-    
     
     a {
         text-decoration: none;
@@ -14,7 +12,7 @@ const NavBarSectionArea = styled.div`
     }
     
     li {
-        padding: 10px 20px;
+        padding: 10px 30px;
         border-radius: 10px;
     }
     
@@ -31,6 +29,11 @@ const NavBarSectionArea = styled.div`
             ${props => props.ulStyle }
         }
     `}
+    
+    @media screen and (max-width: 768px) {
+        padding: 20px 10px;
+    }
+    
 `;
 
 const NavBarSection = ({children, ...rest}) => {

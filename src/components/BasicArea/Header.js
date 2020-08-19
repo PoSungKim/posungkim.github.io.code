@@ -58,7 +58,7 @@ const Header = ()=> {
             </NavBarSection>
 
             <NavBarSection className = {navbarContainerActive ? "navbar__container active" : "navbar__container"} flex={8} justifyContent={"center"}>
-                <NavBarSection flex={2} ulList ulStyle={"padding: 0 60px"}>
+                <NavBarSection flex={2} ulList ulStyle={"padding: 0 120px"}>
                     <ul>
                         <Link to = "/"><li>Home</li></Link>
                         <Link to = "/"><li>Community</li></Link>
@@ -67,7 +67,7 @@ const Header = ()=> {
                         <Link to = "/uploadproduct"><li>Upload</li></Link>
                     </ul>
                 </NavBarSection>
-                <NavBarSection flex={1} ulList>
+                <NavBarSection flex={1} ulList ulStyle={"padding: 0 30px"}>
                     <ul>
                         <li>
                             {

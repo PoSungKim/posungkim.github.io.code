@@ -6,8 +6,6 @@ const Header = styled.header`
     transition: all 200ms ease-in-out;
     background: ${oc.white};
     position: fixed;
-    width: 100vw;
-    min-height: 10vh;
     z-index: 1;
     top: 0;
     
@@ -48,6 +46,8 @@ const Header = styled.header`
 
 const NavBar = styled.nav`
     display: flex;
+    min-height: 10vh;
+    width: 100vw;
     
     // 작은 스크린 혹은 Mobile 관련 설정은 모두 NavBarWrapper에서 설정  
     

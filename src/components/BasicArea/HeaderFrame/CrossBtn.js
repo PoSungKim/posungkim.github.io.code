@@ -5,16 +5,6 @@ import oc from "open-color";
 const NavbarToggleBtn = styled.div`
     display: none;
     
-    @media screen and (max-width: 768px) {
-        position: absolute;
-        display: block;
-        right: 15vw;
-        top: 28px;
-    }
-    @media screen and (max-width: 321px) {
-        right: 8vw;
-    }
-    
     input {
         &#crossBtn {
             display: none;
@@ -64,8 +54,17 @@ const NavbarToggleBtn = styled.div`
                 }
             `}
                 
-            
         }
+    }
+    
+    @media screen and (max-width: 768px) {
+        position: absolute;
+        display: block;
+        right: 15vw;
+        top: 28px;
+    }
+    @media screen and (max-width: 321px) {
+        right: 8vw;
     }
 `;
 
