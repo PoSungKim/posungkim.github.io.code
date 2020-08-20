@@ -3,10 +3,7 @@ import axios from "axios";
 const LOCAL_URL = "http://localhost:8080/";
 const DEPLOY_URL = "https://springboot--backend.herokuapp.com/"
 const TEST_URL = "https://jsonplaceholder.typicode.com/users";
-const CURRENT_URL = LOCAL_URL;
-
-axios.defaults.xsrfCookieName= "XSRF-TOKEN";
-axios.defaults.xsrfHeaderName= "X-XSRF-TOKEN";
+const CURRENT_URL = DEPLOY_URL;
 
 export const getUsers = async () => {
     console.log("userApi/getUsers() 함수 실행");
