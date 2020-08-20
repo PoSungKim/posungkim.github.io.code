@@ -6,7 +6,7 @@ const NavbarBtn = ({children, to, ...rest}) => {
     const linkStyle = {display: "flex", alignItems: "center"};
     return (
         <Link to = {to} style={linkStyle}>
-            <span> {children} </span>
+            <span {...rest}> {children} </span>
         </Link>
     )
 }

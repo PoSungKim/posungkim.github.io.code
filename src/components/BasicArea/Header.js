@@ -19,7 +19,8 @@ const Header = ()=> {
     const [visible, setVisible] = useState(false);
     const [shadowClassName, setShadow] = useState("");
     const [navbarContainerActive, setContainer] = useState(false);
-    
+
+
     // NavBar 위치에 따라 그림자 효과 주기
     const checkScrollHeight = () => {
         window.scrollY > 10 ? setShadow("navbar--dark") : setShadow("");
@@ -58,10 +59,6 @@ const Header = ()=> {
                 </NavBarSection>
                 <NavBarSection flex={4} ulList >
                     <ul>
-                            {
-                                !users.isLoggedIn
-                                    && <li onClick={onClickCrossBtn}><NavbarBtn to = "/register">Sign In</NavbarBtn></li>
-                            }
                         <li onClick={onClickCrossBtn}>
                             {
                                 !users.isLoggedIn
