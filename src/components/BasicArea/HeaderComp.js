@@ -11,13 +11,7 @@ import NavbarBtn from "./HeaderFrame/NavbarBtn";
 const HeaderComp = () => {
     const users = useSelector(state => state.userReducer);
     const dispatch = useDispatch();
-    const onLogOut = () => {
-        dispatch(logOutUser());
-        console.log(users.currentUser);
-    }
-
-    const navbarRef = useRef();
-    console.log("asdfadfadsfasfadsf",navbarRef);
+    const onLogOut = () => {dispatch(logOutUser())};
 
     useEffect(()=>{
         // 햄버거 Click Action 추가
@@ -109,7 +103,7 @@ const HeaderComp = () => {
 
     return (
         <header>
-            <nav className="header__navbar" ref={navbarRef}>
+            <nav className="header__navbar" >
                 <audio id="bgmAudio" src={bgMusic}></audio>
 
                 <div className="navbar__logo">

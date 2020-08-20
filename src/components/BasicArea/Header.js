@@ -16,7 +16,6 @@ const Header = ()=> {
     const dispatch = useDispatch();
     const onLogOut = () => dispatch(logOutUser());
 
-    const [visible, setVisible] = useState(false);
     const [shadowClassName, setShadow] = useState("");
     const [navbarContainerActive, setContainer] = useState(false);
 
@@ -43,13 +42,13 @@ const Header = ()=> {
     return (
         <NavBarWrapper className={shadowClassName}>
             <CrossBtn className="navbar__crossBtn" onClick={onClickCrossBtn} navbarContainerActive = {navbarContainerActive} />
-            <NavBarSection className = "navbar__logo" flex={2} justifyContent={"center"} fontColor = {oc.yellow[5]} fontSize = {"1.5rem"}>
+            <NavBarSection onClick={navbarContainerActive && onClickCrossBtn} className = "navbar__logo" flex={2} justifyContent={"center"} fontColor = {oc.yellow[5]} fontSize = {"1.5rem"}>
                 <Link to = "/"><i className="fas fa-puzzle-piece"></i> <span>BeneBean's Coding</span></Link>
             </NavBarSection>
 
             <NavBarSection  className = {navbarContainerActive ? "navbar__container active" : "navbar__container"} flex={8} justifyContent={"center"}>
-                <NavBarSection onClick={onClickCrossBtn} flex={6} ulList ulStyle={"padding: 0 60px"}>
-                    <ul>
+                <NavBarSection flex={6} ulList ulStyle={"padding: 0 60px"}>
+                    <ul onClick={onClickCrossBtn}>
                         <Link to = "/"><li>Home</li></Link>
                         <Link to = "/"><li>Community</li></Link>
                         <Link to = "/"><li>CrawledInfo</li></Link>

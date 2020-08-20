@@ -87,6 +87,17 @@ const NavBar = styled.nav`
                         }
                     }
                 }  
+            }
+            div:nth-child(2) {
+                ul {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    li {
+                        text-align: center;
+                        flex: 1;
+                    }
+                }
             }   
         }
     }
