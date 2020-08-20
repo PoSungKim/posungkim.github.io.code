@@ -19,11 +19,6 @@ const Header = ()=> {
     const [visible, setVisible] = useState(false);
     const [shadowClassName, setShadow] = useState("");
     const [navbarContainerActive, setContainer] = useState(false);
-
-    const registerLi = useRef();
-    const ifHidden = (registerLi) => {
-        console.log(registerLi);
-    }
     
     // NavBar 위치에 따라 그림자 효과 주기
     const checkScrollHeight = () => {
