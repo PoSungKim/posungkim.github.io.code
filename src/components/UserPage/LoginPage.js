@@ -35,13 +35,18 @@ const LoginPage = () => {
         })
     }
 
+    const onKeyPress = (event) => {
+        if (event.key == "Enter")
+            onClick();
+    }
+
     users.isLoggedIn && dispatch(goToHome());
     console.log("render ", users);
 
     return (
       <PageWrapper info = {"Log In Page"}>
-        <InputWithLabel label="이메일" name="email" placeholder="이메일" onChange={onChange} value={email}/>
-        <InputWithLabel label="비밀번호" name="password" placeholder="비밀번호" type="password" onChange={onChange} value={password}/>
+        <InputWithLabel label="이메일" name="email" placeholder="이메일" onChange={onChange} value={email} onKeyPress = {onKeyPress}/>
+        <InputWithLabel label="비밀번호" name="password" placeholder="비밀번호" type="password" onChange={onChange} value={password} onKeyPress = {onKeyPress} />
 
         <LinkButton content="로그인" width = "100%" onClick={onClick}/>
         <LinkButton to = "/register" content="회원가입"/>

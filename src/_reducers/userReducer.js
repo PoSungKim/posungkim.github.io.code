@@ -31,6 +31,7 @@ const initialState = {
     login: {
         email: null,
         password: null,
+        username: null
     },
     isLoggedIn: false
 }
@@ -128,6 +129,10 @@ export default function userReducer(state = initialState, action) {
                 }
             }
         case LOGIN_SUCCESS :
+            localStorage.login = JSON.stringify({
+                email: action.payload.email,
+                password: action.payload.password
+            });
             return {
                 ...state,
                 transmission: {
@@ -137,6 +142,7 @@ export default function userReducer(state = initialState, action) {
                 login: {
                     email: action.payload.email,
                     password: action.payload.password,
+                    username: action.payload.username
                 },
                 isLoggedIn: action.payload.isLoggedIn,
             }
@@ -149,8 +155,14 @@ export default function userReducer(state = initialState, action) {
                 },
             }
         case LOGOUT:
+            localStorage.removeItem("login");
             return {
                 ...state,
+                login: {
+                    email: null,
+                    password: null,
+                    username: null
+                },
                 isLoggedIn: false
             }
         default:

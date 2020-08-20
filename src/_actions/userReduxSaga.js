@@ -76,7 +76,7 @@ function* loginSaga(action) {
         const result = yield call(userApi.logInUser, action.data);
         yield put({
             type: result? LOGIN_SUCCESS : LOGIN_ERROR,
-            payload: {...action.data, isLoggedIn: result},
+            payload: {...result, isLoggedIn: result && true},
         })
     } catch (error) {
         yield put ({

@@ -24,7 +24,6 @@ const Input = styled.input`
     padding-right: 0.5rem;
 `;
 
-
 const InputWithLabel = ({label, ...rest}) => (
     <Wrapper>
         <Label>{label}</Label>
