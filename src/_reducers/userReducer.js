@@ -131,7 +131,8 @@ export default function userReducer(state = initialState, action) {
         case LOGIN_SUCCESS :
             localStorage.login = JSON.stringify({
                 email: action.payload.email,
-                password: action.payload.password
+                password: action.payload.password,
+                username: action.payload.username,
             });
             return {
                 ...state,

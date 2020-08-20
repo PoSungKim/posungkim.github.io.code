@@ -5,7 +5,7 @@ import AppRouter from "./router/AppRouter";
 import oc from "open-color";
 
 import {useDispatch, useSelector} from "react-redux";
-import {loginUser} from "./_actions/userAction";
+import {LOGIN_SUCCESS} from "./_actions/userAction";
 
 
 const GlobalStyle = createGlobalStyle`
@@ -32,11 +32,14 @@ const checkLoggedIn = (user, dispatch) => {
     if(!login)
         return;
     // 기존에 로그인이 되어있었다면, 로그인 상태로 전환
-    console.log("페이지 랜더링", user);
     dispatch({
-        ...loginUser(),
-        data: login
+        type: LOGIN_SUCCESS,
+        payload: {
+            ...login,
+            isLoggedIn: true
+        }
     });
+    // 추후에 기능 구현이 완료되고나서, Backend에서 토큰을 이용한 재로그인 프로세스를 구현할 예정
 }
 
 function App() {
