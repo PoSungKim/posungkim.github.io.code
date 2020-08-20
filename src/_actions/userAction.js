@@ -14,19 +14,13 @@ export const FINDUSER = 'user/FINDUSER';
 export const FINDUSER_SUCCESS = 'user/FINDUSER_SUCCESS';
 export const FINDUSER_ERROR = 'user/FINDUSER_ERROR';
 
-export const USERS = 'user/USERS';
-export const USERS_SUCCESS = 'user/USERS_SUCCESS';
-export const USERS_ERROR = 'user/USERS_ERROR';
-
+export const INITIALTRANSMISSION = 'initial/INITIALTRANSMISSION';
 
 export const GO_TO_HOME = "user/GO_TO_HOME"
 
 
 
 // Action 생성
-export const getUsers = () => (
-    {type: USERS}
-);
 export const loginUser = () => (
     {type: LOGIN}
 );
@@ -41,4 +35,7 @@ export const goToHome = () => (
 );
 export const findUser = () => (
     {type: FINDUSER}
+);
+export const initialTransmission = () => (
+    {type: INITIALTRANSMISSION}
 );

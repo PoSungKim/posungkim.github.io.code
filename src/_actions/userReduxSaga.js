@@ -17,23 +17,6 @@ import * as userApi from "../utils/userApi";
 // 로그인, 로그아웃 등 회원가입 관련 Redux-Saga 생성
 
 // Redux-Saga Action 처리 함수 생성
-function* getUsersSaga() {
-    console.log("getUsersSaga() 실행");
-    try {
-        const users = yield call(userApi.getUsers);
-        console.log("getUsersSaga ", users);
-        yield put({
-            type: USERS_SUCCESS,
-            payload: users,
-        });
-    } catch (error) {
-        yield put ({
-            type: USERS_ERROR,
-            payload: error,
-            error: true,
-        });
-    }
-}
 
 function* registerUserSaga (action) {
     console.log("registerUserSaga() 실행", action);
@@ -74,9 +57,14 @@ function* loginSaga(action) {
     console.log("loginSaga() 실행", action);
     try {
         const result = yield call(userApi.logInUser, action.data);
+        const isOkay = result.email && result.password? true : false;
         yield put({
-            type: result? LOGIN_SUCCESS : LOGIN_ERROR,
-            payload: {...result, isLoggedIn: result && true},
+            type: isOkay? LOGIN_SUCCESS : LOGIN_ERROR,
+            payload: {...result,
+                password: action.data.password,
+                isLoggedIn: isOkay,
+            },
+            error: !isOkay,
         })
     } catch (error) {
         yield put ({
@@ -97,7 +85,6 @@ function* goToHomeSaga () {
 
 export function* userSaga() {
     yield takeEvery(LOGIN, loginSaga);
-    yield takeEvery(USERS, getUsersSaga);
     yield takeEvery(REGISTER, registerUserSaga);
     yield takeEvery(GO_TO_HOME, goToHomeSaga);
     yield takeEvery(FINDUSER, findUserSaga);

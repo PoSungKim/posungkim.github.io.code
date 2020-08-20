@@ -32,6 +32,7 @@ const ContentWrapper = styled.div`
 
 
 const PageWrapper = ({children, info}) => {
+
     return (
         <LoginPageContainer>
             <LoginPageSection>

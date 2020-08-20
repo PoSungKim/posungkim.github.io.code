@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PageWrapper from "./frame/PageWrapper";
 import InputWithLabel from "./frame/InputWithLabel";
 import {useDispatch, useSelector} from "react-redux";
-import {getUsers, goToHome, loginUser} from "../../_actions/userAction";
+import {initialTransmission, goToHome, loginUser} from "../../_actions/userAction";
 import {Link} from "react-router-dom";
 import LinkButton from "./frame/LinkButton";
+import ErrorMessage from "./frame/ErrorMessage";
 
 const initialLogInState = {
     email: '',
@@ -15,11 +16,8 @@ const LoginPage = () => {
     const users = useSelector(state => state.userReducer);
     const dispatch = useDispatch();
     const [logInState, setLogIn] = useState(initialLogInState);
+    const [errorState, setError] = useState(false);
     const {email, password} = logInState;
-
-    const onClickGetUsers = () => {
-        dispatch(getUsers());
-    }
 
     const onClick = () => {
         dispatch({
@@ -32,13 +30,23 @@ const LoginPage = () => {
         setLogIn({
             ...logInState,
             [event.target.name]: event.target.value,
-        })
+        });
+        if (users.transmission.error) {
+            dispatch({
+                ...initialTransmission(),
+            });
+            setError(false);
+        }
     }
 
     const onKeyPress = (event) => {
         if (event.key == "Enter")
             onClick();
     }
+
+    useEffect(()=>{
+        setError(users.transmission.error);
+        }, [dispatch, users.transmission]);
 
     users.isLoggedIn && dispatch(goToHome());
     console.log("render ", users);
@@ -48,10 +56,10 @@ const LoginPage = () => {
         <InputWithLabel label="이메일" name="email" placeholder="이메일" onChange={onChange} value={email} onKeyPress = {onKeyPress}/>
         <InputWithLabel label="비밀번호" name="password" placeholder="비밀번호" type="password" onChange={onChange} value={password} onKeyPress = {onKeyPress} />
 
+        {errorState && <ErrorMessage>이메일 혹은 비밀번호가 맞지 않습니다.</ErrorMessage>}
+
         <LinkButton content="로그인" width = "100%" onClick={onClick}/>
         <LinkButton to = "/register" content="회원가입"/>
-        <LinkButton content="Get Users" onClick={onClickGetUsers}/>
-
         <ul>
           {users.data && users.data.map(user => (<li key={user.id}>
             {user.username} {user.password}

@@ -5,7 +5,7 @@ import LinkButton from "./frame/LinkButton";
 import {useDispatch, useSelector} from "react-redux";
 import {goToHome, registerUser} from "../../_actions/userAction";
 import {RegisterInfoValidator} from "./UserInfoValidator";
-import RegisterError from "./frame/RegisterError";
+import ErrorMessage from "./frame/ErrorMessage";
 
 // Store에 반영하기 전에 준비해놓을 Local State
 const initialRegisterState = {
@@ -73,7 +73,7 @@ const RegisterPage = () => {
                 type="password" onChange={onChange} value={passwordConfirm}/>
             {!errorState.isValid
                 && errorState.warning.map(warning=>
-                (<RegisterError>{warning}</RegisterError>))
+                (<ErrorMessage>{warning}</ErrorMessage>))
             }
             <LinkButton to = "/register" content = "회원가입" width = "100%" onClick={onClick} />
         </PageWrapper>

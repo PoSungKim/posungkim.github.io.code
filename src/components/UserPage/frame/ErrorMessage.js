@@ -1,22 +1,22 @@
-import React from "react";
+import React, {useEffect} from "react";
 import oc from "open-color";
 import styled from "styled-components";
 import {transitions} from "../../../utils/styleUtils";
 
-const ErrorMessage = styled.div`
+const ErrorMessageWrapper = styled.div`
     margin-top: 16px;
     text-align: center;
     color: ${oc.red[8]};
     animation: ${transitions.moveLeftRight} 300ms ease-in;
 `
 
-const RegisterError = ({children}) => {
+const ErrorMessage = ({children}) => {
 
     return (
-        <ErrorMessage>
+        <ErrorMessageWrapper>
             {children}
-        </ErrorMessage>
+        </ErrorMessageWrapper>
     )
 }
 
-export default RegisterError;
+export default ErrorMessage;

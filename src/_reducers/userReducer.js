@@ -2,15 +2,14 @@
 
 // InitialState 생성
 import {
+    CHANGESETTING,
     FINDUSER, FINDUSER_ERROR, FINDUSER_SUCCESS,
-    GO_TO_HOME, LOGIN, LOGIN_ERROR, LOGIN_SUCCESS, LOGOUT,
+    GO_TO_HOME, INITIALTRANSMISSION, LOGIN, LOGIN_ERROR, LOGIN_SUCCESS, LOGOUT,
     REGISTER,
     REGISTER_ERROR,
     REGISTER_SUCCESS,
-    USERS,
-    USERS_ERROR,
-    USERS_SUCCESS
 } from "../_actions/userAction";
+import {transitions} from "../utils/styleUtils";
 
 const initialState = {
     transmission : {
@@ -38,34 +37,15 @@ const initialState = {
 
 // Counter Reducer 생성
 export default function userReducer(state = initialState, action) {
-    console.log("userReducer() 함수 실행");
-    console.log(action);
+    console.log("userReducer() 함수 실행", action);
     switch (action.type) {
-        case USERS:
-            console.log("action.type 실행");
+        case INITIALTRANSMISSION :
             return {
                 ...state,
                 transmission: {
-                    ...state.transmission,
-                    loading: true
-                },
-            };
-        case USERS_SUCCESS:
-            return {
-                ...state,
-                transmission: {
-                    ...state.transmission,
-                    data: action.payload
+                    ...initialState.transmission,
                 }
-            };
-        case USERS_ERROR:
-            return {
-                ...state,
-                transmission: {
-                    data: action.payload,
-                    error: action.error,
-                }
-            };
+            }
         case REGISTER:
             return {
                 ...state,
@@ -126,6 +106,7 @@ export default function userReducer(state = initialState, action) {
                 transmission: {
                     ...state.transmission,
                     loading: true,
+                    error: null
                 }
             }
         case LOGIN_SUCCESS :

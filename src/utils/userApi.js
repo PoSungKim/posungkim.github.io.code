@@ -1,13 +1,17 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8080/";
+const LOCAL_URL = "http://localhost:8080/";
 const DEPLOY_URL = "https://springboot--backend.herokuapp.com/"
 const TEST_URL = "https://jsonplaceholder.typicode.com/users";
+const CURRENT_URL = LOCAL_URL;
+
+axios.defaults.xsrfCookieName= "XSRF-TOKEN";
+axios.defaults.xsrfHeaderName= "X-XSRF-TOKEN";
 
 export const getUsers = async () => {
     console.log("userApi/getUsers() 함수 실행");
     try {
-        const response = await axios.get(DEPLOY_URL + "users");
+        const response = await axios.get(CURRENT_URL + "users");
         return response.data;
     } catch (error) {
         console.error(error);
@@ -18,7 +22,7 @@ export const getUsers = async () => {
 export const registerUser = async (action) => {
     console.log("userApi/registerUser() 함수 실행", action);
     try {
-        const response = await axios.post(DEPLOY_URL + "register", action);
+        const response = await axios.post(CURRENT_URL + "register", action);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -29,7 +33,7 @@ export const registerUser = async (action) => {
 export const findUser = async (action) => {
     console.log("userApi/findUser() 함수 실행", action);
     try {
-        const response = await axios.post(DEPLOY_URL + "finduser", action);
+        const response = await axios.post(CURRENT_URL + "finduser", action);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -40,7 +44,7 @@ export const findUser = async (action) => {
 export const logInUser = async (action) => {
     console.log("userApi/logIn() 함수 실행", action);
     try {
-        const response = await axios.post(DEPLOY_URL + "login", action);
+        const response = await axios.post(CURRENT_URL + "login", action);
         return response.data;
     } catch (error) {
         console.error(error);
