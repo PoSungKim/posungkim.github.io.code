@@ -1,11 +1,22 @@
 import React, {useEffect} from "react";
-import MainContent from "../components/BasicArea/MainContent";
-import Header from "../components/BasicArea/Header";
 
 import {Router, Route, Switch, Redirect} from "react-router-dom";
+import {createBrowserHistory} from 'history';
+
+import Header from "../components/BasicArea/Header";
+import MainContent from "../components/BasicArea/MainContent";
+import Footer from "../components/BasicArea/Footer";
+
+import HomePage from "../components/HomePage/HomePage";
+import LoadingPage from "../components/LoadingPage/LoadingPage";
+import UploadProductPage from "../components/UploadProductPage/UploadProductPage";
+
+import LoginPage from "../components/UserPage/LoginPage";
+import RegisterPage from "../components/UserPage/RegisterPage";
+
 import NewsComp from "../components/news/NewsComp";
 import HeaderComp from "../components/BasicArea/HeaderComp";
-import Footer from "../components/BasicArea/Footer";
+
 import FunctionComp from "../components/function/FunctionComp";
 import ProblemSolveComp from "../components/problem/ProblemSolveComp";
 import GameComp from "../components/function/GameComp/GameComp";
@@ -17,11 +28,6 @@ import YouTubeCloning from "../components/function/YouTubeCloning/YouTubeCloning
 import ShoppingComp from "../components/function/ShoppingComp/ShoppingComp";
 import TodoListComp from "../components/function/TodoListComp/TodoListComp";
 import SideBar from "../components/BasicArea/SideBar";
-import LoginPage from "../components/UserPage/LoginPage";
-import {createBrowserHistory} from 'history';
-import RegisterPage from "../components/UserPage/RegisterPage";
-import UploadProductPage from "../components/UploadProductPage/UploadProductPage";
-import HomePage from "../components/HomePage/HomePage";
 
 
 
@@ -40,6 +46,7 @@ function AppRouter() {
     return (
         <>
         <Router history={customHistory}>
+            <LoadingPage/>
             <Header/>
             {/*<HeaderComp/> */}
             <MainContent id="content">

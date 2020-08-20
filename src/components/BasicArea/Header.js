@@ -14,22 +14,16 @@ import CrossBtn from "./HeaderFrame/CrossBtn";
 const Header = ()=> {
     const users = useSelector(state => state.userReducer);
     const dispatch = useDispatch();
-    const onLogOut = () => {
-        dispatch(logOutUser());
-        console.log(users.currentUser);
-    }
+    const onLogOut = () => dispatch(logOutUser());
 
     const [visible, setVisible] = useState(false);
     const [shadowClassName, setShadow] = useState("");
     const [navbarContainerActive, setContainer] = useState(false);
 
-    const showDrawer = () => {
-        setVisible(true)
-    };
-
-    const onClose = () => {
-        setVisible(false)
-    };
+    const registerLi = useRef();
+    const ifHidden = (registerLi) => {
+        console.log(registerLi);
+    }
     
     // NavBar 위치에 따라 그림자 효과 주기
     const checkScrollHeight = () => {
@@ -69,19 +63,17 @@ const Header = ()=> {
                 </NavBarSection>
                 <NavBarSection flex={4} ulList >
                     <ul>
+                            {
+                                !users.isLoggedIn
+                                    && <li onClick={onClickCrossBtn}><NavbarBtn to = "/register">Sign In</NavbarBtn></li>
+                            }
                         <li onClick={onClickCrossBtn}>
                             {
                                 !users.isLoggedIn
-                                ? <NavbarBtn to = "/login">Log In</NavbarBtn>
-                                : <NavbarBtn to = "/" onClick={onLogOut}>Log Out</NavbarBtn>
+                                    ? <NavbarBtn to = "/login">Log In</NavbarBtn>
+                                    : <NavbarBtn to = "/" onClick={onLogOut}>Log Out</NavbarBtn>
                             }
                         </li>
-                            {
-                                !users.isLoggedIn
-                                && <li onClick={onClickCrossBtn}>
-                                    <NavbarBtn to = "/register">Sign In</NavbarBtn>
-                                </li>
-                            }
                         <li>
                             <a target="_blank" rel="noopener noreferrer" href="https://github.com/posungkim">
                                 <i className="fab fa-github"></i>

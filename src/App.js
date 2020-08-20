@@ -32,6 +32,7 @@ const checkLoggedIn = (user, dispatch) => {
     if(!login)
         return;
     // 기존에 로그인이 되어있었다면, 로그인 상태로 전환
+    // 정상적으로 재로그인을 하는 것으로 사용하기 위해서는 type: LOGIN으로 하면 됌
     dispatch({
         type: LOGIN_SUCCESS,
         payload: {
