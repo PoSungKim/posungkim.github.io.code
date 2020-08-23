@@ -4,6 +4,7 @@ import styled from "styled-components";
 const MainContentWrapper = styled.main`
     
     transform: translateY(10vh);
+    height: auto;
     min-height: 90vh;
     width: 100%;
     

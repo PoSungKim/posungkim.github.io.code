@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import PageWrapper from "./frame/PageWrapper";
-import InputWithLabel from "./frame/InputWithLabel";
+import PageWrapper from "./Frame/PageWrapper";
+import InputWithLabel from "./Frame/InputWithLabel";
 import {useDispatch, useSelector} from "react-redux";
 import {initialTransmission, goToHome, loginUser} from "../../_actions/userAction";
 import {Link} from "react-router-dom";
-import LinkButton from "./frame/LinkButton";
-import ErrorMessage from "./frame/ErrorMessage";
+import LinkButton from "./Frame/LinkButton";
+import ErrorMessage from "./Frame/ErrorMessage";
 
 const initialLogInState = {
     email: '',

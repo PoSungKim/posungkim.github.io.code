@@ -1,11 +1,11 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import PageWrapper from "./frame/PageWrapper";
-import InputWithLabel from "./frame/InputWithLabel";
-import LinkButton from "./frame/LinkButton";
+import PageWrapper from "./Frame/PageWrapper";
+import InputWithLabel from "./Frame/InputWithLabel";
+import LinkButton from "./Frame/LinkButton";
 import {useDispatch, useSelector} from "react-redux";
 import {goToHome, registerUser} from "../../_actions/userAction";
 import {RegisterInfoValidator} from "./UserInfoValidator";
-import ErrorMessage from "./frame/ErrorMessage";
+import ErrorMessage from "./Frame/ErrorMessage";
 
 // Store에 반영하기 전에 준비해놓을 Local State
 const initialRegisterState = {

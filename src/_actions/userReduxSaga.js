@@ -12,7 +12,7 @@ import {
     USERS_ERROR,
     USERS_SUCCESS
 } from "./userAction";
-import * as userApi from "../utils/userApi";
+import * as userApi from "../utils/axios/userApi";
 
 // 로그인, 로그아웃 등 회원가입 관련 Redux-Saga 생성
 

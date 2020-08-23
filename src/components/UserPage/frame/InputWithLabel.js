@@ -24,11 +24,41 @@ const Input = styled.input`
     padding-right: 0.5rem;
 `;
 
-const InputWithLabel = ({label, ...rest}) => (
-    <Wrapper>
-        <Label>{label}</Label>
-        <Input {...rest}/>
-    </Wrapper>
-);
+const TextArea = styled.textarea`
+    padding: 0.5rem 0.5rem 0 0.5rem;
+    border: 1px solid gray;
+    min-height: 12rem;
+    font-size: 1.2rem;
+    outline: none;
+    width: 100%;
+`;
+
+const Select = styled.select`
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    border: 1px solid gray;
+    outline: none;
+    width: 9rem;
+`;
+
+const InputWithLabel = ({children, label, infoType, ...rest}) => {
+
+    const switchToInfoType = (infoType) => {
+        switch (infoType) {
+            case 'input' :
+                return <Input {...rest} />;
+            case 'textArea' :
+                return <TextArea {...rest} />;
+            case 'select':
+                return <Select {...rest}>{children}</Select>
+        }
+    };
+
+    return (
+        <Wrapper>
+            <Label>{label}</Label>
+            { switchToInfoType(infoType) }
+        </Wrapper>
+    );
+};
 
 export default InputWithLabel;
