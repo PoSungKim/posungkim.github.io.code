@@ -28,8 +28,10 @@ const DropZoneAreaImage = styled.div`
 
 const DropZoneAreaPreview = styled.div`
     border: 0.5px dashed gray;
-    position: relative;
     margin-left: 10px;
+    position: relative;
+    overflow-x: scroll;
+    display: flex;
     height: 15rem;
     width: 100%;
 `;
@@ -58,13 +60,17 @@ const DropZoneCrossImage = styled.div`
 
 const FileDropZone = () => {
 
-    const [previewState, setPreview] = useState(null);
+    const [previewState, setPreview] = useState([]);
 
     const onDropHander = acceptedFiles => {
-        console.log(acceptedFiles[0]);
+        console.log(acceptedFiles);
+        console.log([...acceptedFiles]);
 
         const formData = new FormData();
-        formData.append('file', acceptedFiles[0]);
+        // append 하나씩 acceptedFiles 배열의 element들을 append해줘야함
+        for(let i  = 0; i < acceptedFiles.length; i++)
+            formData.append('files', acceptedFiles[i]);
+
         const config = {
             header: {
                 'content-type' : 'multipart/form-data'
@@ -72,19 +78,22 @@ const FileDropZone = () => {
         }
         console.log(formData);
 
-        uploadImage(formData, config).then(r => {
-            console.log(r);
+        uploadImage(formData, config).then(imageList => {
+            console.log(imageList);
 
-            if (r.data) {
+            if (imageList) {
                 alert("good!");
-                setPreview(r.data);
-                console.log(previewState);
+                setPreview(imageList);
             }
             else {
                 alert("bad!");
             }
         })
     };
+
+    const onClickPreviewHandler = (removingKey) => {
+        setPreview(previewState.filter((image)=>image.key !== removingKey));
+    }
 
     return (
         <DropZoneWrapper>
@@ -100,7 +109,11 @@ const FileDropZone = () => {
                 )}
             </Dropzone>
             <DropZoneAreaPreview>
-                {previewState && <img src={`data:image/png;base64,${previewState}`} style={{position: "absolute", width: "100%", height: "100%"}} alt="Preview"/>}
+                {previewState
+                && previewState.map((image) =>
+                    (<img onClick = { () => onClickPreviewHandler(image.key)} key = {image.key} src={`data:image/png;base64,${image.imageByteData}`} style={{ width: "100%", height: "100%"}} />)
+                )
+                }
             </DropZoneAreaPreview>
         </DropZoneWrapper>
     )
