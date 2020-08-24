@@ -29,34 +29,39 @@ const UploadProductPage = () => {
     const [formState, setForm] = useState(initialState);
     const {images, title, content, price, continent} = formState;
 
-    const onChange = (event) => {
+    const onChangeHandler = (event) => {
         setForm({
             ...formState,
             [event.target.name]: event.target.value,
         });
     }
 
-    const onClick = () => {
+    const onClickHandler = () => {
         dispatch();
     }
 
-    const onKeyPress = (event) => {
+    const onKeyPressHandler= (event) => {
         if (event.key == "Enter")
-            onClick()
+            onClickHandler()
     };
 
+    const imagesStateRefreshHandler = (images) => {
+        setForm({
+            ...formState,
+            images,
+        })
+    }
     console.log(formState);
     return (
         <>
             <PageWrapper info = {"Share Your Travel Plan"}>
-                <FileDropZone/>
+                <FileDropZone imagesStateRefreshHandler={imagesStateRefreshHandler}/>
 
-                <InputWithLabel infoType="input"    type = "text"    label="제목" name="title"   placeholder="제목을 적어주세요"  value = {title}     onChange = {onChange} onKeyPress = {onKeyPress} />
-                <InputWithLabel infoType="textArea"                  label="설명" name="content" placeholder="설명을 적어주세요"  value = {content}   onChange = {onChange} onKeyPress = {onKeyPress} />
-                <InputWithLabel infoType="input"    type = "number"  label="가격" name="price"                               value = {price}     onChange = {onChange} onKeyPress = {onKeyPress} />
-                <InputWithLabel infoType="select"                    label="장소" name="continent"                           value = {continent} onChange = {onChange}>
-                    {
-                        continents.map(
+                <InputWithLabel infoType="input"    type = "text"    label="제목" name="title"   placeholder="제목을 적어주세요"  value = {title}     onChange = {onChangeHandler} onKeyPress = {onKeyPressHandler} />
+                <InputWithLabel infoType="textArea"                  label="설명" name="content" placeholder="설명을 적어주세요"  value = {content}   onChange = {onChangeHandler} onKeyPress = {onKeyPressHandler} />
+                <InputWithLabel infoType="input"    type = "number"  label="가격" name="price"                               value = {price}     onChange = {onChangeHandler} onKeyPress = {onKeyPressHandler} />
+                <InputWithLabel infoType="select"                    label="장소" name="continent"                           value = {continent} onChange = {onChangeHandler}>
+                    {continents.map(
                             (continent) =>
                                 (<option key = {continent.key} value={continent.value}>
                                     {continent.value}

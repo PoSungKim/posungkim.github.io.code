@@ -26,16 +26,6 @@ const DropZoneAreaImage = styled.div`
     
 `;
 
-const DropZoneAreaPreview = styled.div`
-    border: 0.5px dashed gray;
-    margin-left: 10px;
-    position: relative;
-    overflow-x: scroll;
-    display: flex;
-    height: 15rem;
-    width: 100%;
-`;
-
 const DropZoneCrossImage = styled.div`
     justify-content: center;
     align-items: center;
@@ -58,11 +48,30 @@ const DropZoneCrossImage = styled.div`
     }
 `
 
-const FileDropZone = () => {
+const DropZoneAreaPreview = styled.div`
+    border: 0.5px dashed gray;
+    margin-left: 10px;
+    position: relative;
+    overflow-x: scroll;
+    display: flex;
+    height: 15rem;
+    width: 100%;
+`;
+
+const DropZonePreviewImage = styled.img`
+    & + & {
+        margin-left: 10px;
+    }
+    border: 1px solid gray;
+    height: 100%;
+    width: auto;
+`;
+
+const FileDropZone = ({imagesStateRefreshHandler}) => {
 
     const [previewState, setPreview] = useState([]);
 
-    const onDropHander = acceptedFiles => {
+    const onDropHandler = acceptedFiles => {
         console.log(acceptedFiles);
         console.log([...acceptedFiles]);
 
@@ -84,6 +93,7 @@ const FileDropZone = () => {
             if (imageList) {
                 alert("good!");
                 setPreview(imageList);
+                imagesStateRefreshHandler(imageList);
             }
             else {
                 alert("bad!");
@@ -92,12 +102,14 @@ const FileDropZone = () => {
     };
 
     const onClickPreviewHandler = (removingKey) => {
-        setPreview(previewState.filter((image)=>image.key !== removingKey));
+        const newList = previewState.filter((image)=>image.key !== removingKey)
+        setPreview(newList);
+        imagesStateRefreshHandler(newList);
     }
 
     return (
         <DropZoneWrapper>
-            <Dropzone onDrop={onDropHander}>
+            <Dropzone onDrop={onDropHandler}>
                 {({getRootProps, getInputProps}) => (
                     <DropZoneAreaImage {...getRootProps()}>
                         <DropZoneCrossImage>
@@ -111,8 +123,7 @@ const FileDropZone = () => {
             <DropZoneAreaPreview>
                 {previewState
                 && previewState.map((image) =>
-                    (<img onClick = { () => onClickPreviewHandler(image.key)} key = {image.key} src={`data:image/png;base64,${image.imageByteData}`} style={{ width: "100%", height: "100%"}} />)
-                )
+                    (<DropZonePreviewImage onClick = { () => onClickPreviewHandler(image.key)} key = {image.key} src={`data:image/png;base64,${image.imageByteData}`} />))
                 }
             </DropZoneAreaPreview>
         </DropZoneWrapper>
