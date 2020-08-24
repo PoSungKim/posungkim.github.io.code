@@ -2,14 +2,12 @@
 
 // InitialState 생성
 import {
-    CHANGESETTING,
     FINDUSER, FINDUSER_ERROR, FINDUSER_SUCCESS,
-    GO_TO_HOME, INITIALTRANSMISSION, LOGIN, LOGIN_ERROR, LOGIN_SUCCESS, LOGOUT,
+    INITIALTRANSMISSION, LOGIN, LOGIN_ERROR, LOGIN_SUCCESS, LOGOUT,
     REGISTER,
     REGISTER_ERROR,
     REGISTER_SUCCESS,
 } from "../_actions/userAction";
-import {transitions} from "../utils/styleUtils";
 
 const initialState = {
     transmission : {
@@ -35,7 +33,7 @@ const initialState = {
     isLoggedIn: false
 }
 
-// Counter Reducer 생성
+// userReducer 생성
 export default function userReducer(state = initialState, action) {
     console.log("userReducer() 함수 실행", action);
     switch (action.type) {

@@ -1,8 +1,9 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Dropzone from "react-dropzone";
 import styled from "styled-components";
 import oc from "open-color";
-import {uploadImage} from "../../../utils/axios/uploadApi";
+import {uploadPreview} from "../../../_actions/productAction"
+import {useDispatch, useSelector} from "react-redux";
 
 const DropZoneWrapper = styled.div`
     justify-content: space-between;
@@ -68,37 +69,23 @@ const DropZonePreviewImage = styled.img`
 `;
 
 const FileDropZone = ({imagesStateRefreshHandler}) => {
-
+    const productState = useSelector(state => state.productReducer);
+    const dispatch = useDispatch();
     const [previewState, setPreview] = useState([]);
 
     const onDropHandler = acceptedFiles => {
-        console.log(acceptedFiles);
-        console.log([...acceptedFiles]);
-
         const formData = new FormData();
         // append 하나씩 acceptedFiles 배열의 element들을 append해줘야함
         for(let i  = 0; i < acceptedFiles.length; i++)
             formData.append('files', acceptedFiles[i]);
 
-        const config = {
-            header: {
-                'content-type' : 'multipart/form-data'
-            }
-        }
-        console.log(formData);
+        const config = {header: {'content-type' : 'multipart/form-data'}};
 
-        uploadImage(formData, config).then(imageList => {
-            console.log(imageList);
-
-            if (imageList) {
-                alert("good!");
-                setPreview(imageList);
-                imagesStateRefreshHandler(imageList);
-            }
-            else {
-                alert("bad!");
-            }
-        })
+        dispatch({
+            ...uploadPreview(),
+            data: formData,
+            config: config,
+        });
     };
 
     const onClickPreviewHandler = (removingKey) => {
@@ -106,6 +93,11 @@ const FileDropZone = ({imagesStateRefreshHandler}) => {
         setPreview(newList);
         imagesStateRefreshHandler(newList);
     }
+
+    useEffect(()=>{
+        setPreview(productState.uploadProduct.images);
+        imagesStateRefreshHandler(productState.uploadProduct.images);
+    }, [productState.uploadProduct.images, dispatch]);
 
     return (
         <DropZoneWrapper>
