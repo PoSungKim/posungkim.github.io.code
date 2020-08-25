@@ -38,6 +38,7 @@ const hideLoadingPage = (target) => {
     setTimeout(() => {
         target.current.style.opacity="0";
     }, 1000);
+
     setTimeout(() => {
         // 혹시라도 공간을 차지하면 안 될 수도 있기 때문에
         target.current.style.display="none";
@@ -46,9 +47,11 @@ const hideLoadingPage = (target) => {
 
 const LoadingPage = () => {
     const LoadingPage = useRef();
+
     useEffect(()=>{
         hideLoadingPage(LoadingPage);
-    }, [])
+    }, []);
+
     return (
         <LoadingPageWrapper ref={LoadingPage} >
             <LoadingText>BeneBean's Coding</LoadingText>

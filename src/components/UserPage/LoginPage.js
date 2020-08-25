@@ -53,8 +53,14 @@ const LoginPage = () => {
 
     return (
       <PageWrapper info = {"Log In Page"}>
-        <InputWithLabel label="이메일" name="email" placeholder="이메일" onChange={onChange} value={email} onKeyPress = {onKeyPress}/>
-        <InputWithLabel label="비밀번호" name="password" placeholder="비밀번호" type="password" onChange={onChange} value={password} onKeyPress = {onKeyPress} />
+        <InputWithLabel
+            infoType = 'input' label="이메일" name="email"
+            placeholder="이메일" onChange={onChange} value={email}
+            onKeyPress = {onKeyPress}/>
+        <InputWithLabel
+            infoType = 'input' label="비밀번호" name="password"
+            placeholder="비밀번호" type="password" onChange={onChange}
+            value={password} onKeyPress = {onKeyPress} />
 
         {errorState && <ErrorMessage>이메일 혹은 비밀번호가 맞지 않습니다.</ErrorMessage>}
 

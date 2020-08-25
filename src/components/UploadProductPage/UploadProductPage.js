@@ -4,13 +4,13 @@ import InputWithLabel from "../UserPage/Frame/InputWithLabel";
 import LinkButton from "../UserPage/Frame/LinkButton";
 import {useDispatch, useSelector} from "react-redux";
 import FileDropZone from "./Frame/FileDropZone";
-import {uploadAll} from "../../_actions/productAction";
+import {goToHome, uploadAll, uploadRefresh} from "../../_actions/productAction";
 
 const initialState = {
     writer: '',
     title: '',
     content: '',
-    price : '',
+    price : '$',
     continent: 'Asia',
     images: [],
 }
@@ -26,6 +26,7 @@ const continents = [
 ]
 
 const UploadProductPage = () => {
+    const productState = useSelector(state=>state.productReducer);
     const userState = useSelector(state => state.userReducer);
     const dispatch = useDispatch();
 
@@ -75,6 +76,11 @@ const UploadProductPage = () => {
         })
     }, [userState.login.username, dispatch]);
     console.log(formState);
+
+    if (productState.uploadProduct.isSaved) {
+        dispatch(uploadRefresh());
+        dispatch(goToHome());
+    }
 
     return (
         <>

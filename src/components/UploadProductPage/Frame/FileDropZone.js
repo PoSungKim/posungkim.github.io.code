@@ -89,7 +89,7 @@ const FileDropZone = ({imagesStateRefreshHandler}) => {
     };
 
     const onClickPreviewHandler = (removingKey) => {
-        const newList = previewState.filter((image)=>image.key !== removingKey)
+        const newList = previewState.filter((image)=> image.productImage_id !== removingKey)
         setPreview(newList);
         imagesStateRefreshHandler(newList);
     }
@@ -98,6 +98,7 @@ const FileDropZone = ({imagesStateRefreshHandler}) => {
         setPreview(productState.uploadProduct.images);
         imagesStateRefreshHandler(productState.uploadProduct.images);
     }, [productState.uploadProduct.images, dispatch]);
+    console.log(previewState);
 
     return (
         <DropZoneWrapper>
@@ -115,7 +116,7 @@ const FileDropZone = ({imagesStateRefreshHandler}) => {
             <DropZoneAreaPreview>
                 {previewState
                 && previewState.map((image) =>
-                    (<DropZonePreviewImage onClick = { () => onClickPreviewHandler(image.key)} key = {image.key} src={`data:image/png;base64,${image.imageByteData}`} />))
+                    (<DropZonePreviewImage onClick = { () => onClickPreviewHandler(image.productImage_id)} key = {image.productImage_id} src={`data:image/png;base64,${image.imageByteData}`} />))
                 }
             </DropZoneAreaPreview>
         </DropZoneWrapper>

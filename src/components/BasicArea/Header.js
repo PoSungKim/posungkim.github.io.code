@@ -30,7 +30,6 @@ const Header = ()=> {
         setContainer(!navbarContainerActive);
     };
 
-    console.log(navbarContainerActive);
     useEffect( ()=> {
         checkScrollHeight();
         document.addEventListener("scroll", checkScrollHeight);

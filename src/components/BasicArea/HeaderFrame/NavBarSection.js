@@ -37,10 +37,7 @@ const NavBarSectionArea = styled.div`
 `;
 
 const NavBarSection = ({children, ...rest}) => {
-    useEffect(()=>{
-        console.log("adsfsfs", {...rest}.className);
-        }
-    ,[{...rest}.className]);
+
     return (
         <NavBarSectionArea {...rest}>
             {children}

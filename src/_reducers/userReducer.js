@@ -13,7 +13,7 @@ const initialState = {
     transmission : {
         loading: false,
         data: [],
-        error: null,
+        error: false,
     },
     register: {
         username: null,
@@ -48,7 +48,7 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 transmission: {
-                    ...state.transmission,
+                    ...initialState.transmission,
                     loading: true,
                 }
             }
@@ -59,8 +59,7 @@ export default function userReducer(state = initialState, action) {
                     ...state.transmission,
                     data: action.payload,
                 },
-                register: action.payload,
-                isLoggedIn: true,
+                register: action.payload
             }
         case REGISTER_ERROR:
             return {
@@ -74,7 +73,7 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 transmission: {
-                    ...state.transmission,
+                    ...initialState.transmission,
                     loading: true,
                 }
             }
@@ -102,9 +101,9 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 transmission: {
-                    ...state.transmission,
+                    ...initialState.transmission,
                     loading: true,
-                    error: null
+                    error: false,
                 }
             }
         case LOGIN_SUCCESS :
@@ -116,8 +115,13 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 transmission: {
-                    ...state.transmission,
-                    data: action.payload,
+                    data: {
+                        email: action.payload.email,
+                        password: action.payload.password,
+                        username: action.payload.username,
+                    },
+                    error: false,
+                    loading: false,
                 },
                 login: {
                     email: action.payload.email,
@@ -130,6 +134,7 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 transmission: {
+                    loading: false,
                     data: action.payload,
                     error: action.error,
                 },

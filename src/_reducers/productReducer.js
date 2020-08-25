@@ -1,9 +1,10 @@
 import {
+    GET_PRODUCTS, GET_PRODUCTS_ERROR, GET_PRODUCTS_SUCCESS,
     UPLOAD_ALL, UPLOAD_ALL_ERROR,
     UPLOAD_ALL_SUCCESS,
     UPLOAD_PREVIEW,
     UPLOAD_PREVIEW_ERROR,
-    UPLOAD_PREVIEW_SUCCESS
+    UPLOAD_PREVIEW_SUCCESS, UPLOAD_REFRESH
 } from "../_actions/productAction";
 // 로그인, 로그아웃 등 회원가입 관련 Reducer 생성
 
@@ -13,7 +14,7 @@ const initialState = {
     transmission : {
         loading: false,
         data: [],
-        error: null,
+        error: false,
     },
     uploadProduct: {
         images: [],
@@ -21,7 +22,9 @@ const initialState = {
         content: '',
         price : '',
         continent: 'Asia',
-    }
+        isSaved: false,
+    },
+    getProducts : []
 }
 
 // productReducer 생성
@@ -32,7 +35,7 @@ export default function productReducer(state = initialState, action) {
             return {
                 ...state,
                 transmission: {
-                    ...state.transmission,
+                    ...initialState.transmission,
                     loading: true,
                 }
             }
@@ -62,12 +65,11 @@ export default function productReducer(state = initialState, action) {
             return {
                 ...state,
                 transmission: {
-                    ...state.transmission,
+                    ...initialState.transmission,
                     loading: true,
                 },
             }
         case UPLOAD_ALL_SUCCESS :
-
             return {
                 ...state,
                 transmission: {
@@ -75,12 +77,42 @@ export default function productReducer(state = initialState, action) {
                     data: action.payload,
                     loading: false,
                 },
-                uploadProduct: {
-                    ...action.payload,
+                uploadProduct: action.payload,
+            }
+        case UPLOAD_ALL_ERROR:
+            return {
+                ...state,
+                transmission: {
+                    data: action.payload,
+                    error: true,
+                    loading: false,
+                },
+            };
+        case UPLOAD_REFRESH :
+            return {
+                ...state,
+                uploadProduct: initialState.uploadProduct,
+            }
+        case GET_PRODUCTS:
+            return {
+                ...state,
+                transmission: {
+                    ...state.transmission,
+                    loading: true,
                 },
             }
-
-        case UPLOAD_ALL_ERROR:
+        case GET_PRODUCTS_SUCCESS :
+            return {
+                ...state,
+                transmission: {
+                    ...state.transmission,
+                    data: action.payload,
+                    loading: false,
+                    error: action.error,
+                },
+                getProducts: action.payload,
+            }
+        case GET_PRODUCTS_ERROR:
             return {
                 ...state,
                 transmission: {

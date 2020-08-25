@@ -1,16 +1,9 @@
 import {call, getContext, put, takeEvery, takeLatest} from "redux-saga/effects";
 import {
-    FINDUSER,
-    FINDUSER_ERROR, FINDUSER_SUCCESS,
-    GO_TO_HOME, goToHome,
-    LOGIN, LOGIN_ERROR, LOGIN_SUCCESS, loginUser,
-    LOGOUT,
-    logOutUser,
-    REGISTER,
-    REGISTER_ERROR, REGISTER_SUCCESS,
-    USERS,
-    USERS_ERROR,
-    USERS_SUCCESS
+    FINDUSER, FINDUSER_ERROR, FINDUSER_SUCCESS,
+    GO_TO_HOME,
+    LOGIN, LOGIN_ERROR, LOGIN_SUCCESS,
+    REGISTER, REGISTER_ERROR, REGISTER_SUCCESS,
 } from "./userAction";
 import * as userApi from "../utils/axios/userApi";
 
@@ -20,13 +13,22 @@ import * as userApi from "../utils/axios/userApi";
 
 function* registerUserSaga (action) {
     console.log("registerUserSaga() 실행", action);
-
     try {
         yield call(userApi.registerUser, action.data);
         yield put({
             type: REGISTER_SUCCESS,
             payload: action.data,
         });
+
+        // 회원가입 하고 바로 로그인될 수 있도록 연결하기!!
+        yield put({
+            type: LOGIN,
+            data: {
+                email: action.data.email,
+                password: action.data.password
+            },
+        });
+
     } catch (error) {
         yield put ({
             type: REGISTER_ERROR,

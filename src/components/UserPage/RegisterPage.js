@@ -60,16 +60,16 @@ const RegisterPage = () => {
     return (
         <PageWrapper info = {"Sign In Page"}>
             <InputWithLabel
-                label="사용자 이름" name="username" placeholder="사용자 이름"
+                infoType = 'input' label="사용자 이름" name="username" placeholder="사용자 이름"
                 onChange={onChange} value={username}/>
             <InputWithLabel
-                label="이메일" name="email" placeholder="이메일"
+                infoType = 'input' label="이메일" name="email" placeholder="이메일"
                 onChange={onChange} value={email}/>
             <InputWithLabel
-                label="비밀번호" name="password" placeholder="비밀번호"
+                infoType = 'input' label="비밀번호" name="password" placeholder="비밀번호"
                 type="password" onChange={onChange} value={password}/>
             <InputWithLabel
-                label="비밀번호 확인" name="passwordConfirm" placeholder="비밀번호 확인"
+                infoType='input' label="비밀번호 확인" name="passwordConfirm" placeholder="비밀번호 확인"
                 type="password" onChange={onChange} value={passwordConfirm}/>
             {!errorState.isValid
                 && errorState.warning.map(warning=>
