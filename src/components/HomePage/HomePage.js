@@ -12,10 +12,9 @@ const ContentContainer = styled.section`
 `;
 
 const MainPageSection = styled.div`
+    padding: 5vh 10vw;
     min-height: 90vh;
     height: auto;
-    padding: 0 10vw;
-    padding-top: 5vh;
     
     @media screen and (max-width: 768px) {
         padding: 0;
@@ -23,37 +22,61 @@ const MainPageSection = styled.div`
 `;
 
 const InfoContainer = styled.div`
-    padding-bottom: 2rem;
+    padding-bottom: 3rem;
     text-align: center;
     font-weight: 300;
-    font-size: 2rem;
+    font-size: 2.5rem;
+    
+    @media screen and (max-width: 768px) {
+        padding: 0.5rem 1rem;
+        font-size: 1.5rem;
+    }
 `;
 
 const ImageContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
+    
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+    }
 `;
 
 const Card = styled.div`
-    & + & {
-        margin-left: 1rem;
-    }
     box-shadow: rgba(0.5, 0.5, 0.5, 0.5) 0px 5px 5px 0px;
+    background-color: ${oc.white};
+    transition: all 200ms ease-out;
     border-radius: 5px;
-    //border: 1px solid gray;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    min-width: 20%;
     outline: none;
     height: auto;
-    width: 20vw;
+    flex: 1;
+    
+    &:hover {
+        transform: translateY(-40px) scale(1.2);
+    }
+    
+    @media screen and (max-width: 768px) {
+        margin: 0.5rem;
+        display: ${props=>props.mobileHidden && "none"};
+        
+        &:hover{
+            transform: none;
+        }
+    }
 `;
 
 const CardText = styled.div`
     width: 100%;
     padding: 10px 20px;
+    
     span {
         // continent, price
         &: nth-of-type(1),
         &: nth-of-type(2) {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
         }
         // writer
         &: nth-of-type(3) {
@@ -80,6 +103,22 @@ const HomePage = () => {
     const productsState = useSelector(state=>state.productReducer.getProducts);
     const dispatch = useDispatch();
 
+    const makeExtraCards = (extraCardNum) => {
+        const ArrayofExtraCards = [];
+        for(let i = extraCardNum; i < 4; i++) {
+            ArrayofExtraCards.push(<Card key = {productsState.length + i} mobileHidden>
+                <CardImageContainer>
+                    <CardImage key = '1' style={{backgroundColor: oc.blue[4]}} />
+                </CardImageContainer>
+                <CardText>
+                    <span>Soon to be Filled</span> <span></span><br/>
+                    <span>writer</span>
+                </CardText>
+            </Card>)
+        }
+        return ArrayofExtraCards;
+    }
+
     useEffect(()=>{
         dispatch(getProducts());
     }, [dispatch]);
@@ -92,9 +131,11 @@ const HomePage = () => {
                     May You Have a Fun and Memorable Lifetime Experience! <RiShip2Line/>
                 </InfoContainer>
                 <ImageContainer>
+
                     {
-                        productsState && productsState.map(product =>
-                            <Card>
+                        // 실제 유저가 작성한 정보
+                        productsState && productsState.map( (product, index) =>
+                            <Card key = {index + 1}>
                                 <CardImageContainer>
                                     {product.images && product.images.map(image => (
                                         <CardImage key={image.productImage_id} src={`data:image/png;base64,${image.imageByteData}`} />
@@ -106,6 +147,11 @@ const HomePage = () => {
                                 </CardText>
                             </Card>
                         )
+                    }
+
+                    {
+                        // 4줄
+                        productsState.length % 4 > 0 && makeExtraCards(productsState.length % 4)
                     }
                 </ImageContainer>
             </MainPageSection>

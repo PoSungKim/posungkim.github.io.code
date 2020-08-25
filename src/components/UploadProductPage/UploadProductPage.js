@@ -76,7 +76,6 @@ const UploadProductPage = () => {
         })
     }, [userState.login.username, dispatch]);
     console.log(formState);
-
     if (productState.uploadProduct.isSaved) {
         dispatch(uploadRefresh());
         dispatch(goToHome());
