@@ -1,10 +1,8 @@
 import {
+    GET_PRODUCT, GET_PRODUCT_ERROR, GET_PRODUCT_SUCCESS,
     GET_PRODUCTS, GET_PRODUCTS_ERROR, GET_PRODUCTS_SUCCESS,
-    UPLOAD_ALL, UPLOAD_ALL_ERROR,
-    UPLOAD_ALL_SUCCESS,
-    UPLOAD_PREVIEW,
-    UPLOAD_PREVIEW_ERROR,
-    UPLOAD_PREVIEW_SUCCESS, UPLOAD_REFRESH
+    UPLOAD_ALL, UPLOAD_ALL_ERROR, UPLOAD_ALL_SUCCESS,
+    UPLOAD_PREVIEW, UPLOAD_PREVIEW_ERROR, UPLOAD_PREVIEW_SUCCESS, UPLOAD_REFRESH
 } from "../_actions/productAction";
 // 로그인, 로그아웃 등 회원가입 관련 Reducer 생성
 
@@ -16,6 +14,14 @@ const initialState = {
         data: [],
         error: false,
     },
+    getProducts : [],
+    singleProduct: {
+        images: [],
+        title: '',
+        content: '',
+        price : '',
+        continent: 'Asia',
+    },
     uploadProduct: {
         images: [],
         title: '',
@@ -24,7 +30,6 @@ const initialState = {
         continent: 'Asia',
         isSaved: false,
     },
-    getProducts : []
 }
 
 // productReducer 생성
@@ -106,11 +111,11 @@ export default function productReducer(state = initialState, action) {
                 ...state,
                 transmission: {
                     ...state.transmission,
-                    data: action.payload,
                     loading: false,
-                    error: action.error,
+                    data: action.payload,
+                    error: action.payload === null? true : action.error,
                 },
-                getProducts: action.payload,
+                getProducts: action.payload === null? [] : action.payload,
             }
         case GET_PRODUCTS_ERROR:
             return {
@@ -121,6 +126,34 @@ export default function productReducer(state = initialState, action) {
                     loading: false,
                 },
             };
+        case GET_PRODUCT :
+            return {
+                ...state,
+                transmission: {
+                    ...initialState.transmission,
+                    loading: true,
+                }
+            }
+        case GET_PRODUCT_SUCCESS :
+            return {
+                ...state,
+                transmission: {
+                    loading: false,
+                    data: action.payload,
+                    error: action.payload === null? true : false,
+                },
+                singleProduct: action.payload === null? initialState.singleProduct :action.payload,
+            }
+        case GET_PRODUCT_ERROR :
+            return {
+                ...state,
+                transmission: {
+                    loading: false,
+                    data: action.payload === null ? initialState.singleProduct : action.payload,
+                    error: action.error,
+                },
+                singleProduct: action.payload === null ? initialState.singleProduct : action.payload,
+            }
         default:
             return state;
     }

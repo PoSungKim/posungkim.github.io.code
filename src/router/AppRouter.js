@@ -3,16 +3,18 @@ import React, {useEffect} from "react";
 import {Router, Route, Switch, Redirect} from "react-router-dom";
 import {createBrowserHistory} from 'history';
 
+
 import Header from "../components/BasicArea/Header";
 import MainContent from "../components/BasicArea/MainContent";
 import Footer from "../components/BasicArea/Footer";
 
 import HomePage from "../components/HomePage/HomePage";
 import LoadingPage from "../utils/loading/LoadingPage";
+import ProductPage from "../components/ProductPage/ProductPage";
 import UploadProductPage from "../components/UploadProductPage/UploadProductPage";
-
 import LoginPage from "../components/UserPage/LoginPage";
 import RegisterPage from "../components/UserPage/RegisterPage";
+
 
 import NewsComp from "../components/news/NewsComp";
 import HeaderComp from "../components/BasicArea/HeaderComp";
@@ -28,6 +30,7 @@ import YouTubeCloning from "../components/function/YouTubeCloning/YouTubeCloning
 import ShoppingComp from "../components/function/ShoppingComp/ShoppingComp";
 import TodoListComp from "../components/function/TodoListComp/TodoListComp";
 import SideBar from "../components/BasicArea/SideBar";
+
 
 
 
@@ -53,6 +56,12 @@ function AppRouter() {
                 <SideBar/>
                     <Switch>
                         <Route exact path ="/" component={HomePage}/>
+                        <Route exact path="/login" component={LoginPage}/>
+                        <Route exact path="/register" component={RegisterPage}/>
+                        <Route exact path="/uploadproduct" component={UploadProductPage}/>
+                        <Route exact path={"/product/:id"} component={ProductPage}/>
+
+
                         <Route exact path="/resume" component={ResumeComp}/>
                         <Route exact path="/journals" component={JournalComp}/>
                         <Route exact path="/news" component={NewsComp}/>
@@ -65,9 +74,6 @@ function AppRouter() {
                         <Route exact path="/functions/shopping" component={ShoppingComp}/>
                         <Route exact path="/functions/todolist" component={TodoListComp}/>
                         <Route exact path="/problems" component={ProblemSolveComp}/>
-                        <Route exact path="/login" component={LoginPage}/>
-                        <Route exact path="/register" component={RegisterPage}/>
-                        <Route exact path="/uploadproduct" component={UploadProductPage}/>
                         <Redirect from="*" to="/"/>
                     </Switch>
                 <Footer/>

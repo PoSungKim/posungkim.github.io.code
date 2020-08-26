@@ -17,6 +17,10 @@ export const GET_PRODUCTS = 'product/GET_PRODUCTS';
 export const GET_PRODUCTS_SUCCESS = 'product/GET_PRODUCTS_SUCCESS';
 export const GET_PRODUCTS_ERROR = 'product/GET_PRODUCTS_ERROR';
 
+export const GET_PRODUCT = 'product/GET_PRODUCT';
+export const GET_PRODUCT_SUCCESS = 'product/GET_PRODUCT_SUCCESS';
+export const GET_PRODUCT_ERROR = 'product/GET_PRODUCT_ERROR';
+
 // Action 생성
 export const uploadPreview = () => (
     {type: UPLOAD_PREVIEW}
@@ -28,6 +32,10 @@ export const uploadAll = () => (
 
 export const uploadRefresh = () => (
     {type: UPLOAD_REFRESH}
+)
+
+export const getProduct = () => (
+    {type: GET_PRODUCT}
 )
 
 export const getProducts = () => (

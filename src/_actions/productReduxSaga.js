@@ -1,5 +1,6 @@
 import {call, getContext, put, takeEvery, takeLatest} from "redux-saga/effects";
 import {
+    GET_PRODUCT, GET_PRODUCT_ERROR, GET_PRODUCT_SUCCESS,
     GET_PRODUCTS, GET_PRODUCTS_ERROR, GET_PRODUCTS_SUCCESS,
     GO_TO_HOME, GO_TO_LOGIN,
     UPLOAD_ALL, UPLOAD_ALL_ERROR,
@@ -54,6 +55,25 @@ function* uploadAllSaga(action) {
     }
 }
 
+function* getProductSaga(action) {
+    console.log("getProductSaga() 실행", action);
+    try {
+        const product = yield call(productApi.getOne, action.data);
+        console.log(product);
+        yield put({
+            type: GET_PRODUCT_SUCCESS,
+            payload: product,
+            error: false,
+        });
+    } catch(error) {
+        yield put ({
+            type: GET_PRODUCT_ERROR,
+            payload: error,
+            error: true,
+        });
+    }
+}
+
 function* getProductsSaga(action) {
     console.log("getProductsSaga() 실행", action);
     try {
@@ -85,9 +105,13 @@ function* goToLoginSaga(action) {
 
 
 export function* productSaga() {
+    yield takeEvery(GET_PRODUCT, getProductSaga);
+    yield takeEvery(GET_PRODUCTS, getProductsSaga);
+
     yield takeEvery(UPLOAD_PREVIEW, uploadPreviewSaga);
     yield takeLatest(UPLOAD_ALL, uploadAllSaga);
+
     yield takeEvery(GO_TO_HOME, goToHomeSaga);
-    yield takeEvery(GET_PRODUCTS, getProductsSaga);
     yield takeEvery(GO_TO_LOGIN, goToLoginSaga);
+
 }
