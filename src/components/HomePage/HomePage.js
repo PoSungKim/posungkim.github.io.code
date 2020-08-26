@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getProducts} from "../../_actions/productAction";
 import LoadingPage from "../../utils/loading/LoadingPage";
 import LoadingContent from "../../utils/loading/LoadingContent";
+import TopBanner from "./Frame/TopBanner";
 
 const ContentContainer = styled.section`
     width: 100%;
@@ -38,6 +39,7 @@ const InfoContainer = styled.div`
 const ImageContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
+    min-height: 30vh;
     
     @media screen and (max-width: 768px) {
         flex-direction: column;
@@ -117,6 +119,7 @@ const HomePage = () => {
     const productsState = useSelector(state=>state.productReducer.getProducts);
     const dispatch = useDispatch();
 
+    // 카드 개수에 따라서 빈칸이 생기면 정리가 안되어 보일 수 있기 때문에 채워주는 과정이 필요!
     const makeExtraCards = (extraCardNum) => {
         const ArrayofExtraCards = [];
         for(let i = extraCardNum; i < 4; i++) {
@@ -125,7 +128,7 @@ const HomePage = () => {
                     <CardImage key = '1' style={{backgroundColor: oc.blue[4]}} />
                 </CardImageContainer>
                 <CardText>
-                    <span>Soon to be Filled</span> <span></span><br/>
+                    <span>Soon to be Added by Users</span> <span></span><br/>
                     <span>writer</span>
                 </CardText>
             </Card>)
@@ -137,12 +140,14 @@ const HomePage = () => {
         productsState.length == 0 ? dispatch(getProducts()) : !window.productsInterval && scrollImgHandler();
 
         return ()=>{
-            clearInterval(window.productsInterval);
+            //clearInterval(window.productsInterval);
         }
     }, [dispatch, productsState]);
 
     return (
         <ContentContainer>
+
+            <TopBanner/> {/* Parallax 스크롤 */}
             <MainPageSection>
                 <InfoContainer>
                     New Life, New Discoveries, and Many More Sweet Memories. <br/>
