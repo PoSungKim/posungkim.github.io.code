@@ -30,7 +30,7 @@ const TopBannerTxt = styled.div`
     text-align: center;
     position: absolute;
     padding: 1rem 2rem;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 800;
     display: flex;
     

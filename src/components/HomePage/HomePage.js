@@ -17,7 +17,6 @@ const ContentContainer = styled.section`
 const MainPageSection = styled.div`
     padding: 5vh 10vw;
     min-height: 90vh;
-    height: auto;
     
     @media screen and (max-width: 768px) {
         padding: 0;
@@ -28,7 +27,7 @@ const InfoContainer = styled.div`
     padding-bottom: 3rem;
     text-align: center;
     font-weight: 300;
-    font-size: 2.5rem;
+    font-size: 2rem;
     
     @media screen and (max-width: 768px) {
         padding: 0.5rem 1rem;
@@ -80,11 +79,11 @@ const CardText = styled.div`
         // continent, price
         &: nth-of-type(1),
         &: nth-of-type(2) {
-            font-size: 1.5rem;
+            font-size: 1rem;
         }
         // writer
         &: nth-of-type(3) {
-            font-size: 1.3rem;
+            font-size: 1rem;
             color: ${oc.gray[5]};
         }
     }
@@ -92,8 +91,8 @@ const CardText = styled.div`
 
 const CardImageContainer = styled.div`
     overflow-x: scroll;
+    height: 200px;
     display: flex;
-    height: 275px;
     width: 100%;
 `;
 
@@ -139,9 +138,6 @@ const HomePage = () => {
     useEffect(()=>{
         productsState.length == 0 ? dispatch(getProducts()) : !window.productsInterval && scrollImgHandler();
 
-        return ()=>{
-            //clearInterval(window.productsInterval);
-        }
     }, [dispatch, productsState]);
 
     return (
