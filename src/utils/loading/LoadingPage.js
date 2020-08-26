@@ -1,7 +1,8 @@
 import React, {useEffect, useRef} from "react";
 import styled from "styled-components";
 import oc from "open-color";
-import {transitions} from "../../utils/styleUtils";
+import {transitions} from "../styleUtils";
+
 const LoadingPageWrapper = styled.section`
     background-color: ${oc.gray[0]};
     transition: all 1s ease-in;
@@ -18,44 +19,50 @@ const LoadingPageWrapper = styled.section`
     left: 0; 
 `;
 
-const LoadingIcon = styled.div`
+export const LoadingIcon = styled.div`
     animation: ${transitions.spin} 1s linear infinite;
     border: 16px solid ${oc.gray[0]};
-    border-top: 16px solid ${oc.yellow[5]};
+    border-top: 16px solid ${props => props.loadingIconColor};
     border-radius: 50%;
     display: block;
-    height: 150px;
-    width: 150px;
+    height: ${props => props.loadingIconSize};
+    width: ${props => props.loadingIconSize};
 `;
 
-const LoadingText = styled.span`
+export const LoadingText = styled.span`
     position: relative;
-    font-size: 3rem;
+    text-align: center;
+    font-size: 2.5rem;
     top: -10vh;
+    
+    @media screen and (max-width: 768px) {
+        font-size: 1.5rem;
+        padding: 0 2.5rem;
+    }
 `;
 
-const hideLoadingPage = (target) => {
+const hideLoadingPage = (target, clearTime) => {
     setTimeout(() => {
         target.current.style.opacity="0";
-    }, 1000);
+    },clearTime);
 
     setTimeout(() => {
         // 혹시라도 공간을 차지하면 안 될 수도 있기 때문에
         target.current.style.display="none";
-    }, 2000);
+    }, clearTime+1000);
 }
 
-const LoadingPage = () => {
+const LoadingPage = ({clearTime = 100000000, infoText, loadingIconColor = oc.yellow[5], loadingIconSize = "150px"}) => {
     const LoadingPage = useRef();
 
     useEffect(()=>{
-        hideLoadingPage(LoadingPage);
+        hideLoadingPage(LoadingPage, clearTime);
     }, []);
 
     return (
         <LoadingPageWrapper ref={LoadingPage} >
-            <LoadingText>BeneBean's Coding</LoadingText>
-            <LoadingIcon />
+            <LoadingText>{infoText}</LoadingText>
+            <LoadingIcon loadingIconColor = {loadingIconColor} loadingIconSize = {loadingIconSize} />
         </LoadingPageWrapper>
     )
 }

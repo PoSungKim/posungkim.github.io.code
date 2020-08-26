@@ -11,6 +11,7 @@ export const UPLOAD_ALL_ERROR = 'product/UPLOAD_ALL_ERROR';
 export const UPLOAD_REFRESH = 'product/UPLOAD_REFRESH';
 
 export const GO_TO_HOME = "product/GO_TO_HOME"
+export const GO_TO_LOGIN = "product/GO_TO_LOGIN"
 
 export const GET_PRODUCTS = 'product/GET_PRODUCTS';
 export const GET_PRODUCTS_SUCCESS = 'product/GET_PRODUCTS_SUCCESS';
@@ -29,10 +30,16 @@ export const uploadRefresh = () => (
     {type: UPLOAD_REFRESH}
 )
 
+export const getProducts = () => (
+    {type: GET_PRODUCTS}
+)
+
 export const goToHome = () => (
     {type: GO_TO_HOME}
 )
 
-export const getProducts = () => (
-    {type: GET_PRODUCTS}
+export const goToLogin = () => (
+    {type: GO_TO_LOGIN}
 )
+
+

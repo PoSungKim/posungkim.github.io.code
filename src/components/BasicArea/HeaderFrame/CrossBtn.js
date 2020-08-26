@@ -73,7 +73,7 @@ const CrossBtn = ({...rest}) => {
     return (
         <NavbarToggleBtn {...rest} >
             <input type="checkbox" id="crossBtn" />
-            <label for="crossBtn" >
+            <label htmlFor="crossBtn" >
                 <span></span>
                 <span></span>
                 <span></span>

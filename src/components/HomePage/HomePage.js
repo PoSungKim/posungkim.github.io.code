@@ -1,9 +1,11 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useMemo} from 'react'
 import styled from "styled-components";
 import {RiShip2Line} from "react-icons/ri";
 import oc from "open-color";
 import {useDispatch, useSelector} from "react-redux";
 import {getProducts} from "../../_actions/productAction";
+import LoadingPage from "../../utils/loading/LoadingPage";
+import LoadingContent from "../../utils/loading/LoadingContent";
 
 const ContentContainer = styled.section`
     width: 100%;
@@ -99,6 +101,18 @@ const CardImage = styled.img`
     border-radius: 5px;
 `;
 
+const scrollImgHandler = () => {
+    const cardImgContainer = document.querySelectorAll(".CardImgContainer");
+    window.productsInterval = setInterval(()=>{
+        for(let i = 0; i < cardImgContainer.length; i++) {
+            if (cardImgContainer[i].scrollLeft >= cardImgContainer[i].scrollWidth - cardImgContainer[i].offsetWidth)
+                cardImgContainer[i].scrollLeft = 0;
+            else
+                cardImgContainer[i].scrollLeft += cardImgContainer[i].offsetWidth;
+        }
+    }, 1000);
+}
+
 const HomePage = () => {
     const productsState = useSelector(state=>state.productReducer.getProducts);
     const dispatch = useDispatch();
@@ -120,8 +134,12 @@ const HomePage = () => {
     }
 
     useEffect(()=>{
-        dispatch(getProducts());
-    }, [dispatch]);
+        productsState.length == 0 ? dispatch(getProducts()) : !window.productsInterval && scrollImgHandler();
+
+        return ()=>{
+            clearInterval(window.productsInterval);
+        }
+    }, [dispatch, productsState]);
 
     return (
         <ContentContainer>
@@ -131,12 +149,16 @@ const HomePage = () => {
                     May You Have a Fun and Memorable Lifetime Experience! <RiShip2Line/>
                 </InfoContainer>
                 <ImageContainer>
+                    {
+                        productsState.length == 0 &&
+                            <LoadingContent loadingIconColor={oc.blue[5]} loadingIconSize={'100px'}/>
+                    }
 
                     {
                         // 실제 유저가 작성한 정보
                         productsState && productsState.map( (product, index) =>
                             <Card key = {index + 1}>
-                                <CardImageContainer>
+                                <CardImageContainer className="CardImgContainer">
                                     {product.images && product.images.map(image => (
                                         <CardImage key={image.productImage_id} src={`data:image/png;base64,${image.imageByteData}`} />
                                     ))}
@@ -150,7 +172,7 @@ const HomePage = () => {
                     }
 
                     {
-                        // 4줄
+                        // 만약 만들어진 Card의 수에 따라 빈칸이 만들어질 것 같다면, 더미 카드를 만들어서 빈칸 채우기
                         productsState.length % 4 > 0 && makeExtraCards(productsState.length % 4)
                     }
                 </ImageContainer>

@@ -8,7 +8,7 @@ import MainContent from "../components/BasicArea/MainContent";
 import Footer from "../components/BasicArea/Footer";
 
 import HomePage from "../components/HomePage/HomePage";
-import LoadingPage from "../components/LoadingPage/LoadingPage";
+import LoadingPage from "../utils/loading/LoadingPage";
 import UploadProductPage from "../components/UploadProductPage/UploadProductPage";
 
 import LoginPage from "../components/UserPage/LoginPage";
@@ -46,7 +46,7 @@ function AppRouter() {
     return (
         <>
         <Router history={customHistory}>
-            <LoadingPage/>
+            <LoadingPage clearTime={3000} infoText={"- BeneBean's Coding - "}/>
             <Header/>
             {/*<HeaderComp/> */}
             <MainContent id="content">
