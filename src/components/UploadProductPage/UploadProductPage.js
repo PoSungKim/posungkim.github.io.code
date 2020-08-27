@@ -4,7 +4,7 @@ import InputWithLabel from "../UserPage/Frame/InputWithLabel";
 import LinkButton from "../UserPage/Frame/LinkButton";
 import {useDispatch, useSelector} from "react-redux";
 import FileDropZone from "./Frame/FileDropZone";
-import {goToHome, goToLogin, uploadAll, uploadRefresh} from "../../_actions/productAction";
+import {getProducts, goToHome, goToLogin, uploadAll, uploadRefresh} from "../../_actions/productAction";
 import {getContext} from "redux-saga/effects";
 
 const initialState = {
@@ -42,7 +42,6 @@ const UploadProductPage = () => {
     }
 
     const onClickButtonHandler = (event) => {
-        event.preventDefault();
 
         if (!formState.writer ||
             !formState.images ||
@@ -57,6 +56,8 @@ const UploadProductPage = () => {
             ...uploadAll(),
             data: formState,
         });
+
+        dispatch(goToHome());
     }
 
     const onKeyPressHandler= (event) => {
@@ -76,11 +77,9 @@ const UploadProductPage = () => {
             writer: userState.login.username,
         })
     }, [userState.login.username, dispatch]);
+
     console.log(formState);
-    if (productState.uploadProduct.isSaved) {
-        dispatch(uploadRefresh());
-        dispatch(goToHome());
-    }
+
     if (!userState.isLoggedIn) {
         dispatch(goToLogin());
     }

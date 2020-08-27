@@ -7,7 +7,7 @@ import {
     UPLOAD_ALL_SUCCESS,
     UPLOAD_PREVIEW,
     UPLOAD_PREVIEW_ERROR,
-    UPLOAD_PREVIEW_SUCCESS,
+    UPLOAD_PREVIEW_SUCCESS, UPLOAD_REFRESH,
 } from "./productAction";
 import * as productApi from "../utils/axios/productApi";
 
@@ -45,6 +45,12 @@ function* uploadAllSaga(action) {
                 isSaved: transmissionResult,
             },
             error: !transmissionResult
+        });
+        yield put({
+            type: UPLOAD_REFRESH,
+        });
+        yield put({
+            type: GET_PRODUCTS,
         });
     } catch(error) {
         yield put ({

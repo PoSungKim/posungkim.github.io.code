@@ -8,8 +8,8 @@ import LoadingContent from "../../utils/loading/LoadingContent";
 import HomePageWrapper from "./Frame/HomePageWrapper";
 import {Card, CardContainer, CardImage, CardImageContainer, CardText} from "./Frame/HomePageCard";
 
-const scrollImgHandler = () => {
-    const cardImgContainer = document.querySelectorAll(".CardImgContainer");
+export const scrollImgHandler = (className) => {
+    const cardImgContainer = document.querySelectorAll(className);
     window.productsInterval = setInterval(()=>{
         for(let i = 0; i < cardImgContainer.length; i++) {
             if (cardImgContainer[i].scrollLeft >= cardImgContainer[i].scrollWidth - cardImgContainer[i].offsetWidth)
@@ -43,10 +43,8 @@ const HomePage = () => {
     }
 
     useEffect(()=>{
-        productsState.length == 0 && !productsRootState.transmission.error
-            ? dispatch(getProducts()) :
-            !window.productsInterval &&
-            scrollImgHandler();
+        (productsState.length == 0 && !productsRootState.transmission.error) && dispatch(getProducts());
+        clearInterval(window.productsInterval); scrollImgHandler(".CardImgContainer");
 
     }, [dispatch, productsState]);
 

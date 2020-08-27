@@ -8,12 +8,11 @@ const PageContainer = styled.section`
 `;
 
 const PageSection = styled.div`
-    padding: 5vh 10vw;
     min-height: 90vh;
+    padding: 5vh 0;
+    margin: auto;
+    width: 80%;
     
-    @media screen and (max-width: 768px) {
-        padding: 0;
-    }
 `;
 
 const ProductPageWrapper = ({children}) => {
