@@ -1,11 +1,13 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getProduct, refreshProduct} from "../../_actions/productAction";
-import Axios from "axios";
+import {addCart} from "../../_actions/cartAction";
+
 
 import styled from "styled-components";
 import oc from "open-color";
 import ProductPageWrapper from "./Frame/ProductPageWrapper";
+
 
 
 const Continent = styled.div`
@@ -128,28 +130,23 @@ const Img = styled.img`
     width: 100%;
 `;
 
-const onClickAddCartHandler = async (event) => {
-    event.preventDefault();
-    console.log("onClickAddCartHandler 시작");
-    const data = "hello";
-    const res = await Axios.post("http://localhost:8080/api/mycart/all", data)
-        .then(response=>(response.data));
-    console.log(res);
-}
-
 const ProductPage = ({match}) => {
+    const userState = useSelector(state=>state.userReducer);
     const productState = useSelector(state=>state.productReducer.singleProduct);
     const dispatch = useDispatch();
-    const productId = match.params.id;
+    const product_id = match.params.id;
+    const email = userState.login.email;
+
+    const onClickAddCartHandler = async (event, data) =>
+        {dispatch({...addCart(), data})};
 
     useEffect(()=>{
-        if (productState.id !== parseInt(productId, 10)){
+        if (productState.id !== parseInt(product_id, 10)){
             dispatch({
                 ...getProduct(),
-                data: productId,
+                data: product_id,
             });
         }
-
         return ()=>{ dispatch(refreshProduct());}
     }, []);
 
@@ -191,7 +188,9 @@ const ProductPage = ({match}) => {
                                 </tr>
                             </tbody>
                         </InfoCardTable>
-                        <InfoCardCartBtn onClick={onClickAddCartHandler}>Add to Cart</InfoCardCartBtn>
+                        {userState.isLoggedIn // 회원가입할 때, email과 username은 중복이 없도록 설정함, 하지만 username의 경우 서비스에서 공개되기 때문에, 공개되지 않은 email을 사용하기로 결정
+                            && <InfoCardCartBtn onClick={(event)=>onClickAddCartHandler(event, {email, product_id})}>Add to Cart</InfoCardCartBtn>
+                        }
                     </InfoCard>
                 </InfoContainer>
             </ContentContainer>

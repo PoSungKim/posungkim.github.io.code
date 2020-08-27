@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import oc from "open-color";
 import styled from "styled-components";
-import {transitions} from "../../../utils/styleUtils";
+import {transitions} from "../../../utils/style/styleUtils";
 
 const ErrorMessageWrapper = styled.div`
     margin-top: 16px;

@@ -1,4 +1,4 @@
-// 로그인, 로그아웃 등 회원가입 관련 Action
+// Product 관련 Action
 
 export const UPLOAD_PREVIEW = 'product/UPLOAD_PREVIEW';
 export const UPLOAD_PREVIEW_SUCCESS = 'product/UPLOAD_PREVIEW_SUCCESS';

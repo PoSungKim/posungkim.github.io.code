@@ -1,8 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {goToLogin} from "../../_actions/productAction";
+
 import {useDispatch, useSelector} from "react-redux";
+import {goToLogin} from "../../_actions/productAction";
+import {showAllCarts} from "../../_actions/cartAction";
+
 import styled from "styled-components";
 import oc from "open-color";
+import {Link} from "react-router-dom";
+
 
 const PageContainer = styled.section`
     width: 100%;
@@ -25,24 +30,45 @@ const CartTable = styled.table`
     td, th {
         border: 1px solid ${oc.gray[1]};
         padding: 0.5rem;
+        &.Btn {
+            border: none;
+        }
     }
     
-    tr:nth-child(even) {
-        background-color: ${oc.gray[1]};
+    .Continent, .Writer,
+    .Quantity, .Price, .Btn {
+        width: 5%;
+    }
+    .Title, .Description {
+        width: 30%;
     }
 `;
 
-const MyCartPage = () => {
-    const userState = useSelector(state=>state.userReducer);
-    const dispatch = useDispatch();
+const Btn = styled.button`
+    &.Remove {
+        background-color: ${oc.red[5]};
+    }
+    &.View {
+        background-color: ${oc.yellow[5]};
+    }
+    border-radius: 5px;
+    width: 4rem;
+    height: 2rem;
+`;
 
+const MyCartPage = () => {
+    const userState = useSelector(state=> state.userReducer);
+    const cartState = useSelector(state => state.cartReducer.myCart);
+    const dispatch = useDispatch();
 
     if (!userState.isLoggedIn)
         dispatch(goToLogin());
 
     useEffect(()=>{
 
-    }, []);
+        dispatch({...showAllCarts(), data: {email: userState.login.email}});
+
+    }, [dispatch]);
 
     return (
         <PageContainer>
@@ -50,21 +76,36 @@ const MyCartPage = () => {
                 <CartTable>
                     <thead>
                         <tr>
-                            <th>Product Image</th>
-                            <th>Product</th>
-                            <th>Product Quantity</th>
-                            <th>Price</th>
-                            <th>RemoveFromCart</th>
+                            <th className="Continent">Continent</th>
+                            <th className="Writer">Writer</th>
+                            <th className="Quantity">Quantity</th>
+                            <th className="Price">Price</th>
+                            <th className="Title">Title</th>
+                            <th className="Description">Description</th>
+                            <th className="Btn" colSpan="2"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
+                            {
+                                cartState.map(product=>(
+                                    <tr>
+                                        <td className="Continent">{product.continent}</td>
+                                        <td className="Writer">{product.writer}</td>
+                                        <td className="Quantity">{product.count}</td>
+                                        <td className="Price">{product.price}</td>
+                                        <td className="Title">{product.title}</td>
+                                        <td className="Description">{product.content}</td>
+                                        <td className="Btn View">
+                                            <Link to = {`/product/${product.product_id}`}>
+                                                <Btn className="View">View</Btn>
+                                            </Link>
+                                        </td>
+                                        <td className="Btn Remove">
+                                            <Btn className="Remove">Remove</Btn>
+                                        </td>
+                                    </tr>
+                                ))
+                            }
                     </tbody>
                 </CartTable>
             </PageSection>

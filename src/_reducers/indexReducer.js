@@ -5,13 +5,15 @@ import userReducer from "./userReducer";
 import {userSaga} from "../_actions/userReduxSaga";
 import productReducer from "./productReducer";
 import {productSaga} from "../_actions/productReduxSaga";
+import {cartSaga} from "../_actions/cartReduxSaga";
+import cartReducer from "./cartReducer";
 
 
-const rootReducer = combineReducers({userReducer, productReducer});
+const rootReducer = combineReducers({userReducer, productReducer, cartReducer});
 
 export function* rootSaga() {
     yield all([
-        userSaga(), productSaga()
+        userSaga(), productSaga(), cartSaga(),
     ]);
 }
 

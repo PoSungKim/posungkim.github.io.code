@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from "react";
 import styled from "styled-components";
 import oc from "open-color";
-import {transitions} from "../styleUtils";
+import {transitions} from "../style/styleUtils";
 
 const LoadingPageWrapper = styled.section`
     background-color: ${oc.gray[0]};

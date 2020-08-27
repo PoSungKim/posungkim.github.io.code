@@ -4,7 +4,7 @@ import {
     UPLOAD_ALL, UPLOAD_ALL_ERROR, UPLOAD_ALL_SUCCESS,
     UPLOAD_PREVIEW, UPLOAD_PREVIEW_ERROR, UPLOAD_PREVIEW_SUCCESS, UPLOAD_REFRESH
 } from "../_actions/productAction";
-// 로그인, 로그아웃 등 회원가입 관련 Reducer 생성
+// Product 관련 Reducer 생성
 
 // InitialState 생성
 
