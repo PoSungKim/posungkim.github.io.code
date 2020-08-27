@@ -35,6 +35,7 @@ const TextArea = styled.textarea`
 
 const Select = styled.select`
     padding: 0.5rem 0 0.5rem 0.5rem;
+    background-color: white;
     border: 1px solid gray;
     outline: none;
     width: 9rem;

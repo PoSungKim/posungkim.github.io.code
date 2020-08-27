@@ -3,7 +3,7 @@ import axios from "axios";
 const LOCAL_URL = "http://localhost:8080/api/product";
 const DEPLOY_URL = "https://springboot--backend.herokuapp.com/api/product"
 const TEST_URL = "https://jsonplaceholder.typicode.com/users";
-const CURRENT_URL = LOCAL_URL;
+const CURRENT_URL = DEPLOY_URL;
 
 export const getAll = async () =>{
     console.log("productApi/getAll() 함수 실행");

@@ -51,7 +51,7 @@ const Header = ()=> {
                         <Link to = "/"><li>Home</li></Link>
                         <Link to = "/"><li>Community</li></Link>
                         <Link to = "/"><li>CrawledInfo</li></Link>
-                        <Link to = "/"><li>History</li></Link>
+                        <Link to = "/mycart"><li>MyCart</li></Link>
                         <Link to = "/uploadproduct"><li>Upload</li></Link>
                     </ul>
                 </NavBarSection>

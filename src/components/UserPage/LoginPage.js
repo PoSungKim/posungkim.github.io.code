@@ -55,14 +55,14 @@ const LoginPage = () => {
       <PageWrapper info = {"Log In Page"}>
         <InputWithLabel
             infoType = 'input' label="이메일" name="email"
-            placeholder="이메일" onChange={onChange} value={email}
+            placeholder="test@test.com (BeneBean 계정)" onChange={onChange} value={email}
             onKeyPress = {onKeyPress}/>
         <InputWithLabel
             infoType = 'input' label="비밀번호" name="password"
-            placeholder="비밀번호" type="password" onChange={onChange}
+            placeholder="123123" type="password" onChange={onChange}
             value={password} onKeyPress = {onKeyPress} />
 
-        {errorState && <ErrorMessage>이메일 혹은 비밀번호가 맞지 않습니다.</ErrorMessage>}
+        {errorState && <ErrorMessage>이메일 혹은 비밀번호가 맞면지 않습니다.</ErrorMessage>}
 
         <LinkButton content="로그인" width = "100%" onClick={onClick}/>
         <LinkButton to = "/register" content="회원가입"/>

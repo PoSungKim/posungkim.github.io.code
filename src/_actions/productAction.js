@@ -20,6 +20,7 @@ export const GET_PRODUCTS_ERROR = 'product/GET_PRODUCTS_ERROR';
 export const GET_PRODUCT = 'product/GET_PRODUCT';
 export const GET_PRODUCT_SUCCESS = 'product/GET_PRODUCT_SUCCESS';
 export const GET_PRODUCT_ERROR = 'product/GET_PRODUCT_ERROR';
+export const REFRESH_PRODUCT = 'product/REFRESH_PRODUCT'
 
 // Action 생성
 export const uploadPreview = () => (
@@ -36,6 +37,10 @@ export const uploadRefresh = () => (
 
 export const getProduct = () => (
     {type: GET_PRODUCT}
+)
+
+export const refreshProduct = () => (
+    {type: REFRESH_PRODUCT}
 )
 
 export const getProducts = () => (

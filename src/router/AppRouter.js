@@ -30,6 +30,7 @@ import YouTubeCloning from "../components/function/YouTubeCloning/YouTubeCloning
 import ShoppingComp from "../components/function/ShoppingComp/ShoppingComp";
 import TodoListComp from "../components/function/TodoListComp/TodoListComp";
 import SideBar from "../components/BasicArea/SideBar";
+import MyCartPage from "../components/MyCartPage/MyCartPage";
 
 
 
@@ -60,8 +61,9 @@ function AppRouter() {
                         <Route exact path="/register" component={RegisterPage}/>
                         <Route exact path="/uploadproduct" component={UploadProductPage}/>
                         <Route exact path={"/product/:id"} component={ProductPage}/>
+                        <Route exact path="/mycart" component={MyCartPage}/>
 
-
+                        {/* 하단은 기존에 연습한 내용 */}
                         <Route exact path="/resume" component={ResumeComp}/>
                         <Route exact path="/journals" component={JournalComp}/>
                         <Route exact path="/news" component={NewsComp}/>

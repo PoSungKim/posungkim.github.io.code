@@ -1,5 +1,5 @@
 import {
-    GET_PRODUCT, GET_PRODUCT_ERROR, GET_PRODUCT_SUCCESS,
+    GET_PRODUCT, GET_PRODUCT_ERROR, GET_PRODUCT_SUCCESS, REFRESH_PRODUCT,
     GET_PRODUCTS, GET_PRODUCTS_ERROR, GET_PRODUCTS_SUCCESS,
     UPLOAD_ALL, UPLOAD_ALL_ERROR, UPLOAD_ALL_SUCCESS,
     UPLOAD_PREVIEW, UPLOAD_PREVIEW_ERROR, UPLOAD_PREVIEW_SUCCESS, UPLOAD_REFRESH
@@ -20,7 +20,7 @@ const initialState = {
         title: '',
         content: '',
         price : '',
-        continent: 'Asia',
+        continent: '',
     },
     uploadProduct: {
         images: [],
@@ -140,7 +140,7 @@ export default function productReducer(state = initialState, action) {
                 transmission: {
                     loading: false,
                     data: action.payload,
-                    error: action.payload === null? true : false,
+                    error: action.payload === null,
                 },
                 singleProduct: action.payload === null? initialState.singleProduct :action.payload,
             }
@@ -153,6 +153,11 @@ export default function productReducer(state = initialState, action) {
                     error: action.error,
                 },
                 singleProduct: action.payload === null ? initialState.singleProduct : action.payload,
+            }
+        case REFRESH_PRODUCT :
+            return {
+                ...state,
+                singleProduct: initialState.singleProduct,
             }
         default:
             return state;

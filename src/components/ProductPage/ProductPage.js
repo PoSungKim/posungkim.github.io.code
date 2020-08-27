@@ -1,9 +1,12 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getProduct} from "../../_actions/productAction";
+import {getProduct, refreshProduct} from "../../_actions/productAction";
+import Axios from "axios";
 
 import styled from "styled-components";
+import oc from "open-color";
 import ProductPageWrapper from "./Frame/ProductPageWrapper";
+
 
 const Continent = styled.div`
     padding-bottom: 2rem;
@@ -35,8 +38,12 @@ const InfoCard = styled.div`
             font-size: 2rem;
         }
         &:nth-of-type(3) {
-            font-weight: 400;
+            font-weight: 700;
             font-size: 1.3rem;
+        }
+        &:nth-of-type(4) {
+            font-weight: 300;
+            font-size: 1.2rem;
         }
     }
     
@@ -59,13 +66,34 @@ const InfoCardTable = styled.table`
             font-weight: 400;
         }
     }
+`;
+
+const InfoCardCartBtn = styled.button`
+    background-color: ${oc.yellow[5]};
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    margin-top: 3rem;
+    cursor: pointer;
+    outline: none;
+    width: 10rem;
+    height: 3rem;
     
+    &:focus {
+        background-color: ${oc.yellow[5]};
+    }
+    &:hover {
+        background-color: ${oc.yellow[3]};
+    }
 `;
 
 const ImgContainer = styled.div`
     margin: auto;
     height: 100%;
     flex: 1;
+    
+    @media screen and (max-width: 768px) {
+        padding-bottom: 2rem;
+    }
 `;
 
 const ImgWrapper = styled.div`
@@ -90,6 +118,9 @@ const ImgWrapper = styled.div`
     
     @media screen and (max-width: 768px) {
         width: 100%;
+        &::after {
+            font-size: 1.2rem;
+        }
     }
 `;
 
@@ -97,16 +128,29 @@ const Img = styled.img`
     width: 100%;
 `;
 
+const onClickAddCartHandler = async (event) => {
+    event.preventDefault();
+    console.log("onClickAddCartHandler 시작");
+    const data = "hello";
+    const res = await Axios.post("http://localhost:8080/api/mycart/all", data)
+        .then(response=>(response.data));
+    console.log(res);
+}
+
 const ProductPage = ({match}) => {
     const productState = useSelector(state=>state.productReducer.singleProduct);
     const dispatch = useDispatch();
     const productId = match.params.id;
 
     useEffect(()=>{
+        if (productState.id !== parseInt(productId, 10)){
             dispatch({
                 ...getProduct(),
                 data: productId,
             });
+        }
+
+        return ()=>{ dispatch(refreshProduct());}
     }, []);
 
     console.log(productState);
@@ -129,20 +173,25 @@ const ProductPage = ({match}) => {
                     <InfoCard>
                         <span>ProductInfo</span> <br/>
                         <span>{productState.title}</span> <br/><br/>
-                        <span>Description: <br/>
-                        {productState.content}</span> <br/><br/>
+                        <span>Description </span><br/>
+                        <span>{productState.content}</span> <br/><br/>
                         <InfoCardTable>
-                            <tr>
-                                <th>Price</th>
-                                <th>View</th>
-                                <th>Sold</th>
-                            </tr>
-                            <tr>
-                                <td>{productState.price}</td>
-                                <td>0</td>
-                                <td>0</td>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th>Price</th>
+                                    <th>View</th>
+                                    <th>Sold</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{productState.price}</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                            </tbody>
                         </InfoCardTable>
+                        <InfoCardCartBtn onClick={onClickAddCartHandler}>Add to Cart</InfoCardCartBtn>
                     </InfoCard>
                 </InfoContainer>
             </ContentContainer>
