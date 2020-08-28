@@ -7,6 +7,7 @@ import {showAllCarts} from "../../_actions/cartAction";
 import styled from "styled-components";
 import oc from "open-color";
 import {Link} from "react-router-dom";
+import Axios from "axios";
 
 
 const PageContainer = styled.section`
@@ -64,6 +65,16 @@ const MyCartPage = () => {
     if (!userState.isLoggedIn)
         dispatch(goToLogin());
 
+    const BtnRemoveHandler = async ({email, product_id}) => {
+        console.log({email, product_id});
+        const response = await Axios.delete(`https://springboot--backend.herokuapp.com/api/cart/product_id=${product_id}&email=${email}`)
+            .then(response=>{
+                dispatch({...showAllCarts(), data: {email: userState.login.email}});
+                return response.data;
+            });
+        console.log(response);
+    }
+
     useEffect(()=>{
 
         dispatch({...showAllCarts(), data: {email: userState.login.email}});
@@ -87,8 +98,8 @@ const MyCartPage = () => {
                     </thead>
                     <tbody>
                             {
-                                cartState.map(product=>(
-                                    <tr>
+                                cartState.map( (product, index) =>(
+                                    <tr key = {index + 1}>
                                         <td className="Continent">{product.continent}</td>
                                         <td className="Writer">{product.writer}</td>
                                         <td className="Quantity">{product.count}</td>
@@ -101,7 +112,7 @@ const MyCartPage = () => {
                                             </Link>
                                         </td>
                                         <td className="Btn Remove">
-                                            <Btn className="Remove">Remove</Btn>
+                                            <Btn className="Remove" onClick={()=>BtnRemoveHandler({email: userState.login.email, product_id: product.product_id})}>Remove</Btn>
                                         </td>
                                     </tr>
                                 ))

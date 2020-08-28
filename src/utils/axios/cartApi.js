@@ -3,7 +3,7 @@ import axios from "axios";
 const LOCAL_URL = "http://localhost:8080/api/cart";
 const DEPLOY_URL = "https://springboot--backend.herokuapp.com/api/cart"
 const TEST_URL = "https://jsonplaceholder.typicode.com/users";
-const CURRENT_URL = LOCAL_URL;
+const CURRENT_URL = DEPLOY_URL;
 
 export const addCurCart = async (data) => {
     console.log("cartApi/addCurCart() 함수 실행");
