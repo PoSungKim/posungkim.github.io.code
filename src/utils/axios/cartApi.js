@@ -1,5 +1,4 @@
 import axios from "axios";
-import {showAllCarts} from "../../_actions/cartAction";
 
 const LOCAL_URL = "http://localhost:8080/api/cart";
 const DEPLOY_URL = "https://springboot--backend.herokuapp.com/api/cart"

@@ -31,8 +31,8 @@ const initialMessage = {
 
 const MyCartPage = () => {
     const userState = useSelector(state=>state.userReducer);
-    let sockJS = new SockJS("http://localhost:8080/webSocket");
-    //let sockJS = new SockJS("https://springboot--backend.herokuapp.com/webSocket");
+    //let sockJS = new SockJS("http://localhost:8080/webSocket");
+    let sockJS = new SockJS("https://springboot--backend.herokuapp.com/webSocket");
     let stompClient = Stomp.over(sockJS);
     stompClient.debug = () => {};
 
