@@ -9,10 +9,12 @@ import NavBarSection from "./HeaderFrame/NavBarSection";
 import NavBarWrapper from "./HeaderFrame/NavBarWrapper";
 import NavbarBtn from "./HeaderFrame/NavbarBtn";
 import CrossBtn from "./HeaderFrame/CrossBtn";
+import {showAllCarts} from "../../_actions/cartAction";
 
 
 const Header = ()=> {
-    const users = useSelector(state => state.userReducer);
+    const userState = useSelector(state => state.userReducer);
+    const cartState = useSelector(state=>state.cartReducer.myCart);
     const dispatch = useDispatch();
     const onLogOut = () => dispatch(logOutUser());
 
@@ -31,12 +33,13 @@ const Header = ()=> {
     };
 
     useEffect( ()=> {
-        checkScrollHeight();
-        document.addEventListener("scroll", checkScrollHeight);
+        checkScrollHeight(); document.addEventListener("scroll", checkScrollHeight);
+        userState.isLoggedIn && dispatch({...showAllCarts(), data: {email: userState.login.email}});
+
         return ()=> {
             document.removeEventListener("scroll", checkScrollHeight);
         };
-    }, []);
+    }, [userState.isLoggedIn]);
 
     return (
         <NavBarWrapper className={shadowClassName}>
@@ -51,7 +54,7 @@ const Header = ()=> {
                         <Link to = "/"><li>Home</li></Link>
                         <Link to = "/"><li>Community</li></Link>
                         <Link to = "/"><li>CrawledInfo</li></Link>
-                        <Link to = "/mycart"><li>MyCart</li></Link>
+                        <Link to = "/mycart"><li>MyCart {cartState.length > 0 && <div id="MyCartNum">{cartState.reduce( (accu, cur) => accu + cur.count, 0)}</div>} </li></Link>
                         <Link to = "/uploadproduct"><li>Upload</li></Link>
                     </ul>
                 </NavBarSection>
@@ -59,7 +62,7 @@ const Header = ()=> {
                     <ul>
                         <li onClick={onClickCrossBtn}>
                             {
-                                !users.isLoggedIn
+                                !userState.isLoggedIn
                                     ? <NavbarBtn to = "/login">Log In</NavbarBtn>
                                     : <NavbarBtn to = "/" onClick={onLogOut}>Log Out</NavbarBtn>
                             }

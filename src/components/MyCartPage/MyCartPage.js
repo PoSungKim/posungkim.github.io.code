@@ -112,6 +112,14 @@ const Payment = styled.div`
     }
 `
 
+const EmptyCartList = styled.div`
+    margin-top: 2rem;
+    text-align: center;
+    font-weight: 300;
+    font-size: 3rem;
+    width: 100%;
+`
+
 const MyCartPage = () => {
     const userState = useSelector(state=> state.userReducer);
     const cartState = useSelector(state => state.cartReducer.myCart);
@@ -147,34 +155,40 @@ const MyCartPage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                            {
-                                cartState.map( (product, index) => {
-                                    totalPayment += product.count * parseInt(product.price.substring(1), 10);
-                                    return (
-                                        <tr key={index + 1}>
-                                            <td className="Continent">{product.continent}</td>
-                                            <td className="Writer">{product.writer}</td>
-                                            <td className="Quantity">{product.count}</td>
-                                            <td className="Price">{product.price}</td>
-                                            <td className="Title">{product.title}</td>
-                                            <td className="Description">{product.content}</td>
-                                            <td className="Btn View">
-                                                <Link to={`/product/${product.product_id}`}>
-                                                    <Btn className="View">View</Btn>
-                                                </Link>
-                                            </td>
-                                            <td className="Btn Remove">
-                                                <Btn className="Remove" onClick={() => BtnRemoveHandler({
-                                                    email: userState.login.email,
-                                                    product_id: product.product_id
-                                                })}>Remove</Btn>
-                                            </td>
-                                        </tr>
-                                    )
-                                })
-                            }
+                        {
+                            cartState.map( (product, index) => {
+                                totalPayment += product.count * parseInt(product.price.substring(1), 10);
+                                return (
+                                    <tr key={index + 1}>
+                                        <td className="Continent">{product.continent}</td>
+                                        <td className="Writer">{product.writer}</td>
+                                        <td className="Quantity">{product.count}</td>
+                                        <td className="Price">{product.price}</td>
+                                        <td className="Title">{product.title}</td>
+                                        <td className="Description">{product.content}</td>
+                                        <td className="Btn View">
+                                            <Link to={`/product/${product.product_id}`}>
+                                                <Btn className="View">View</Btn>
+                                            </Link>
+                                        </td>
+                                        <td className="Btn Remove">
+                                            <Btn className="Remove" onClick={() => BtnRemoveHandler({
+                                                email: userState.login.email,
+                                                product_id: product.product_id
+                                            })}>Remove</Btn>
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        }
                     </tbody>
                 </CartTable>
+                {
+                    cartState.length == 0 &&
+                    <EmptyCartList>
+                        Waiting for Cart Items to be Added
+                    </EmptyCartList>
+                }
                 <Payment>
                     <span>Total Amount : </span>
                     <span>${totalPayment}</span>

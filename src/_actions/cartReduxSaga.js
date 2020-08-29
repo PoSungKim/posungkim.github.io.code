@@ -15,15 +15,10 @@ function* addCartSaga(action) {
             payload: success,
             error: false,
         });
-        // 새로운 Cart 리스트로 업데이트 시작 한 이후에
+        // 새로운 Cart 리스트로 업데이트하면 Header 속 Cart 개수와 MyCart 페이지 Cart List가 함께 업데이트 된다
         yield put ({
             type: SHOW_ALL_CARTS,
             data: {email: action.data.email},
-        })
-        // MyCart 페이지로 이동하세요, 설사 새로운 Cart 리스트로 업데이트 완료 전에 페이지로 이동한다고 해도,
-        // 추후에 SHOW_ALL_CARTS_SUCCESS 엑션이 처리됨에 따라 State 내용이 달라지고. MyCart 페이지도 리렌더링되기 때문에 괜찮을 것이라 생각함.
-        yield put ({
-            type: GO_TO_MYCART,
         })
     } catch(error) {
         yield put ({

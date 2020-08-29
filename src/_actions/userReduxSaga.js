@@ -67,7 +67,7 @@ function* loginSaga(action) {
                 isLoggedIn: isOkay,
             },
             error: !isOkay,
-        })
+        });
     } catch (error) {
         yield put ({
             type: LOGIN_ERROR,

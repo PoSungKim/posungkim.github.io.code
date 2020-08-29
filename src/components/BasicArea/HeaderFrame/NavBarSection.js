@@ -1,5 +1,6 @@
 import React, {useEffect} from "react";
 import styled, {css} from "styled-components";
+import oc from "open-color";
 
 const NavBarSectionArea = styled.div`
     display: flex;
@@ -16,6 +17,8 @@ const NavBarSectionArea = styled.div`
         border-radius: 10px;
     }
     
+
+    
     ${props => css`
         justify-content: ${props.justifyContent};
         flex: ${props.flex};
@@ -26,7 +29,18 @@ const NavBarSectionArea = styled.div`
             width: 100%;
             display: flex;
             justify-content: space-around;
-            ${props => props.ulStyle }
+            ${props => props.ulStyle };
+            #MyCartNum {
+                background-color: ${oc.red[9]};
+                justify-content: center;
+                display: inline-flex;
+                align-items: center;
+                border-radius: 50%;
+                line-height: 1.5rem;
+                height: 1.5rem;
+                width: 1.5rem;
+                color: white;
+            }
         }
     `}
     
