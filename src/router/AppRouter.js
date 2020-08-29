@@ -50,7 +50,7 @@ function AppRouter() {
     return (
         <>
         <Router history={customHistory}>
-            <LoadingPage clearTime={3000} infoText={"- BeneBean's Coding - "}/>
+            <LoadingPage clearTime={6000} infoText={"무료 Cloud 서비스를 사용하기 때문에, 여유를 갖고 비동기 처리를 기다려주세요 ^^"}/>
             <Header/>
             {/*<HeaderComp/> */}
             <MainContent id="content">

@@ -8,7 +8,6 @@ const LoadingContentWrapper = styled.div`
     align-items: center;
     display: flex;
     width: 100%;
-    
 `;
 
 const LoadingContent = ({loadingIconColor = oc.blue[5], loadingIconSize = "100px"}) => {

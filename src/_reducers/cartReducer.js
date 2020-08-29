@@ -1,7 +1,7 @@
 import {
     ADD_CART,
     ADD_CART_ERROR,
-    ADD_CART_SUCCESS,
+    ADD_CART_SUCCESS, DELETE_CART, DELETE_CART_ERROR, DELETE_CART_SUCCESS,
     SHOW_ALL_CARTS, SHOW_ALL_CARTS_ERROR,
     SHOW_ALL_CARTS_SUCCESS
 } from "../_actions/cartAction";
@@ -22,6 +22,7 @@ export default function cartReducer(state = initialState, action) {
     switch (action.type) {
         case SHOW_ALL_CARTS:
         case ADD_CART:
+        case DELETE_CART :
             return {
                 ...state,
                 transmission: {
@@ -40,6 +41,7 @@ export default function cartReducer(state = initialState, action) {
                 myCart: action.payload,
             };
         case ADD_CART_SUCCESS:
+        case DELETE_CART_SUCCESS:
             return {
                 ...state,
                 transmission: {
@@ -50,6 +52,7 @@ export default function cartReducer(state = initialState, action) {
             }
         case SHOW_ALL_CARTS_ERROR:
         case ADD_CART_ERROR:
+        case DELETE_CART_ERROR:
             return {
                 ...state,
                 transmission: {
