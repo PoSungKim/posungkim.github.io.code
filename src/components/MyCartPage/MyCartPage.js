@@ -38,7 +38,7 @@ const CartTable = styled.table`
         &.Btn {
             border: none;
             text-align: center;
-            font-size: 0.7rem;
+            font-size: 0.8rem;
         }
     }
     
@@ -59,6 +59,9 @@ const CartTable = styled.table`
         
         td, th {
             padding: 0.1rem;
+            &.Btn {
+                font-size: 0.7rem;
+            }
         }
     }
 `;
@@ -146,7 +149,7 @@ const MyCartPage = () => {
                     <tbody>
                             {
                                 cartState.map( (product, index) => {
-                                    totalPayment += parseInt(product.price.substring(1), 10);
+                                    totalPayment += product.count * parseInt(product.price.substring(1), 10);
                                     return (
                                         <tr key={index + 1}>
                                             <td className="Continent">{product.continent}</td>
