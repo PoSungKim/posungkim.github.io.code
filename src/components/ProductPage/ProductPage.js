@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getProduct, refreshProduct} from "../../_actions/productAction";
-import {addCart, goToMyCart} from "../../_actions/cartAction";
+import {addCart, goToMyCart, showAllCarts} from "../../_actions/cartAction";
 
 
 import styled from "styled-components";
@@ -137,10 +137,7 @@ const ProductPage = ({match}) => {
     const product_id = match.params.id;
     const email = userState.login.email;
 
-    const onClickAddCartHandler = async (event, data) => {
-        dispatch({...addCart(), data});
-        dispatch(goToMyCart());
-    }
+    const onClickAddCartHandler = async (event, data) => {dispatch({...addCart(), data})};
 
     useEffect(()=>{
         if (productState.id !== parseInt(product_id, 10)){
