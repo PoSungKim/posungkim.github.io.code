@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import {useDispatch, useSelector} from "react-redux";
 import {goToLogin} from "../../_actions/productAction";
-import {showAllCarts} from "../../_actions/cartAction";
+import {deleteCart, showAllCarts} from "../../_actions/cartAction";
 
 import styled from "styled-components";
 import oc from "open-color";
@@ -67,12 +67,7 @@ const MyCartPage = () => {
 
     const BtnRemoveHandler = async ({email, product_id}) => {
         console.log({email, product_id});
-        const response = await Axios.delete(`https://springboot--backend.herokuapp.com/api/cart/product_id=${product_id}&email=${email}`)
-            .then(response=>{
-                dispatch({...showAllCarts(), data: {email: userState.login.email}});
-                return response.data;
-            });
-        console.log(response);
+        dispatch({...deleteCart(), data: {email, product_id}});
     }
 
     useEffect(()=>{
