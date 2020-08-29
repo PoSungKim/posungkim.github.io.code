@@ -15,6 +15,9 @@ import UploadProductPage from "../components/UploadProductPage/UploadProductPage
 import LoginPage from "../components/UserPage/LoginPage";
 import RegisterPage from "../components/UserPage/RegisterPage";
 
+import MyCartPage from "../components/MyCartPage/MyCartPage";
+import MyChatPage from "../components/MyChatPage/MyChatPage";
+
 
 import NewsComp from "../components/news/NewsComp";
 import HeaderComp from "../components/BasicArea/HeaderComp";
@@ -30,7 +33,6 @@ import YouTubeCloning from "../components/function/YouTubeCloning/YouTubeCloning
 import ShoppingComp from "../components/function/ShoppingComp/ShoppingComp";
 import TodoListComp from "../components/function/TodoListComp/TodoListComp";
 import SideBar from "../components/BasicArea/SideBar";
-import MyCartPage from "../components/MyCartPage/MyCartPage";
 
 
 
@@ -62,6 +64,7 @@ function AppRouter() {
                         <Route exact path="/uploadproduct" component={UploadProductPage}/>
                         <Route exact path={"/product/:id"} component={ProductPage}/>
                         <Route exact path="/mycart" component={MyCartPage}/>
+                        <Route exact path="/mychat" component = {MyChatPage}></Route>
 
                         {/* 하단은 기존에 연습한 내용 */}
                         <Route exact path="/resume" component={ResumeComp}/>

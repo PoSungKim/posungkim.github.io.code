@@ -1,4 +1,4 @@
-import {call, getContext, put, takeEvery, takeLatest} from "redux-saga/effects";
+import {call, getContext, put, takeEvery, takeLeading} from "@redux-saga/core/effects";
 import {
     GET_PRODUCT, GET_PRODUCT_ERROR, GET_PRODUCT_SUCCESS,
     GET_PRODUCTS, GET_PRODUCTS_ERROR, GET_PRODUCTS_SUCCESS,
@@ -115,7 +115,7 @@ export function* productSaga() {
     yield takeEvery(GET_PRODUCTS, getProductsSaga);
 
     yield takeEvery(UPLOAD_PREVIEW, uploadPreviewSaga);
-    yield takeLatest(UPLOAD_ALL, uploadAllSaga);
+    yield takeLeading(UPLOAD_ALL, uploadAllSaga);
 
     yield takeEvery(GO_TO_HOME, goToHomeSaga);
     yield takeEvery(GO_TO_LOGIN, goToLoginSaga);

@@ -1,9 +1,10 @@
-import {call, getContext, put, takeEvery} from "redux-saga/effects";
+import {call, getContext, put, takeEvery, takeLeading} from "@redux-saga/core/effects";
 import {
     ADD_CART, ADD_CART_ERROR, ADD_CART_SUCCESS, DELETE_CART, DELETE_CART_ERROR, DELETE_CART_SUCCESS, GO_TO_MYCART,
     SHOW_ALL_CARTS, SHOW_ALL_CARTS_ERROR, SHOW_ALL_CARTS_SUCCESS
 } from "./cartAction";
 import * as cartApi from "../utils/axios/cartApi"
+
 
 function* addCartSaga(action) {
     console.log("addCartSaga() 실행", action);
@@ -20,6 +21,7 @@ function* addCartSaga(action) {
             type: SHOW_ALL_CARTS,
             data: {email: action.data.email},
         })
+        alert("MyCart에 성공적으로 들어갔습니다!");
     } catch(error) {
         yield put ({
             type: ADD_CART_ERROR,
@@ -75,8 +77,8 @@ function* goToMyCartSaga() {
 }
 
 export function* cartSaga() {
-    yield takeEvery(ADD_CART, addCartSaga);
-    yield takeEvery(DELETE_CART, deleteCartSaga);
+    yield takeLeading(ADD_CART, addCartSaga);
+    yield takeLeading(DELETE_CART, deleteCartSaga);
     yield takeEvery(SHOW_ALL_CARTS, showAllSaga);
     yield takeEvery(GO_TO_MYCART, goToMyCartSaga);
 }

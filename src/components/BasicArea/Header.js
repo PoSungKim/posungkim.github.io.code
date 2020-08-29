@@ -49,11 +49,11 @@ const Header = ()=> {
             </NavBarSection>
 
             <NavBarSection  className = {navbarContainerActive ? "navbar__container active" : "navbar__container"} flex={8} justifyContent={"center"}>
-                <NavBarSection flex={6} ulList ulStyle={"padding: 0 60px"}>
+                <NavBarSection flex={6} ulList ulStyle={"padding: 0 30px"}>
                     <ul onClick={onClickCrossBtn}>
                         <Link to = "/"><li>Home</li></Link>
                         <Link to = "/"><li>Community</li></Link>
-                        <Link to = "/"><li>CrawledInfo</li></Link>
+                        <Link to = "/mychat"><li>MyChat</li></Link>
                         <Link to = "/mycart"><li>MyCart {cartState.length > 0 && <div id="MyCartNum">{cartState.reduce( (accu, cur) => accu + cur.count, 0)}</div>} </li></Link>
                         <Link to = "/uploadproduct"><li>Upload</li></Link>
                     </ul>

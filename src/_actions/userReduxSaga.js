@@ -28,7 +28,6 @@ function* registerUserSaga (action) {
                 password: action.data.password
             },
         });
-
     } catch (error) {
         yield put ({
             type: REGISTER_ERROR,
@@ -68,6 +67,7 @@ function* loginSaga(action) {
             },
             error: !isOkay,
         });
+        alert("로그인 되었습니다.");
     } catch (error) {
         yield put ({
             type: LOGIN_ERROR,
