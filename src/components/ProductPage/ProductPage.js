@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useLayoutEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getProduct, refreshProduct} from "../../_actions/productAction";
 import {addCart, goToMyCart, showAllCarts} from "../../_actions/cartAction";
@@ -139,7 +139,9 @@ const ProductPage = ({match}) => {
 
     const onClickAddCartHandler = async (event, data) => {dispatch({...addCart(), data})};
 
-    useEffect(()=>{
+    // layout과 paint가 끝난 이후에 호출되는 useEffect보다
+    // layout만 끝나고 호출되는 useLayoutEffect를 사용하여 비동기 작업을 보다 일찍 시작하게 구현하고자 했으나 성능상 큰 차이는 느낄 수 없었다.
+    useLayoutEffect(()=>{
         if (productState.id !== parseInt(product_id, 10)){
             dispatch({
                 ...getProduct(),

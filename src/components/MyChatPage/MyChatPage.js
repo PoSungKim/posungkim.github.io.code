@@ -65,7 +65,7 @@ const ChatFooter = styled.div`
 `;
 
 const initialMessage = {
-    sender: "손님",
+    sender: "",
     content: "",
     date: "",
 }
@@ -76,22 +76,28 @@ const MyChatPage = () => {
     const [messageState, setMessage] = useState(initialMessage);
     const [contentState, setContent] = useState([]);
 
-    const connect = async () => {
-        await stompClient.connect({}, (frame) => {
+    const connect = (contentState) => {
+        stompClient.connect({}, (frame) => {
             console.log(frame);
+
             stompClient.subscribe('/topic/public', (data)=>{
-                console.log(data);
+                console.log(data + "VS" + contentState);
                 const newMessage = JSON.parse(data.body);
                 addMessage(newMessage);
             });
+
         });
     }
 
     const onClick = () => {
+        if (messageState.content === "")
+            return;
+
         try {
-            console.log(JSON.stringify({...messageState, sender: userState.login.username, date: `${new Date().toDateString()}`}));
-            stompClient.send("/mychat/send", {},  JSON.stringify({...messageState, sender: userState.login.username, date: `${new Date().toDateString()}`}));
-            setMessage({...messageState, content: "", date: ""});
+            console.log(JSON.stringify({...messageState, sender: userState.login.username? userState.login.username : "손님", date: `${new Date().toDateString()}`}));
+            console.log(contentState);
+            stompClient.send("/mychat/send", {},  JSON.stringify({...messageState, sender: userState.login.username? userState.login.username : "손님", date: `${new Date().toDateString()}`}));
+            setMessage(initialMessage);
         } catch(error) {
             console.error(error);
         }
@@ -111,24 +117,24 @@ const MyChatPage = () => {
         console.log(messageState.content, contentState);
     }
     const addMessage = (content) => {
-        setContent([...contentState, content]);
+        console.log([...contentState, content]);
+        setContent(prev => [...prev, content]);
     }
 
     //let sockJS = useMemo( ()=> new SockJS("http://localhost:8080/webSocket"), [contentState]);
-    let sockJS = useMemo( ()=> new SockJS("https://springboot--backend.herokuapp.com/webSocket"), [contentState]);
-    let stompClient = useMemo( ()=> Stomp.over(sockJS), [contentState]);
+    let sockJS = useMemo( ()=> new SockJS("https://springboot--backend.herokuapp.com/webSocket"), []);
+    let stompClient = useMemo( ()=> Stomp.over(sockJS), []);
     stompClient.debug = (error) => {console.log(error)};
 
     useEffect(()=>{
         console.log("RENDER MYCHAT PAGE useEffect");
 
         connect()
-            .then(()=>console.log("Connect and subscribe done!"))
-            .catch(err=>console.log(err));
+
         return ()=> {
             stompClient.disconnect();
         }
-    },[contentState]);
+    },[]);
 
 
     console.log("RENDER MYCHAT PAGE", contentState);

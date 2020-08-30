@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo} from 'react'
+import React, {useEffect, useLayoutEffect, useMemo} from 'react'
 import {getProducts} from "../../_actions/productAction";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
@@ -41,8 +41,9 @@ const HomePage = () => {
         }
         return ArrayofExtraCards;
     }
-
-    useEffect(()=>{
+    // layout과 paint가 끝난 이후에 호출되는 useEffect보다
+    // layout만 끝나고 호출되는 useLayoutEffect를 사용하여 비동기 작업을 보다 일찍 시작하게 구현하고자 했으나 성능상 큰 차이는 느낄 수 없었다.
+    useLayoutEffect(()=>{
         (productsState.length == 0 && !productsRootState.transmission.error) && dispatch(getProducts());
         clearInterval(window.productsInterval); scrollImgHandler(".CardImgContainer");
 
