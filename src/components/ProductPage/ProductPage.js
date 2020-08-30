@@ -147,7 +147,7 @@ const ProductPage = ({match}) => {
             });
         }
         return ()=>{ dispatch(refreshProduct());}
-    }, []);
+    }, [match.params.id]);
 
     console.log(productState);
     return (

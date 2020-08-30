@@ -1,8 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import styled from "styled-components";
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 import {useSelector} from "react-redux";
+import ChatInputBtn from "./ChatInputBtn";
+import ChatContent from "./ChatContent";
 
 const PageContainer = styled.section`
     width: 100%;
@@ -28,39 +30,14 @@ const initialMessage = {
     date: "",
 }
 
-
-const MyCartPage = () => {
+const MyChatPage = () => {
     const userState = useSelector(state=>state.userReducer);
-    //let sockJS = new SockJS("http://localhost:8080/webSocket");
-    let sockJS = new SockJS("https://springboot--backend.herokuapp.com/webSocket");
-    let stompClient = Stomp.over(sockJS);
-    stompClient.debug = () => {};
 
     const [messageState, setMessage] = useState(initialMessage);
     const [contentState, setContent] = useState([]);
 
-    const onClick = async () => {
-        try {
-            console.log(`${new Date().toDateString()}`);
-            await stompClient.send("/mychat/send", {},  JSON.stringify({...messageState, sender: userState.login.username, date: `${new Date().toDateString()}`}));
-        } catch(error) {
-            console.error(error);
-        };
-    }
-
-    const onChange = (event) => {
-        setMessage({
-            ...messageState,
-            content : event.target.value,
-        })
-        console.log(messageState.content, contentState);
-    }
-    const addMessage = (content) => {
-        setContent([...contentState, content]);
-    }
-
     const connect = async () => {
-        await stompClient.connect({},(frame)=>{
+        await stompClient.connect({}, (frame) => {
             console.log("connected??");
             console.log(frame);
             stompClient.subscribe('/topic/public', (data)=>{
@@ -71,28 +48,52 @@ const MyCartPage = () => {
         });
     }
 
-    useEffect(()=>{
-        connect()
-            .then(()=>console.log("보내짐"));
+    const onClick = () => {
+        try {
+            console.log(JSON.stringify({...messageState, sender: userState.login.username, date: `${new Date().toDateString()}`}));
+            stompClient.send("/mychat/send", {},  JSON.stringify({...messageState, sender: userState.login.username, date: `${new Date().toDateString()}`}));
+        } catch(error) {
+            console.error(error);
+        }
+    }
 
-        return () => {
-            if (stompClient !== null)
-                stompClient.disconnect();
+    const onChange = (event) => {
+        event.preventDefault();
+        setMessage({
+            ...messageState,
+            content : event.target.value,
+        })
+        console.log(messageState.content, contentState);
+    }
+    const addMessage = (content) => {
+        setContent([...contentState, content]);
+    }
+
+    //let sockJS = useMemo( ()=> new SockJS("http://localhost:8080/webSocket"), [contentState]);
+    let sockJS = useMemo( ()=> new SockJS("https://springboot--backend.herokuapp.com/webSocket"), [contentState]);
+    let stompClient = useMemo( ()=> Stomp.over(sockJS), [contentState]);
+    stompClient.debug = (error) => {console.log(error)};
+
+    useEffect(()=>{
+        console.log("RENDER MYCHAT PAGE useEffect");
+        connect()
+            .then(()=>console.log("Connect and subscribe done!"))
+            .catch(err=>console.log(err));
+        return ()=> {
+            stompClient.disconnect();
         }
     },[contentState]);
 
+
+    console.log("RENDER MYCHAT PAGE", contentState);
     return (
         <PageContainer>
             <PageSection>
-                MyChatPage
-                {contentState.length > 0 &&  contentState.map(content => (
-                    <div>{content.sender} {content.content} {content.date} </div>
-                ))}
-                <input type="text" value = {messageState.content} onChange={onChange} />
-                <button onClick={onClick}>눌러</button>
+                <ChatContent contentState = {contentState} />
+                <ChatInputBtn messageState = {messageState} onClick = {event => onClick(event)} onChange = {event => onChange(event)}/>
             </PageSection>
         </PageContainer>
     );
 }
 
-export default MyCartPage;
+export default MyChatPage;
