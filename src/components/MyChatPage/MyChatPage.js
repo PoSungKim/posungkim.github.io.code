@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 
-import styled, {css} from "styled-components";
+import styled from "styled-components";
 import oc from "open-color";
 
 import ChatInputBtn from "./ChatInputBtn";
@@ -85,7 +85,6 @@ const MyChatPage = () => {
                 const newMessage = JSON.parse(data.body);
                 addMessage(newMessage);
             });
-
         });
     }
 
@@ -104,7 +103,7 @@ const MyChatPage = () => {
     }
 
     const onKeyPress = (event) => {
-        if (event.key == "Enter")
+        if (event.key === "Enter")
             onClick();
     }
 
@@ -128,11 +127,11 @@ const MyChatPage = () => {
 
     useEffect(()=>{
         console.log("RENDER MYCHAT PAGE useEffect");
-
-        connect()
+        connect();
 
         return ()=> {
-            stompClient.disconnect();
+            if (stompClient.connected)
+                stompClient.disconnect();
         }
     },[]);
 
