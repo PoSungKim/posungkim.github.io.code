@@ -14,7 +14,11 @@ const Input = styled.input`
     width: 80%;
     
     @media screen and (max-width: 768px) {
-        font-size: 0.9rem;
+        border-bottom-left-radius: unset;
+        font-size: 1.3rem;
+        &::-webkit-input-placeholder {
+            font-size: 0.85rem;
+        }
     }
 `;
 

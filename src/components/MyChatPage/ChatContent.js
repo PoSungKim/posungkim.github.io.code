@@ -22,6 +22,7 @@ const ChatMessage = styled.div`
 
 const ChatMessageWrapper = styled.div`
     transform: translateX(${props=> props.myMessage ? '-0.5rem' : '0.5rem'});
+    width: fit-content;
 `;
 
 const ChatMessageName = styled.div`
@@ -33,10 +34,17 @@ const ChatMessageContentWrapper = styled.div`
 `;
 
 const ChatMessageContent = styled.div`
+    overflow-wrap: anywhere;
     background-color: gray;
     padding: 0.2rem 2rem;
     border-radius: 3px;
+    max-width: 30rem;
     color: white;
+    
+    @media screen and (max-width: 768px) {
+        font-size: 0.8rem;
+        max-width: 15rem;
+    }
 `;
 
 const ChatMessageProfile = styled.div`

@@ -22,13 +22,14 @@ const PageSection = styled.div`
     width: 60%;
     
     @media screen and (max-width: 768px) {
-        width: 95%;
+        width: 100%;
+        padding: 0;
+        margin: 0;
     }
 `;
 
 const ChatRoom = styled.div`
     box-shadow: rgba(0.5, 0.5, 0.5, 0.5) 0px 5px 5px 0px;
-    background-color: ${oc.black};
     flex-direction: column;
     display: flex;
     height: 70vh;
@@ -45,23 +46,31 @@ const ChatHeader = styled.div`
     border-top-left-radius: 15px;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-weight: 300;
+    font-size: 3rem;
     display: flex;
     flex: 2;
     
     @media screen and (max-width: 768px) {
         font-size: 0.9rem;
+        display: none;
     }
 `;
 
 const ChatFooter = styled.div`
-    background-color: ${oc.red[5]};
     border-bottom-right-radius: 15px;
+    background-color: ${oc.red[5]};
+    
     display: flex;
     flex: 1;
     &:hover {
         background-color: ${oc.red[3]};
     }
+    
+    @media screen and (max-width: 768px) {
+        border-bottom-right-radius: unset;
+    }
+   
 `;
 
 const initialMessage = {
@@ -154,7 +163,7 @@ const MyChatPage = () => {
             <PageSection>
                 <ChatRoom>
                     <ChatHeader >
-                        {userState.login.username ? userState.login.username + "님" : "손님"} 안녕하세요! <br/> 오픈 채팅방에 오신 것을 환영합니다!
+                        MyChat 오픈 채팅방
                     </ChatHeader>
                     <ChatContent contentState = {contentState} />
                     <ChatFooter>
