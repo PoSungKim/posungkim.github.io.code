@@ -69,10 +69,10 @@ const ChatContent = ({contentState}) => {
 
     return (
         <ChatContentWrapper className={"ChatRoomScroll"}>
-                {contentState.length > 0 &&  contentState.map(content => {
+                {contentState.length > 0 &&  contentState.map( (content, index) => {
                     if (userState.login.username && content.sender === userState.login.username) {
                         return (
-                            <ChatMessage myMessage>
+                            <ChatMessage myMessage key={index + 1}>
                                 <ChatMessageWrapper myMessage>
                                     <ChatMessageName myMessage >{content.sender}</ChatMessageName>
                                     <ChatMessageContentWrapper>
@@ -85,7 +85,7 @@ const ChatContent = ({contentState}) => {
                         )
                     } else {
                         return (
-                            <ChatMessage>
+                            <ChatMessage key={index + 1}>
                                 <ChatMessageProfile/>
                                 <ChatMessageWrapper>
                                     <ChatMessageName>{content.sender}</ChatMessageName>

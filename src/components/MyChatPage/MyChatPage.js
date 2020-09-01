@@ -77,21 +77,29 @@ const MyChatPage = () => {
     const [contentState, setContent] = useState([]);
 
     const connect = (contentState) => {
-        stompClient.connect({}, (frame) => {
+        stompClient.connect({}, async (frame) => {
             console.log(frame);
 
-            stompClient.subscribe('/topic/public', (data)=>{
+            await stompClient.subscribe('/topic/public', (data)=>{
                 console.log(data + "VS" + contentState);
                 const newMessage = JSON.parse(data.body);
                 addMessage(newMessage);
             });
+            await initiateChatRoom();
         });
+    }
+
+    const initiateChatRoom = () => {
+        stompClient.send("/mychat/join", {},  JSON.stringify({...messageState, sender: userState.login.username? userState.login.username : "손님", date: `${new Date().toDateString()}`}));
+    }
+
+    const terminateChatRoom = () => {
+        stompClient.send("/mychat/leave", {},  JSON.stringify({...messageState, sender: userState.login.username? userState.login.username : "손님", date: `${new Date().toDateString()}`}));
     }
 
     const onClick = () => {
         if (messageState.content === "")
             return;
-
         try {
             console.log(JSON.stringify({...messageState, sender: userState.login.username? userState.login.username : "손님", date: `${new Date().toDateString()}`}));
             console.log(contentState);
@@ -120,18 +128,22 @@ const MyChatPage = () => {
         setContent(prev => [...prev, content]);
     }
 
-    //let sockJS = useMemo( ()=> new SockJS("http://localhost:8080/webSocket"), [contentState]);
+    //let sockJS = useMemo( ()=> new SockJS("http://localhost:8080/webSocket"), []);
     let sockJS = useMemo( ()=> new SockJS("https://springboot--backend.herokuapp.com/webSocket"), []);
     let stompClient = useMemo( ()=> Stomp.over(sockJS), []);
     stompClient.debug = (error) => {console.log(error)};
 
     useEffect(()=>{
         console.log("RENDER MYCHAT PAGE useEffect");
+        window.addEventListener("beforeunload", terminateChatRoom);
         connect();
 
-        return ()=> {
-            if (stompClient.connected)
+        return async ()=> {
+            if (stompClient.connected) {
+                terminateChatRoom();
                 stompClient.disconnect();
+            }
+            window.removeEventListener("beforeunload", terminateChatRoom);
         }
     },[]);
 
