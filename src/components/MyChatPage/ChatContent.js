@@ -3,6 +3,8 @@ import {BsPersonFill} from "react-icons/bs"
 import styled from "styled-components";
 import oc from "open-color";
 import {useSelector} from "react-redux";
+import emojiHello from "./emoji_hello.png";
+import emojiDeveloper from "./emoji_developer.png";
 
 const ChatContentWrapper = styled.div`
     background-color: ${oc.white};
@@ -59,9 +61,9 @@ const ChatMessageProfile = styled.div`
     display: flex;
     height: 50px;
     width: 50px;
-    svg {
+    svg, img {
         width: 100%;
-        height: 100%;
+        height: auto;
     }
 `;
 
@@ -93,14 +95,14 @@ const ChatContent = React.memo(({contentState}) => {
                         return (
                             <ChatMessage myMessage key={index + 1}>
                                 <ChatMessageWrapper myMessage>
-                                    <ChatMessageName myMessage >{content.sender}</ChatMessageName>
+                                    <ChatMessageName myMessage > {content.sender}</ChatMessageName>
                                     <ChatMessageContentWrapper>
                                         <ChatMessageDate>  {content.date} </ChatMessageDate>
                                         <ChatMessageContent myMessage>{content.content}</ChatMessageContent>
                                     </ChatMessageContentWrapper>
                                 </ChatMessageWrapper>
                                 <ChatMessageProfile>
-                                    <BsPersonFill/>
+                                    {content.sender === "BeneBean" ? <img src={emojiDeveloper} /> : content.sender === "Babymong" ? <img src={emojiHello} /> : <BsPersonFill/> }
                                 </ChatMessageProfile>
                             </ChatMessage>
                         )
@@ -108,7 +110,7 @@ const ChatContent = React.memo(({contentState}) => {
                         return (
                             <ChatMessage key={index + 1}>
                                 <ChatMessageProfile>
-                                    <BsPersonFill/>
+                                    {content.sender === "BeneBean" ? <img src={emojiDeveloper} /> : content.sender === "Babymong" ? <img src={emojiHello} /> : <BsPersonFill/> }
                                 </ChatMessageProfile>
                                 <ChatMessageWrapper>
                                     <ChatMessageName>{content.sender}</ChatMessageName>
