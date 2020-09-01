@@ -10,6 +10,7 @@ import ChatInputBtn from "./ChatInputBtn";
 import ChatContent from "./ChatContent";
 
 const PageContainer = styled.section`
+    background-color: ${oc.yellow[0]};
     min-height: 90vh;
     height: auto;
     width: 100%;
@@ -30,7 +31,9 @@ const PageSection = styled.div`
 
 const ChatRoom = styled.div`
     box-shadow: rgba(0.5, 0.5, 0.5, 0.5) 0px 5px 5px 0px;
+    background-color: transparent;
     flex-direction: column;
+    border-radius: 15px;
     display: flex;
     height: 70vh;
     width: 100%;
@@ -41,12 +44,12 @@ const ChatRoom = styled.div`
 `;
 
 const ChatHeader = styled.div`
-    background-color: ${oc.blue[5]};
+    background-color: ${oc.yellow[5]};
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
     justify-content: center;
     align-items: center;
-    font-weight: 300;
+    font-weight: 600;
     font-size: 3rem;
     display: flex;
     flex: 2;
@@ -59,13 +62,10 @@ const ChatHeader = styled.div`
 
 const ChatFooter = styled.div`
     border-bottom-right-radius: 15px;
-    background-color: ${oc.red[5]};
+    border-bottom-left-radius: 15px;
     
     display: flex;
     flex: 1;
-    &:hover {
-        background-color: ${oc.red[3]};
-    }
     
     @media screen and (max-width: 768px) {
         border-bottom-right-radius: unset;
@@ -163,7 +163,7 @@ const MyChatPage = () => {
             <PageSection>
                 <ChatRoom>
                     <ChatHeader >
-                        MyChat 오픈 채팅방
+                        'MyChat' Open ChatRoom
                     </ChatHeader>
                     <ChatContent contentState = {contentState} />
                     <ChatFooter>

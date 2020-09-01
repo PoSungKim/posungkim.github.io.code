@@ -1,13 +1,18 @@
 import React, {useEffect} from "react";
+import {BsPersonFill} from "react-icons/bs"
 import styled from "styled-components";
 import oc from "open-color";
 import {useSelector} from "react-redux";
 
 const ChatContentWrapper = styled.div`
-    background-color: ${oc.yellow[5]};
+    background-color: ${oc.white};
     overflow-y: scroll;
     padding: 2rem;
     flex: 7;
+    
+    @media screen and (max-width: 768px) {
+        background-color: ${oc.yellow[0]};
+    }
 `;
 
 const ChatMessage = styled.div`
@@ -27,6 +32,7 @@ const ChatMessageWrapper = styled.div`
 
 const ChatMessageName = styled.div`
     ${props=> props.myMessage && "text-align: right"};
+    font-weight: 500;
 `;
 
 const ChatMessageContentWrapper = styled.div`
@@ -35,11 +41,10 @@ const ChatMessageContentWrapper = styled.div`
 
 const ChatMessageContent = styled.div`
     overflow-wrap: anywhere;
-    background-color: gray;
+    background-color: ${props=>props.myMessage? oc.yellow[4] : oc.gray[3]};
     padding: 0.2rem 2rem;
     border-radius: 3px;
     max-width: 30rem;
-    color: white;
     
     @media screen and (max-width: 768px) {
         font-size: 0.8rem;
@@ -48,10 +53,16 @@ const ChatMessageContent = styled.div`
 `;
 
 const ChatMessageProfile = styled.div`
-    background-color: ${oc.black};
+    justify-content: center;
+    align-items: center;
     border-radius: 50%;
+    display: flex;
     height: 50px;
     width: 50px;
+    svg {
+        width: 100%;
+        height: 100%;
+    }
 `;
 
 const ChatMessageDate = styled.div`
@@ -68,7 +79,7 @@ const scrollChatRoomToBottom = () => {
     ChatRoom.scrollTop = ChatRoom.scrollHeight;
 }
 
-const ChatContent = ({contentState}) => {
+const ChatContent = React.memo(({contentState}) => {
     const userState = useSelector(state => state.userReducer);
     useEffect(()=>{
         scrollChatRoomToBottom();
@@ -85,16 +96,20 @@ const ChatContent = ({contentState}) => {
                                     <ChatMessageName myMessage >{content.sender}</ChatMessageName>
                                     <ChatMessageContentWrapper>
                                         <ChatMessageDate>  {content.date} </ChatMessageDate>
-                                        <ChatMessageContent>{content.content}</ChatMessageContent>
+                                        <ChatMessageContent myMessage>{content.content}</ChatMessageContent>
                                     </ChatMessageContentWrapper>
                                 </ChatMessageWrapper>
-                                <ChatMessageProfile/>
+                                <ChatMessageProfile>
+                                    <BsPersonFill/>
+                                </ChatMessageProfile>
                             </ChatMessage>
                         )
                     } else {
                         return (
                             <ChatMessage key={index + 1}>
-                                <ChatMessageProfile/>
+                                <ChatMessageProfile>
+                                    <BsPersonFill/>
+                                </ChatMessageProfile>
                                 <ChatMessageWrapper>
                                     <ChatMessageName>{content.sender}</ChatMessageName>
                                     <ChatMessageContentWrapper>
@@ -109,6 +124,6 @@ const ChatContent = ({contentState}) => {
                 }
         </ChatContentWrapper>
     )
-}
+});
 
-export default ChatContent;
+export default React.memo(ChatContent);

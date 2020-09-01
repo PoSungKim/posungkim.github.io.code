@@ -62,7 +62,7 @@ const LoginPage = () => {
             placeholder="123123" type="password" onChange={onChange}
             value={password} onKeyPress = {onKeyPress} />
 
-        {errorState && <ErrorMessage>이메일 혹은 비밀번호가 맞면지 않습니다.</ErrorMessage>}
+        {errorState && <ErrorMessage>이메일 혹은 비밀번호가 맞지 않습니다.</ErrorMessage>}
 
         <LinkButton content="로그인" width = "100%" onClick={onClick}/>
         <LinkButton to = "/register" content="회원가입"/>

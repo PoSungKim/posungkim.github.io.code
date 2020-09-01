@@ -4,10 +4,13 @@ import LogoArea from "./LogoArea";
 import oc from "open-color";
 
 const LoginPageContainer = styled.section`
-    height: auto;
+    background-color: ${oc.yellow[0]};
     min-height: 100vh;
     padding: 50px 0;
-    background: ${oc.yellow[0]};
+    height: auto;
+    
+    
+    
     @media screen and (max-width: 768px) {
         height: auto;
         min-height: 90vh;
