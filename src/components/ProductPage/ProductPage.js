@@ -7,6 +7,7 @@ import {addCart, goToMyCart, showAllCarts} from "../../_actions/cartAction";
 import styled from "styled-components";
 import oc from "open-color";
 import ProductPageWrapper from "./Frame/ProductPageWrapper";
+import LoadingContent from "../../utils/loading/LoadingContent";
 
 
 
@@ -130,7 +131,7 @@ const Img = styled.img`
     width: 100%;
 `;
 
-const ProductPage = ({match}) => {
+const ProductPage = React.memo(({match}) => {
     const userState = useSelector(state=>state.userReducer);
     const productState = useSelector(state=>state.productReducer.singleProduct);
     const dispatch = useDispatch();
@@ -152,6 +153,14 @@ const ProductPage = ({match}) => {
     }, [match.params.id]);
 
     console.log(productState);
+
+    if (productState.title === "" || parseInt(product_id, 10) !== productState.id)
+        return (
+            <ProductPageWrapper>
+                <LoadingContent/>
+            </ProductPageWrapper>
+        )
+
     return (
         <ProductPageWrapper>
             <Continent>
@@ -197,6 +206,6 @@ const ProductPage = ({match}) => {
             </ContentContainer>
         </ProductPageWrapper>
     )
-}
+});
 
 export default React.memo(ProductPage);
