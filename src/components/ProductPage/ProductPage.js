@@ -1,14 +1,13 @@
 import React, {useEffect, useLayoutEffect, useMemo, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getProduct, refreshProduct} from "../../_actions/productAction";
-import {addCart, goToMyCart, showAllCarts} from "../../_actions/cartAction";
+import {getCartSold, getProduct, refreshProduct} from "../../_actions/productAction";
+import {addCart} from "../../_actions/cartAction";
 
 
 import styled from "styled-components";
 import oc from "open-color";
 import ProductPageWrapper from "./Frame/ProductPageWrapper";
 import LoadingContent from "../../utils/loading/LoadingContent";
-import {getCartSold} from "../../utils/axios/productApi";
 
 
 
@@ -136,34 +135,27 @@ const Img = styled.img`
 const ProductPage = React.memo(({match}) => {
     const userState = useSelector(state=>state.userReducer);
     const productState = useSelector(state=>state.productReducer.singleProduct);
+    const cartSoldState = useSelector(state=>state.productReducer.singleProductCartSold);
     const dispatch = useDispatch();
     const product_id = match.params.id;
     const email = userState.login.email;
-    const [cartSoldState, setCartSold] = useState({cart_cnt: 0, purchase_cnt: 0});
 
 
-    const onClickAddCartHandler = async (event, data) => {dispatch({...addCart(), data})};
+    const onClickAddCartHandler = async (event, data) => {
+        dispatch({...addCart(), data});
+    };
 
     // layout과 paint가 끝난 이후에 호출되는 useEffect보다
     // layout만 끝나고 호출되는 useLayoutEffect를 사용하여 비동기 작업을 보다 일찍 시작하게 구현하고자 했으나 성능상 큰 차이는 느낄 수 없었다.
     useLayoutEffect(()=>{
         if (productState.id !== parseInt(product_id, 10)){
-            dispatch({
-                ...getProduct(),
-                data: product_id,
-            });
 
-            getCartSold(product_id)
-                .then(data => {
-                    setCartSold({
-                        cart_cnt: data.cart_cnt ? data.cart_cnt : 0,
-                        purchase_cnt: data.purchase_cnt ? data.purchase_cnt : 0,
-                    })
-                })
-                .catch(console.log);
+            dispatch({...getProduct(), data: product_id,});
+            dispatch({...getCartSold(), data: product_id,});
+
         }
         return ()=>{dispatch(refreshProduct());}
-    }, [match.params.id]);
+    }, [dispatch, match.params.id]);
 
     console.log(productState);
 
@@ -206,8 +198,8 @@ const ProductPage = React.memo(({match}) => {
                             <tbody>
                                 <tr>
                                     <td>{productState.price}</td>
-                                    <td>{cartSoldState.cart_cnt}</td>
-                                    <td>{cartSoldState.purchase_cnt}</td>
+                                    <td>{cartSoldState.cart_cnt ? cartSoldState.cart_cnt : 0}</td>
+                                    <td>{cartSoldState.purchase_cnt ? cartSoldState.purchase_cnt : 0}</td>
                                 </tr>
                             </tbody>
                         </InfoCardTable>

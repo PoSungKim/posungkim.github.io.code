@@ -1,8 +1,21 @@
 import {
-    GET_PRODUCT, GET_PRODUCT_ERROR, GET_PRODUCT_SUCCESS, REFRESH_PRODUCT,
-    GET_PRODUCTS, GET_PRODUCTS_ERROR, GET_PRODUCTS_SUCCESS,
-    UPLOAD_ALL, UPLOAD_ALL_ERROR, UPLOAD_ALL_SUCCESS,
-    UPLOAD_PREVIEW, UPLOAD_PREVIEW_ERROR, UPLOAD_PREVIEW_SUCCESS, UPLOAD_REFRESH
+    GET_PRODUCT,
+    GET_PRODUCT_ERROR,
+    GET_PRODUCT_SUCCESS,
+    REFRESH_PRODUCT,
+    GET_PRODUCTS,
+    GET_PRODUCTS_ERROR,
+    GET_PRODUCTS_SUCCESS,
+    UPLOAD_ALL,
+    UPLOAD_ALL_ERROR,
+    UPLOAD_ALL_SUCCESS,
+    UPLOAD_PREVIEW,
+    UPLOAD_PREVIEW_ERROR,
+    UPLOAD_PREVIEW_SUCCESS,
+    UPLOAD_REFRESH,
+    GET_CARTSOLD,
+    GET_CARTSOLD_SUCCESS,
+    GET_CARTSOLD_ERROR
 } from "../_actions/productAction";
 // Product 관련 Reducer 생성
 
@@ -22,6 +35,10 @@ const initialState = {
         price : '',
         continent: '',
     },
+    singleProductCartSold: {
+      cart_cnt: 0,
+      purchase_cnt: 0,
+    },
     uploadProduct: {
         images: [],
         title: '',
@@ -36,6 +53,33 @@ const initialState = {
 export default function productReducer(state = initialState, action) {
     console.log("productReducer() 함수 실행", action);
     switch (action.type) {
+        case GET_CARTSOLD:
+            return {
+                ...state,
+                transmission: {
+                    ...initialState.transmission,
+                    loading: true,
+                }
+            }
+        case GET_CARTSOLD_SUCCESS:
+            return {
+                ...state,
+                transmission: {
+                    ...state.transmission,
+                    data: action.payload,
+                    loading: false,
+                },
+                singleProductCartSold: action.payload,
+            }
+        case GET_CARTSOLD_ERROR :
+            return {
+                ...state,
+                transmission: {
+                    data: action.payload,
+                    error: action.error,
+                    loading: false,
+                },
+            };
         case UPLOAD_PREVIEW:
             return {
                 ...state,

@@ -214,6 +214,8 @@ const MyCartPage = () => {
                 <Payment>
                     <span>Total Amount : </span>
                     <span>${totalPayment}</span>
+                    <div>Paypal Sandbox email: sb-igxoq3086818@business.example.com</div>
+                    <div>Paypal Sandbox password: testtest</div>
                 </Payment>
                 {
                     cartState.length > 0 && <PayPal totalPayment = {totalPayment} onSuccessTradeHandler={onSuccessTradeHandler} />

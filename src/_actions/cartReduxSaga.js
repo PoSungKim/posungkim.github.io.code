@@ -7,6 +7,7 @@ import {
     GO_TO_MYCART, SHOW_ALL_PURCHASE, showAllPurchase, SHOW_ALL_PURCHASE_SUCCESS, SHOW_ALL_PURCHASE_ERROR
 } from "./cartAction";
 import * as cartApi from "../utils/axios/cartApi"
+import {GET_CARTSOLD} from "./productAction";
 
 function* addCartSaga(action) {
     console.log("addCartSaga() 실행", action);
@@ -18,12 +19,17 @@ function* addCartSaga(action) {
             payload: success,
             error: false,
         });
+        alert("MyCart에 성공적으로 들어갔습니다!");
         // 새로운 Cart 리스트로 업데이트하면 Header 속 Cart 개수와 MyCart 페이지 Cart List가 함께 업데이트 된다
         yield put ({
             type: SHOW_ALL_CARTS,
             data: {email: action.data.email},
         })
-        alert("MyCart에 성공적으로 들어갔습니다!");
+        // 새로운 Cart 리스트로 업데이트하면 Cart 개수를 업데이트 해준다
+        yield put ({
+            type: GET_CARTSOLD,
+            data: action.data.product_id,
+        })
     } catch(error) {
         yield put ({
             type: ADD_CART_ERROR,
@@ -61,6 +67,8 @@ function* purchaseCartsSaga(action) {
             payload: success,
             error: false,
         });
+
+        alert("구매가 성공적으로 진행됐습니다!");
 
         yield put ({
             type: SHOW_ALL_CARTS,

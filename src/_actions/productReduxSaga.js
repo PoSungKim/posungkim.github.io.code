@@ -1,5 +1,8 @@
 import {call, getContext, put, takeEvery, takeLeading} from "@redux-saga/core/effects";
 import {
+    GET_CARTSOLD,
+    GET_CARTSOLD_ERROR,
+    GET_CARTSOLD_SUCCESS,
     GET_PRODUCT, GET_PRODUCT_ERROR, GET_PRODUCT_SUCCESS,
     GET_PRODUCTS, GET_PRODUCTS_ERROR, GET_PRODUCTS_SUCCESS,
     GO_TO_HOME, GO_TO_LOGIN,
@@ -99,6 +102,25 @@ function* getProductsSaga(action) {
     }
 }
 
+function* getCartSoldSaga(action) {
+    console.log("getCartSoldSaga() 실행", action);
+    try {
+        const cartSold = yield call(productApi.getCartSold, action.data);
+        console.log(cartSold);
+        yield put({
+            type: GET_CARTSOLD_SUCCESS,
+            payload: cartSold,
+            error: false,
+        });
+    } catch(error) {
+        yield put ({
+            type: GET_CARTSOLD_ERROR,
+            payload: error,
+            error: true,
+        });
+    }
+}
+
 function* goToHomeSaga(action) {
     const history = yield getContext('history');
     history.push("/");
@@ -113,6 +135,7 @@ function* goToLoginSaga(action) {
 export function* productSaga() {
     yield takeEvery(GET_PRODUCT, getProductSaga);
     yield takeEvery(GET_PRODUCTS, getProductsSaga);
+    yield takeEvery(GET_CARTSOLD, getCartSoldSaga);
 
     yield takeEvery(UPLOAD_PREVIEW, uploadPreviewSaga);
     yield takeLeading(UPLOAD_ALL, uploadAllSaga);
