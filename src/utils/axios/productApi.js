@@ -27,6 +27,17 @@ export const getOne = async (productId) => {
     }
 }
 
+export const getCartSold = async (productId) =>{
+    console.log("productApi/getCartSold() 함수 실행");
+    try {
+        const response = await axios.get(CURRENT_URL + `/check/${productId}`);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
 export const uploadPreview = async (data, config) => {
     console.log("productApi/uploadPreview() 함수 실행");
     try {

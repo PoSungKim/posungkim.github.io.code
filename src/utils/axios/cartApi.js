@@ -16,10 +16,10 @@ export const addCurCart = async (data) => {
     }
 }
 
-export const deleteCurCart = async ({email, product_id}) => {
-    console.log("cartApi/addCurCart() 함수 실행");
+export const getMyCart = async (data) => {
+    console.log("cartApi/getMyCart() 함수 실행");
     try {
-        const response = await axios.delete(CURRENT_URL + `/product_id=${product_id}&email=${email}`)
+        const response = await axios.post(CURRENT_URL + '/all', data);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -27,11 +27,32 @@ export const deleteCurCart = async ({email, product_id}) => {
     }
 }
 
-
-export const getMyCart = async (data) => {
-    console.log("cartApi/getMyCart() 함수 실행");
+export const purchaseCarts = async (data) => {
+    console.log("cartApi/purchaseCarts() 함수 실행");
     try {
-        const response = await axios.post(CURRENT_URL + '/all', data);
+        const response = await axios.post(CURRENT_URL + "/purchase", data);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+export const getAllPurchase = async (data) => {
+    console.log("cartApi/getAllPurchase() 함수 실행");
+    try {
+        const response = await axios.post(CURRENT_URL + "/purchase/all", data);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+export const deleteCurCart = async ({email, product_id}) => {
+    console.log("cartApi/addCurCart() 함수 실행");
+    try {
+        const response = await axios.delete(CURRENT_URL + `/product_id=${product_id}&email=${email}`)
         return response.data;
     } catch (error) {
         console.error(error);

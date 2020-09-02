@@ -9,12 +9,13 @@ import NavBarSection from "./HeaderFrame/NavBarSection";
 import NavBarWrapper from "./HeaderFrame/NavBarWrapper";
 import NavbarBtn from "./HeaderFrame/NavbarBtn";
 import CrossBtn from "./HeaderFrame/CrossBtn";
-import {showAllCarts} from "../../_actions/cartAction";
+import {showAllCarts, showAllPurchase} from "../../_actions/cartAction";
 
 
 const Header = ()=> {
     const userState = useSelector(state => state.userReducer);
     const cartState = useSelector(state=>state.cartReducer.myCart);
+    const purchaseState = useSelector(state=>state.cartReducer.myPurchase);
     const dispatch = useDispatch();
     const onLogOut = () => dispatch(logOutUser());
 
@@ -35,6 +36,7 @@ const Header = ()=> {
     useEffect( ()=> {
         checkScrollHeight(); document.addEventListener("scroll", checkScrollHeight);
         userState.isLoggedIn && dispatch({...showAllCarts(), data: {email: userState.login.email}});
+        userState.isLoggedIn && dispatch({...showAllPurchase(), data: {email: userState.login.email}});
 
         return ()=> {
             document.removeEventListener("scroll", checkScrollHeight);
@@ -52,9 +54,9 @@ const Header = ()=> {
                 <NavBarSection flex={6} ulList ulStyle={"padding: 0 30px"}>
                     <ul onClick={onClickCrossBtn}>
                         <Link to = "/"><li>Home</li></Link>
-                        <Link to = "/"><li>Community</li></Link>
                         <Link to = "/mychat"><li>MyChat</li></Link>
                         <Link to = "/mycart"><li>MyCart {cartState.length > 0 && <div id="MyCartNum">{cartState.reduce( (accu, cur) => accu + cur.count, 0)}</div>} </li></Link>
+                        <Link to = "/history"><li>MyPurchase {purchaseState.length > 0 && <div id="MyCartNum">{purchaseState.reduce( (accu, cur) => accu + cur.count, 0)}</div>} </li></Link>
                         <Link to = "/uploadproduct"><li>Upload</li></Link>
                     </ul>
                 </NavBarSection>

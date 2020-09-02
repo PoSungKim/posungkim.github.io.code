@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect} from "react";
+import React, {useEffect, useLayoutEffect, useMemo, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getProduct, refreshProduct} from "../../_actions/productAction";
 import {addCart, goToMyCart, showAllCarts} from "../../_actions/cartAction";
@@ -8,6 +8,7 @@ import styled from "styled-components";
 import oc from "open-color";
 import ProductPageWrapper from "./Frame/ProductPageWrapper";
 import LoadingContent from "../../utils/loading/LoadingContent";
+import {getCartSold} from "../../utils/axios/productApi";
 
 
 
@@ -128,6 +129,7 @@ const ImgWrapper = styled.div`
 `;
 
 const Img = styled.img`
+    object-fit: cover;
     width: 100%;
 `;
 
@@ -137,6 +139,8 @@ const ProductPage = React.memo(({match}) => {
     const dispatch = useDispatch();
     const product_id = match.params.id;
     const email = userState.login.email;
+    const [cartSoldState, setCartSold] = useState({cart_cnt: 0, purchase_cnt: 0});
+
 
     const onClickAddCartHandler = async (event, data) => {dispatch({...addCart(), data})};
 
@@ -148,8 +152,17 @@ const ProductPage = React.memo(({match}) => {
                 ...getProduct(),
                 data: product_id,
             });
+
+            getCartSold(product_id)
+                .then(data => {
+                    setCartSold({
+                        cart_cnt: data.cart_cnt ? data.cart_cnt : 0,
+                        purchase_cnt: data.purchase_cnt ? data.purchase_cnt : 0,
+                    })
+                })
+                .catch(console.log);
         }
-        return ()=>{ dispatch(refreshProduct());}
+        return ()=>{dispatch(refreshProduct());}
     }, [match.params.id]);
 
     console.log(productState);
@@ -186,19 +199,20 @@ const ProductPage = React.memo(({match}) => {
                             <thead>
                                 <tr>
                                     <th>Price</th>
-                                    <th>View</th>
+                                    <th>Cart</th>
                                     <th>Sold</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>{productState.price}</td>
-                                    <td>0</td>
-                                    <td>0</td>
+                                    <td>{cartSoldState.cart_cnt}</td>
+                                    <td>{cartSoldState.purchase_cnt}</td>
                                 </tr>
                             </tbody>
                         </InfoCardTable>
                         {userState.isLoggedIn // 회원가입할 때, email과 username은 중복이 없도록 설정함, 하지만 username의 경우 서비스에서 공개되기 때문에, 공개되지 않은 email을 사용하기로 결정
+                            &&  productState.writer !== userState.login.username
                             && <InfoCardCartBtn onClick={(event)=>onClickAddCartHandler(event, {email, product_id})}>Add to Cart</InfoCardCartBtn>
                         }
                     </InfoCard>

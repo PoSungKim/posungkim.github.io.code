@@ -3,7 +3,6 @@ import React, {useEffect} from "react";
 import {Router, Route, Switch, Redirect} from "react-router-dom";
 import {createBrowserHistory} from 'history';
 
-
 import Header from "../components/BasicArea/Header";
 import MainContent from "../components/BasicArea/MainContent";
 import Footer from "../components/BasicArea/Footer";
@@ -17,6 +16,7 @@ import RegisterPage from "../components/UserPage/RegisterPage";
 
 import MyCartPage from "../components/MyCartPage/MyCartPage";
 import MyChatPage from "../components/MyChatPage/MyChatPage";
+import MyPurchase from "../components/MyPurchase/MyPurchase";
 
 
 import NewsComp from "../components/news/NewsComp";
@@ -33,6 +33,7 @@ import YouTubeCloning from "../components/function/YouTubeCloning/YouTubeCloning
 import ShoppingComp from "../components/function/ShoppingComp/ShoppingComp";
 import TodoListComp from "../components/function/TodoListComp/TodoListComp";
 import SideBar from "../components/BasicArea/SideBar";
+
 
 
 
@@ -64,7 +65,8 @@ function AppRouter() {
                         <Route exact path="/uploadproduct" component={UploadProductPage}/>
                         <Route exact path={"/product/:id"} component={ProductPage}/>
                         <Route exact path="/mycart" component={MyCartPage}/>
-                        <Route exact path="/mychat" component = {MyChatPage}></Route>
+                        <Route exact path="/mychat" component = {MyChatPage}/>
+                        <Route exact path="/history" component = {MyPurchase}/>
 
                         {/* 하단은 기존에 연습한 내용 */}
                         <Route exact path="/resume" component={ResumeComp}/>

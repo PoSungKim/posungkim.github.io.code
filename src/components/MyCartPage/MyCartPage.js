@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {goToLogin} from "../../_actions/productAction";
-import {deleteCart, showAllCarts} from "../../_actions/cartAction";
-
+import {deleteCart, purchaseCarts, showAllCarts} from "../../_actions/cartAction";
+import {FaShoppingCart} from "react-icons/fa"
 import styled from "styled-components";
 import oc from "open-color";
-
+import PayPal from "../../utils/paypal/PayPal";
 
 
 const PageContainer = styled.section`
@@ -23,9 +23,19 @@ const PageSection = styled.div`
     
     @media screen and (max-width: 768px) {
         width: 95%;
-    }
-    
+    }  
 `;
+
+const TableTag = styled.div`
+    padding-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: gray;
+    
+    @media screen and (max-width: 768px) {
+        font-size: 0.8rem
+    }
+`
 
 const CartTable = styled.table`
     border-collapse:collapse;
@@ -118,6 +128,10 @@ const EmptyCartList = styled.div`
     font-weight: 300;
     font-size: 3rem;
     width: 100%;
+    
+    @media screen and (max-width: 768px) {
+        font-size: 1.5rem;
+    }
 `
 
 const MyCartPage = () => {
@@ -131,7 +145,14 @@ const MyCartPage = () => {
     const BtnRemoveHandler = async ({email, product_id}) => {
         console.log({email, product_id});
         dispatch({...deleteCart(), data: {email, product_id}});
-    }
+    };
+
+    const onSuccessTradeHandler = () => {
+
+        const data = {email: userState.login.email, product_id_list: cartState,}
+        dispatch({ ...purchaseCarts(), data});
+
+    };
 
     useEffect(()=>{
 
@@ -142,6 +163,7 @@ const MyCartPage = () => {
     return (
         <PageContainer>
             <PageSection>
+                <TableTag>Check the Items You Have Added to Your Cart <FaShoppingCart/></TableTag>
                 <CartTable>
                     <thead>
                         <tr>
@@ -151,12 +173,12 @@ const MyCartPage = () => {
                             <th className="Price">Price</th>
                             <th className="Title">Title</th>
                             <th className="Description">Description</th>
-                            <th className="Btn" colSpan="2"></th>
+                            { cartState.length > 0 && <th className="Btn" colSpan="2"></th> }
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            cartState.map( (product, index) => {
+                            cartState.length > 0 && cartState.map( (product, index) => {
                                 totalPayment += product.count * parseInt(product.price.substring(1), 10);
                                 return (
                                     <tr key={index + 1}>
@@ -193,6 +215,9 @@ const MyCartPage = () => {
                     <span>Total Amount : </span>
                     <span>${totalPayment}</span>
                 </Payment>
+                {
+                    cartState.length > 0 && <PayPal totalPayment = {totalPayment} onSuccessTradeHandler={onSuccessTradeHandler} />
+                }
             </PageSection>
         </PageContainer>
     )

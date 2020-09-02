@@ -67,7 +67,8 @@ export const CardImageContainer = styled.div`
 `;
 
 export const CardImage = styled.img`
+    border-radius: 5px;
+    object-fit: cover;
     width: 100%;
     height: auto;
-    border-radius: 5px;
 `;
