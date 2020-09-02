@@ -99,6 +99,7 @@ const Btn = styled.button`
 
 const Payment = styled.div`
     padding: 2rem 1rem;
+    
     span {
         &:nth-child(1) {
             font-size: 1.5rem;
@@ -112,6 +113,17 @@ const Payment = styled.div`
     
     @media screen and (max-width: 768px) {
         padding: 1rem 0.5rem;
+        
+        span {
+            &:nth-child(odd) {
+                font-size: 1rem;
+                font-weight: 600;
+            }
+            &:nth-child(even) {
+                font-size: 1.3rem;
+                font-weight: 300;
+            }
+        }
     }
 `
 

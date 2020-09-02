@@ -106,6 +106,7 @@ const Btn = styled.button`
 
 const Payment = styled.div`
     padding: 2rem 1rem;
+    
     div + div {
         margin-top: 0.5rem;   
     }
@@ -123,6 +124,17 @@ const Payment = styled.div`
     
     @media screen and (max-width: 768px) {
         padding: 1rem 0.5rem;
+        
+        span {
+            &:nth-child(odd) {
+                font-size: 1rem;
+                font-weight: 600;
+            }
+            &:nth-child(even) {
+                font-size: 1.3rem;
+                font-weight: 300;
+            }
+        }
     }
 `
 
@@ -217,8 +229,13 @@ const MyCartPage = () => {
                 }
                 <Payment>
                     <div><span>Total Amount : </span><span>${totalPayment}</span></div>
-                    <div><span>Paypal Sandbox Password : </span> <span>testtest</span></div>
-                    <div><span>Paypal Sandbox Email : </span> <span>sb-igxoq3086818@business.example.com</span></div>
+                    {
+                        cartState.length > 0
+                            &&  <>
+                                    <div><span>Paypal Sandbox Password : </span> <span>testtest</span></div>
+                                    <div><span>Paypal Sandbox Email : </span> <span>sb-igxoq3086818@business.example.com</span></div>
+                                </>
+                    }
                 </Payment>
                 {
                     cartState.length > 0 && <PayPal totalPayment = {totalPayment} onSuccessTradeHandler={onSuccessTradeHandler} />
