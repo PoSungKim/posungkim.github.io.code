@@ -2,6 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import {RiShip2Line} from "react-icons/ri/index";
 import TopBanner from "./TopBanner";
+import {transitions} from "../../../utils/style/styleUtils";
 
 const ContentContainer = styled.section`
     width: 100%;
@@ -19,10 +20,12 @@ const MainPageSection = styled.div`
 `;
 
 const InfoContainer = styled.div`
+    animation: ${transitions.moveLeftRight} 1500ms ease-in infinite alternate;
     padding-bottom: 3rem;
     text-align: center;
     font-weight: 300;
     font-size: 2rem;
+    
     
     @media screen and (max-width: 768px) {
         padding: 0.5rem 1rem;
