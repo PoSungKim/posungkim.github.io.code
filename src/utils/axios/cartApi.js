@@ -6,40 +6,40 @@ const TEST_URL = "https://jsonplaceholder.typicode.com/users";
 const CURRENT_URL = DEPLOY_URL;
 
 export const addCurCart = async (data) => {
-    console.log("cartApi/addCurCart() 함수 실행");
+    // console.log("cartApi/addCurCart() 함수 실행");
     try {
         const response = await axios.post(CURRENT_URL, data);
         return response.data;
     } catch (error) {
-        console.error(error);
+        // console.error(error);
         return null;
     }
 }
 
 export const getMyCart = async (data) => {
-    console.log("cartApi/getMyCart() 함수 실행");
+    // console.log("cartApi/getMyCart() 함수 실행");
     try {
         const response = await axios.post(CURRENT_URL + '/all', data);
         return response.data;
     } catch (error) {
-        console.error(error);
+        // console.error(error);
         return null;
     }
 }
 
 export const purchaseCarts = async (data) => {
-    console.log("cartApi/purchaseCarts() 함수 실행");
+    // console.log("cartApi/purchaseCarts() 함수 실행");
     try {
         const response = await axios.post(CURRENT_URL + "/purchase", data);
         return response.data;
     } catch (error) {
-        console.error(error);
+        // console.error(error);
         return null;
     }
 }
 
 export const getAllPurchase = async (data) => {
-    console.log("cartApi/getAllPurchase() 함수 실행");
+    // console.log("cartApi/getAllPurchase() 함수 실행");
     try {
         const response = await axios.post(CURRENT_URL + "/purchase/all", data);
         return response.data;

@@ -50,7 +50,7 @@ const Btn = styled.div`
 const ChatInputBtn = React.memo(({messageState, name, onClick, onKeyPress, onChange}) => {
 
     useEffect(()=>{
-        console.log("RENDER ChatInputBtn PAGE useEffect");
+        // console.log("RENDER ChatInputBtn PAGE useEffect");
     }, [messageState]);
     return (
         <>

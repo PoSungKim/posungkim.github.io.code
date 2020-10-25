@@ -87,10 +87,10 @@ const MyChatPage = () => {
 
     const connect = (contentState) => {
         stompClient.connect({}, async (frame) => {
-            console.log(frame);
+            // console.log(frame);
 
             await stompClient.subscribe('/topic/public', (data)=>{
-                console.log(data + "VS" + contentState);
+                // console.log(data + "VS" + contentState);
                 const newMessage = JSON.parse(data.body);
                 addMessage(newMessage);
             });
@@ -110,8 +110,8 @@ const MyChatPage = () => {
         if (messageState.content === "")
             return;
         try {
-            console.log(JSON.stringify({...messageState, sender: userState.login.username? userState.login.username : "손님", date: `${new Date().toDateString()}`}));
-            console.log(contentState);
+            // console.log(JSON.stringify({...messageState, sender: userState.login.username? userState.login.username : "손님", date: `${new Date().toDateString()}`}));
+            // console.log(contentState);
             stompClient.send("/mychat/send", {},  JSON.stringify({...messageState, sender: userState.login.username? userState.login.username : "손님", date: `${new Date().toDateString()}`}));
             setMessage(initialMessage);
         } catch(error) {
@@ -130,20 +130,20 @@ const MyChatPage = () => {
             ...messageState,
             content : event.target.value,
         })
-        console.log(messageState.content, contentState);
+        // console.log(messageState.content, contentState);
     }
     const addMessage = (content) => {
-        console.log([...contentState, content]);
+        // console.log([...contentState, content]);
         setContent(prev => [...prev, content]);
     }
 
     //let sockJS = useMemo( ()=> new SockJS("http://localhost:8080/webSocket"), []);
     let sockJS = useMemo( ()=> new SockJS("https://springboot--backend.herokuapp.com/webSocket"), []);
     let stompClient = useMemo( ()=> Stomp.over(sockJS), []);
-    stompClient.debug = (error) => {console.log(error)};
+    // stompClient.debug = (error) => {console.log(error)};
 
     useEffect(()=>{
-        console.log("RENDER MYCHAT PAGE useEffect");
+        // console.log("RENDER MYCHAT PAGE useEffect");
         window.addEventListener("beforeunload", terminateChatRoom);
         connect();
 
@@ -157,7 +157,7 @@ const MyChatPage = () => {
     },[]);
 
 
-    console.log("RENDER MYCHAT PAGE", contentState);
+    // console.log("RENDER MYCHAT PAGE", contentState);
     return (
         <PageContainer>
             <PageSection>

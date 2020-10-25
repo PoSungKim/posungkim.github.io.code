@@ -35,7 +35,7 @@ const initialState = {
 
 // userReducer 생성
 export default function userReducer(state = initialState, action) {
-    console.log("userReducer() 함수 실행", action);
+    // console.log("userReducer() 함수 실행", action);
     switch (action.type) {
         case INITIALTRANSMISSION :
             return {

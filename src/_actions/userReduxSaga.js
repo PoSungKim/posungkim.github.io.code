@@ -12,7 +12,7 @@ import * as userApi from "../utils/axios/userApi";
 // Redux-Saga Action 처리 함수 생성
 
 function* registerUserSaga (action) {
-    console.log("registerUserSaga() 실행", action);
+    // console.log("registerUserSaga() 실행", action);
     try {
         yield call(userApi.registerUser, action.data);
         yield put({
@@ -38,7 +38,7 @@ function* registerUserSaga (action) {
 }
 
 function* findUserSaga(action) {
-    console.log("findUserSaga() 실행", action);
+    // console.log("findUserSaga() 실행", action);
     try {
         const user = yield call(userApi.findUser, action.data);
         yield put({
@@ -55,7 +55,7 @@ function* findUserSaga(action) {
 }
 
 function* loginSaga(action) {
-    console.log("loginSaga() 실행", action);
+    // console.log("loginSaga() 실행", action);
     try {
         const result = yield call(userApi.logInUser, action.data);
         const isOkay = result.email && result.password? true : false;

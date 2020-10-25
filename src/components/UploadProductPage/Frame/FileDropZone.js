@@ -98,7 +98,7 @@ const FileDropZone = ({imagesStateRefreshHandler}) => {
         setPreview(productState.uploadProduct.images);
         imagesStateRefreshHandler(productState.uploadProduct.images);
     }, [productState.uploadProduct.images, dispatch, productState.uploadProduct]);
-    console.log(previewState);
+    // console.log(previewState);
 
     return (
         <DropZoneWrapper>

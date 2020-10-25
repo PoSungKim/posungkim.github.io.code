@@ -49,7 +49,7 @@ const HomePage = () => {
 
     }, [dispatch, productsState]);
 
-    console.log(productsState.length);
+    //console.log(productsState.length);
     return (
         <HomePageWrapper>
             <CardContainer>

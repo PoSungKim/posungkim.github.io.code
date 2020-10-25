@@ -85,7 +85,7 @@ const ChatContent = React.memo(({contentState}) => {
     const userState = useSelector(state => state.userReducer);
     useEffect(()=>{
         scrollChatRoomToBottom();
-        console.log("RENDER ChatContent PAGE useEffect");
+        // console.log("RENDER ChatContent PAGE useEffect");
     }, [contentState]);
 
     return (

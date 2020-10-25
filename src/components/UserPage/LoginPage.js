@@ -49,7 +49,7 @@ const LoginPage = () => {
         }, [dispatch, users.transmission]);
 
     users.isLoggedIn && dispatch(goToHome());
-    console.log("render ", users);
+    //console.log("render ", users);
 
     return (
       <PageWrapper info = {"Log In Page"}>

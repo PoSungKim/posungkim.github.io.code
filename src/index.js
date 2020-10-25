@@ -31,7 +31,7 @@ const store = createStore(rootReducer,
         applyMiddleware(
             ReduxThunk.withExtraArgument({history: customHistory}),
             sagaMiddleware,
-            logger
+            // logger
         )
     )
 );

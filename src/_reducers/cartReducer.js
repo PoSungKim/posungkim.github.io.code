@@ -19,7 +19,7 @@ const initialState = {
 
 // productReducer 생성
 export default function cartReducer(state = initialState, action) {
-    console.log("cartReducer() 함수 실행", action);
+    // console.log("cartReducer() 함수 실행", action);
     switch (action.type) {
         case ADD_CART:
         case SHOW_ALL_CARTS:

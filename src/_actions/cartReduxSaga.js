@@ -40,7 +40,7 @@ function* addCartSaga(action) {
 }
 
 function* showAllSaga(action) {
-    console.log("showAllSaga() 실행", action);
+    // console.log("showAllSaga() 실행", action);
     try {
         const carts = yield call(cartApi.getMyCart, action.data);
         yield put({
@@ -58,7 +58,7 @@ function* showAllSaga(action) {
 }
 
 function* purchaseCartsSaga(action) {
-    console.log("purchaseCartsSaga() 실행", action);
+    // console.log("purchaseCartsSaga() 실행", action);
     try {
         const success = yield call(cartApi.purchaseCarts, action.data);
 
@@ -90,7 +90,7 @@ function* purchaseCartsSaga(action) {
 }
 
 function* showAllPurchaseSaga(action) {
-    console.log("showAllPurchaseSaga() 실행", action);
+    // console.log("showAllPurchaseSaga() 실행", action);
     try {
         const purchase = yield call(cartApi.getAllPurchase, action.data);
 
@@ -110,7 +110,7 @@ function* showAllPurchaseSaga(action) {
 }
 
 function* deleteCartSaga(action) {
-    console.log("deleteCartSaga() 실행", action);
+    // console.log("deleteCartSaga() 실행", action);
     try {
         const success = yield call(cartApi.deleteCurCart, action.data);
         yield put({

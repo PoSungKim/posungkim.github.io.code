@@ -56,7 +56,7 @@ const RegisterPage = () => {
 
     users.isLoggedIn && dispatch(goToHome());
 
-    console.log("render ");
+    //console.log("render ");
     return (
         <PageWrapper info = {"Sign In Page"}>
             <InputWithLabel

@@ -78,7 +78,7 @@ const UploadProductPage = () => {
         })
     }, [userState.login.username, dispatch]);
 
-    console.log(formState);
+    //console.log(formState);
 
     if (!userState.isLoggedIn) {
         dispatch(goToLogin());

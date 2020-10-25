@@ -40,7 +40,7 @@ function* uploadAllSaga(action) {
     console.log("uploadAllSaga() 실행", action);
     try {
         const transmissionResult = yield call(productApi.uploadAll, action.data, action.config);
-        console.log("transmissionResult", transmissionResult);
+        // console.log("transmissionResult", transmissionResult);
         yield put({
             type: transmissionResult? UPLOAD_ALL_SUCCESS : UPLOAD_ALL_ERROR,
             payload: {
@@ -65,10 +65,10 @@ function* uploadAllSaga(action) {
 }
 
 function* getProductSaga(action) {
-    console.log("getProductSaga() 실행", action);
+    // console.log("getProductSaga() 실행", action);
     try {
         const product = yield call(productApi.getOne, action.data);
-        console.log(product);
+        // console.log(product);
         yield put({
             type: GET_PRODUCT_SUCCESS,
             payload: product,
@@ -84,10 +84,10 @@ function* getProductSaga(action) {
 }
 
 function* getProductsSaga(action) {
-    console.log("getProductsSaga() 실행", action);
+    // console.log("getProductsSaga() 실행", action);
     try {
         const products = yield call(productApi.getAll);
-        console.log(products);
+        // console.log(products);
         yield put({
             type: GET_PRODUCTS_SUCCESS,
             payload: products,
@@ -103,10 +103,10 @@ function* getProductsSaga(action) {
 }
 
 function* getCartSoldSaga(action) {
-    console.log("getCartSoldSaga() 실행", action);
+    // console.log("getCartSoldSaga() 실행", action);
     try {
         const cartSold = yield call(productApi.getCartSold, action.data);
-        console.log(cartSold);
+        // console.log(cartSold);
         yield put({
             type: GET_CARTSOLD_SUCCESS,
             payload: cartSold,

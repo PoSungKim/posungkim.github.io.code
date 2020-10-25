@@ -51,7 +51,7 @@ const initialState = {
 
 // productReducer 생성
 export default function productReducer(state = initialState, action) {
-    console.log("productReducer() 함수 실행", action);
+    // console.log("productReducer() 함수 실행", action);
     switch (action.type) {
         case GET_CARTSOLD:
             return {
