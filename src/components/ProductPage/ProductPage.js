@@ -157,7 +157,7 @@ const ProductPage = React.memo(({match}) => {
         return ()=>{dispatch(refreshProduct());}
     }, [dispatch, match.params.id]);
 
-    console.log(productState);
+    //console.log(productState);
 
     if (productState.title === "" || parseInt(product_id, 10) !== productState.id)
         return (
